@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Catch the ZiniCoin!</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to bottom, #f7f8fc, #dde6f1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.game-container {
+  text-align: center;
+  max-width: 600px;
+}
+
+h1 {
+  color: #333;
+}
+
+.zini {
+  color: gold;
+  font-weight: bold;
+}
+
+#game-area {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: #fff;
+  border: 3px dashed #aaa;
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.coin {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -50px;
+  animation: fall 5s linear forwards;
+  cursor: pointer;
+}
+
+@keyframes fall {
+  to {
+    top: 100%;
+  }
+}
+
+#start-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: gold;
+  border: none;
+  color: #222;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#start-btn:hover {
+  transform: scale(1.1);
+}
+
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-container">
+    <h1>🎯 Catch the <span class="zini">ZiniCoin</span>!</h1>
+    <p>Score: <span id="score">0</span></p>
+    <div id="game-area"></div>
+    <button id="start-btn">Start Game</button>
+  </div>
+
+  <script>
+    const gameArea = document.getElementById("game-area");
+const scoreDisplay = document.getElementById("score");
+const startBtn = document.getElementById("start-btn");
+
+let score = 0;
+let gameInterval;
+let coinImages = [
+  "https://cdn-icons-png.flaticon.com/512/4128/4128176.png", // you can replace with your ZiniCoin icon
+  "https://cdn-icons-png.flaticon.com/512/825/825471.png"
+];
+
+function randomCoinImage() {
+  return coinImages[Math.floor(Math.random() * coinImages.length)];
+}
+
+function createCoin() {
+  const coin = document.createElement("img");
+  coin.src = randomCoinImage();
+  coin.classList.add("coin");
+  coin.style.left = `${Math.random() * (gameArea.clientWidth - 40)}px`;
+
+  coin.addEventListener("click", () => {
+    score++;
+    scoreDisplay.textContent = score;
+    coin.remove();
+  });
+
+  gameArea.appendChild(coin);
+
+  // Remove coin after animation ends
+  setTimeout(() => {
+    coin.remove();
+  }, 5000);
+}
+
+function startGame() {
+  score = 0;
+  scoreDisplay.textContent = score;
+
+  gameInterval = setInterval(createCoin, 800);
+  setTimeout(stopGame, 20000); // 20 seconds game
+}
+
+function stopGame() {
+  clearInterval(gameInterval);
+  alert(`⏰ Time's up! You caught ${score} ZiniCoins!`);
+}
+
+startBtn.addEventListener("click", () => {
+  startGame();
+});
+
+  </script>
+</body>
+</html>

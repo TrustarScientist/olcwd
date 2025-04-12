@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flappy ZiniBird</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: skyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+#game {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  background: linear-gradient(to top, #87cefa, #e0ffff);
+  overflow: hidden;
+  border: 4px solid #fff;
+  border-radius: 10px;
+}
+
+#bird {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: yellow;
+  border-radius: 50%;
+  top: 200px;
+  left: 100px;
+  transition: transform 0.1s;
+}
+
+.pipe {
+  position: absolute;
+  width: 60px;
+  background: green;
+  bottom: 0;
+}
+
+.pipe-top {
+  background: green;
+  position: absolute;
+  top: 0;
+  height: 200px;
+}
+
+#score {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+  </style>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="game">
+    <div id="bird"></div>
+    <div id="score">0</div>
+  </div>
+  <script>
+    const bird = document.getElementById("bird");
+const game = document.getElementById("game");
+const scoreDisplay = document.getElementById("score");
+
+let birdTop = 200;
+let gravity = 2;
+let isGameOver = false;
+let score = 0;
+
+function fall() {
+  if (!isGameOver) {
+    birdTop += gravity;
+    bird.style.top = birdTop + "px";
+
+    if (birdTop > 560 || birdTop < 0) {
+      gameOver();
+    }
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    flap();
+  }
+});
+
+document.addEventListener("click", flap);
+
+function flap() {
+  if (!isGameOver) {
+    birdTop -= 40;
+    bird.style.top = birdTop + "px";
+  }
+}
+
+function gameOver() {
+  isGameOver = true;
+  alert("💥 Game Over! Your Score: " + score);
+  window.location.reload();
+}
+
+function createPipe() {
+  const pipe = document.createElement("div");
+  const pipeTop = document.createElement("div");
+
+  pipe.classList.add("pipe");
+  pipeTop.classList.add("pipe", "pipe-top");
+
+  let gap = 150;
+  let randomTop = Math.floor(Math.random() * 200) + 100;
+
+  pipe.style.height = 600 - randomTop - gap + "px";
+  pipe.style.left = "400px";
+
+  pipeTop.style.height = randomTop + "px";
+  pipeTop.style.left = "400px";
+
+  game.appendChild(pipe);
+  game.appendChild(pipeTop);
+
+  let moveInterval = setInterval(() => {
+    let pipeLeft = parseInt(pipe.style.left);
+    pipe.style.left = pipeLeft - 2 + "px";
+    pipeTop.style.left = pipeLeft - 2 + "px";
+
+    if (pipeLeft < -60) {
+      clearInterval(moveInterval);
+      pipe.remove();
+      pipeTop.remove();
+      score++;
+      scoreDisplay.textContent = score;
+    }
+
+    // Collision
+    if (
+      pipeLeft < 140 &&
+      pipeLeft + 60 > 100 &&
+      (birdTop < parseInt(pipeTop.style.height) ||
+        birdTop + 40 > 600 - parseInt(pipe.style.height))
+    ) {
+      clearInterval(moveInterval);
+      gameOver();
+    }
+  }, 20);
+}
+
+setInterval(fall, 20);
+setInterval(createPipe, 2000);
+
+  </script>
+</body>
+</html>
