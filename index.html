@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Project Hub | GitCodes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #121212, #1f1f1f);
+      color: #fff;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #ccc;
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .project-card {
+      background: #2a2a2a;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+      width: 280px;
+    }
+
+    .project-card:hover {
+      transform: scale(1.05);
+    }
+
+    .project-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: #ffd700;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-card a {
+      text-decoration: none;
+      color: #00c3ff;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎓 GitCodes Project Hub</h1>
+    <p>Explore fun projects built by coding students! 💻</p>
+  </header>
+
+  <section class="projects">
+    <div class="project-card">
+      <h2>Flappy ZiniBird</h2>
+      <p>A simple Flappy Bird game clone with JavaScript and animations.</p>
+      <a href="flappybird/index.html" target="_blank">Play Game →</a>
+    </div>
+
+    <div class="project-card">
+      <h2>Catch the ZiniCoin</h2>
+      <p>Catch falling coins using your mouse — how fast are you?</p>
+      <a href="catch-zinicoin/index.html" target="_blank">Play Game →</a>
+    </div>
+
+    <div class="project-card">
+      <h2>Car Racing</h2>
+      <p>Use arrow keys to dodge traffic and race forward.</p>
+      <a href="car-race/index.html" target="_blank">Play Game →</a>
+    </div>
+
+    <div class="project-card">
+      <h2>Weather App</h2>
+      <p>Check live weather data using an API and your city name.</p>
+      <a href="weather-app/index.html" target="_blank">Open App →</a>
+    </div>
+
+    <div class="project-card">
+      <h2>Quiz App</h2>
+      <p>Test your knowledge with this interactive quiz game!</p>
+      <a href="quiz-app/index.html" target="_blank">Take Quiz →</a>
+    </div>
+  </section>
+
+  <footer>
+    Made with 💙 by TrustarScientist and students
+  </footer>
+</body>
+</html>
