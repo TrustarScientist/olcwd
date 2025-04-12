@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    .quiz-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    .answers button {
+      display: block;
+      width: 100%;
+      background: #2c3e50;
+      border: none;
+      color: white;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .answers button:hover {
+      background: #34495e;
+    }
+
+    #next-btn {
+      margin-top: 15px;
+      background: #27ae60;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    #next-btn:hover {
+      background: #219150;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>Quick Quiz</h2>
+    <div class="question" id="question">Question text here</div>
+    <div class="answers" id="answer-buttons"></div>
+    <button id="next-btn">Next</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "Which language is used for styling web pages?",
+        answers: [
+          { text: "HTML", correct: false },
+          { text: "CSS", correct: true },
+          { text: "Python", correct: false },
+          { text: "Java", correct: false }
+        ]
+      },
+      {
+        question: "What does HTML stand for?",
+        answers: [
+          { text: "Hyperlinks and Text Markup Language", correct: false },
+          { text: "Home Tool Markup Language", correct: false },
+          { text: "HyperText Markup Language", correct: true },
+          { text: "HyperText Markdown Language", correct: false }
+        ]
+      },
+      {
+        question: "Inside which HTML element do we put JavaScript?",
+        answers: [
+          { text: "<js>", correct: false },
+          { text: "<script>", correct: true },
+          { text: "<javascript>", correct: false },
+          { text: "<code>", correct: false }
+        ]
+      }
+    ];
+
+    const questionElement = document.getElementById("question");
+    const answerButtons = document.getElementById("answer-buttons");
+    const nextButton = document.getElementById("next-btn");
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      nextButton.innerHTML = "Next";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      resetState();
+      const currentQuestion = questions[currentQuestionIndex];
+      questionElement.innerText = currentQuestion.question;
+
+      currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerText = answer.text;
+        button.classList.add("btn");
+        if (answer.correct) {
+          button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+        answerButtons.appendChild(button);
+      });
+    }
+
+    function resetState() {
+      nextButton.style.display = "none";
+      while (answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
+      }
+    }
+
+    function selectAnswer(e) {
+      const selectedBtn = e.target;
+      const isCorrect = selectedBtn.dataset.correct === "true";
+      if (isCorrect) {
+        selectedBtn.style.background = "#2ecc71";
+        score++;
+      } else {
+        selectedBtn.style.background = "#e74c3c";
+      }
+
+      Array.from(answerButtons.children).forEach(button => {
+        button.disabled = true;
+        if (button.dataset.correct === "true") {
+          button.style.background = "#2ecc71";
+        }
+      });
+
+      nextButton.style.display = "block";
+    }
+
+    function showScore() {
+      resetState();
+      questionElement.innerText = `You scored ${score} out of ${questions.length}!`;
+      nextButton.innerText = "Play Again";
+      nextButton.style.display = "block";
+    }
+
+    function handleNextButton() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestion();
+      } else {
+        showScore();
+      }
+    }
+
+    nextButton.addEventListener("click", () => {
+      if (currentQuestionIndex < questions.length) {
+        handleNextButton();
+      } else {
+        startQuiz();
+      }
+    });
+
+    startQuiz();
+  </script>
+</body>
+</html>

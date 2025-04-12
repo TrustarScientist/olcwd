@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Image Changer</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.image-changer-container {
+  text-align: center;
+}
+
+.image {
+  height: 400px;
+  object-fit: cover;
+  object-position: center;
+  margin-bottom: 20px;
+  padding: 1%;
+  border: 2px solid gray;
+  border-radius: 20px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 1% 2%;
+  font-size: 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: block;
+  width: 20%;
+  position: absolute;
+  bottom: 10%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="image-changer-container">
+    <img id="image" src="../photos/ChatGPT Image Apr 10, 2025, 04_32_36 PM.png" alt="Image" class="image">
+    
+  </div>
+  <button onclick="changeImage()">Next Image</button>
+
+  <script>
+    const images = [
+  "../photos/myself.jpg",
+  "../photos/OS.PNG",
+  "../photos/ChatGPT Image Apr 10, 2025, 04_32_36 PM.png",
+  "../photos/computer mouse.PNG",
+];
+
+let currentImageIndex = 0;
+
+function changeImage() {
+  currentImageIndex++;
+  
+  // If we go past the last image, reset to the first one
+  if (currentImageIndex >= images.length) {
+    currentImageIndex = 0;
+  }
+
+  // Change the image source
+  document.getElementById("image").src = images[currentImageIndex];
+}
+
+  </script>
+</body>
+</html>

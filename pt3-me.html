@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portfolio - Flex Version</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    nav {
+      background-color: #222;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #00bcd4;
+    }
+
+    header {
+      background: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1050&q=80') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 6rem 1rem;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    header h1 {
+      position: relative;
+      font-size: 3rem;
+      z-index: 1;
+      animation: fadeSlide 1.2s ease-out;
+    }
+
+    header p {
+      position: relative;
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      z-index: 1;
+    }
+
+    @keyframes fadeSlide {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      color: #00bcd4;
+      margin-bottom: 1rem;
+      border-left: 4px solid #00bcd4;
+      padding-left: 10px;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about-content img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex: 1;
+    }
+
+    .about-content .text {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .skills, .projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+      flex: 1 1 220px;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        flex-direction: column;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div><strong>My Portfolio</strong></div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Hello...I'm Daniel Godday O'tega</h1>
+    <p>A Passionate Web Developer and Instructor</p>
+  </header>
+
+  <div class="container">
+
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <img src="../photos/myself.jpg"  alt="My Photo">
+        <div class="text">
+          <p>Hello! I'm Daniel, a young aspiring web developer currently learning how to build websites using HTML and CSS. I'm also learning how to make my pages responsive and beautiful. This is one of my first portfolio pages!</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="card">HTML5</div>
+        <div class="card">CSS3</div>
+        <div class="card">Flexbox</div>
+        <div class="card">Web Layout</div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>My Projects</h2>
+      <div class="projects">
+        <div class="card">
+          <h3>Mini Portfolio</h3>
+          <p>A simple, responsive personal webpage.</p>
+        </div>
+        <div class="card">
+          <h3>Hobby Page</h3>
+          <p>A fun page I made about my favorite things.</p>
+        </div>
+        <div class="card">
+          <h3>Colorful Landing Page</h3>
+          <p>Basic homepage with colors and buttons.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Email: daniel22@example.com</p>
+      <p>Phone: +234-000-000-0000</p>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Daniel. Built with ❤️ at Kidcodingteacher.com</p>
+  </footer>
+
+</body>
+</html>

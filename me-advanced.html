@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    /* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+section {
+  padding: 40px;
+  margin: 20px 0;
+}
+
+/* Navigation Styles */
+nav {
+  background-color: #333;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 10px;
+  z-index: 100;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: #fff;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* Hero Section */
+.hero {
+  background-color: #0077b6;
+  color: #fff;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+}
+
+.cta {
+  padding: 10px 20px;
+  background-color: #ffbf47;
+  color: #333;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+/* About Me Section */
+#about {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.profile-img {
+  width: 150px;
+  border-radius: 50%;
+  margin-top: 20px;
+}
+
+#about p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Projects Section */
+#projects {
+  background-color: #e0f7fa;
+}
+
+.projects-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.project {
+  width: 30%;
+  text-align: center;
+}
+
+.project img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* Skills Section */
+#skills {
+  background-color: #ffeb3b;
+}
+
+.skills-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.skill {
+  text-align: center;
+  width: 30%;
+}
+
+.skill-bar {
+  height: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.html-bar {
+  width: 80%;
+  background-color: #ff5722;
+}
+
+.css-bar {
+  width: 70%;
+  background-color: #03a9f4;
+}
+
+.js-bar {
+  width: 60%;
+  background-color: #4caf50;
+}
+
+/* Contact Section */
+#contact {
+  background-color: #607d8b;
+  color: #fff;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #ffbf47;
+  color: #333;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+  </style>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <a href="#contact" class="contact-arrow" style="background-color: white;color: blue; position: absolute;top: 20%;right: 5%; font-size: 3rem;padding: 1% 2%;border-radius: 50%;">
+    &DownArrow; 
+  </a>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Welcome to My Portfolio</h1>
+    <p>I am a Web Developer passionate about coding and design.</p>
+    <a href="#contact" class="cta">Get in Touch</a>
+  </section>
+
+  <!-- About Me -->
+  <section id="about">
+    <h2>About Me</h2>
+    <img src="photos/myself.jpg" alt="Profile Picture" class="profile-img">
+    <p>Hello! I'm a web developer with a strong passion for learning and creating user-friendly websites. I specialize in front-end technologies like HTML, CSS, and JavaScript.</p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+      <div class="project">
+        <img src="photos/modern computer.PNG" alt="Project 1">
+        <p>Project 1: A simple landing page</p>
+      </div>
+      <div class="project">
+        <img src="photos/computer mouse.PNG" alt="Project 2">
+        <p>Project 2: Portfolio Website</p>
+      </div>
+      <div class="project">
+        <img src="photos/OS.PNG" alt="Project 3">
+        <p>Project 3: E-commerce site</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skills-container">
+      <div class="skill">
+        <h3>HTML</h3>
+        <div class="skill-bar html-bar"></div>
+      </div>
+      <div class="skill">
+        <h3>CSS</h3>
+        <div class="skill-bar css-bar"></div>
+      </div>
+      <div class="skill">
+        <h3>JavaScript</h3>
+        <div class="skill-bar js-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div id="form-response"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 My Portfolio</p>
+  </footer>
+
+  <script>
+    // Handle form submission and validation
+document.getElementById("contact-form").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  let name = document.querySelector('[name="name"]').value;
+  let email = document.querySelector('[name="email"]').value;
+  let message = document.querySelector('[name="message"]').value;
+  
+  if (name && email && message) {
+    document.getElementById("form-response").innerHTML = "<p>Thank you for your message! I'll get back to you shortly.</p>";
+  } else {
+    document.getElementById("form-response").innerHTML = "<p>Please fill out all fields.</p>";
+  }
+});
+
+  </script>
+</body>
+</html>

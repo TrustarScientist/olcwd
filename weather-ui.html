@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App UI</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .weather-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      width: 300px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .weather-card h2 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+    }
+
+    .temp {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .weather-icon {
+      font-size: 4rem;
+      margin: 20px 0;
+    }
+
+    .details {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 0.95rem;
+    }
+
+    .details div {
+      flex: 1;
+      padding: 5px;
+    }
+
+    .location {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-card">
+    <h2>Today's Weather</h2>
+    <div class="weather-icon">⛅</div>
+    <div class="temp">29°C</div>
+    <div class="location">Lagos, Nigeria</div>
+    <div class="details">
+      <div>Humidity<br>65%</div>
+      <div>Wind<br>12 km/h</div>
+    </div>
+  </div>
+</body>
+</html>

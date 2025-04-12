@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple E-Commerce Store</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  padding: 20px;
+}
+
+header nav a {
+  color: #fff;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+#products {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+}
+
+.product {
+  text-align: center;
+  padding: 15px;
+  border: 1px solid #ccc;
+  width: 200px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+#cart {
+  padding: 20px;
+  background-color: #f4f4f4;
+  margin-top: 20px;
+}
+
+#cart-items {
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+  </style>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#cart">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="products">
+      <div class="product">
+        <img src="../photos/computer mouse.PNG" alt="Product 1">
+        <h3>Product 1</h3>
+        <p>$10.00</p>
+        <button onclick="addToCart('Product 1', 10)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="../photos/ChatGPT Image Apr 10, 2025, 04_32_36 PM.png" alt="Product 2">
+        <h3>Product 2</h3>
+        <p>$20.00</p>
+        <button onclick="addToCart('Product 2', 20)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="../photos/computer mouse.PNG" alt="Product 3">
+        <h3>Product 3</h3>
+        <p>$30.00</p>
+        <button onclick="addToCart('Product 3', 30)">Add to Cart</button>
+      </div>
+      <!-- More products can be added here -->
+    </section>
+
+    <section id="cart">
+      <h2>Your Cart</h2>
+      <div id="cart-items"></div>
+      <p>Total: $<span id="total-price">0.00</span></p>
+      <button onclick="checkout()">Checkout</button>
+    </section>
+  </main>
+
+  <script>
+    let cart = [];
+let total = 0;
+
+function addToCart(product, price) {
+  cart.push({ product, price });
+  total += price;
+  updateCart();
+}
+
+function updateCart() {
+  const cartItems = document.getElementById('cart-items');
+  cartItems.innerHTML = ''; // Clear cart items
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.textContent = `${item.product} - $${item.price}`;
+    cartItems.appendChild(div);
+  });
+  document.getElementById('total-price').textContent = total.toFixed(2);
+}
+
+function checkout() {
+  alert('Proceeding to checkout...');
+}
+
+  </script>
+</body>
+</html>

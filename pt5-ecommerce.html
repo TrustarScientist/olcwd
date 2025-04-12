@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ShopEase - Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #3498db;
+    }
+
+    .search-bar input {
+      padding: 8px 12px;
+      width: 250px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .cart {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* Nav */
+    nav {
+      background: #3498db;
+      color: white;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 12px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Hero */
+    .hero {
+      background: url('https://i.pcmag.com/imagery/articles/03xAjsECv0yAvSWiSGiZnYB-9..v1683907294.jpg') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+    }
+
+    /* Categories */
+    .categories {
+      display: flex;
+      justify-content: space-around;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+      background: #fff;
+    }
+
+    .category {
+      width: 200px;
+      height: 150px;
+      background: #eee;
+      margin: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    .category:hover {
+      transform: scale(1.05);
+      background: #dfefff;
+    }
+
+    /* Products */
+    .products {
+      padding: 40px 20px;
+    }
+
+    .products h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .product-list {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .product {
+      background: white;
+      width: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .product-info h4 {
+      margin: 10px 0;
+    }
+
+    .product-info button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .product-info button:hover {
+      background: #2980b9;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .testimonial {
+      max-width: 600px;
+      margin: auto;
+      font-style: italic;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      background: #3498db;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .newsletter input {
+      padding: 10px;
+      width: 250px;
+      border: none;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .newsletter button {
+      padding: 10px 20px;
+      background: #fff;
+      color: #3498db;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    @media (max-width: 600px) {
+      .search-bar input {
+        width: 150px;
+      }
+
+      .category {
+        width: 100%;
+      }
+
+      .product {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ShopEase</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search products...">
+    </div>
+    <div class="cart">🛒</div>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Shop</a>
+    <a href="#">Categories</a>
+    <a href="#">Deals</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="hero">
+    <h1>Shop the Best Deals!</h1>
+  </div>
+
+  <section class="categories">
+    <div class="category">Electronics</div>
+    <div class="category">Fashion</div>
+    <div class="category">Home</div>
+    <div class="category">Toys</div>
+    <div class="category">Beauty</div>
+  </section>
+
+  <section class="products">
+    <h2>Featured Products</h2>
+    <div class="product-list">
+      <div class="product">
+        <img src="photos/computer mouse.PNG" alt="Product 1">
+        <div class="product-info">
+          <h4>Smart Watch</h4>
+          <p>$59.99</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="photos/OS.PNG" alt="Product 2">
+        <div class="product-info">
+          <h4>Bluetooth Speaker</h4>
+          <p>$29.99</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+      <div class="product">
+        <img src="photos/modern computer.PNG" alt="Product 3">
+        <div class="product-info">
+          <h4>Headphones</h4>
+          <p>$39.99</p>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Customers Say</h2>
+    <p class="testimonial">“ShopEase has transformed my shopping experience. Super easy and fast!” – Sarah J.</p>
+  </section>
+
+  <section class="newsletter">
+    <h2>Join Our Newsletter</h2>
+    <p>Get updates on latest products and offers.</p>
+    <input type="email" placeholder="Enter your email">
+    <button>Subscribe</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 ShopEase. All rights reserved.</p>
+    <div>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Help</a>
+    </div>
+  </footer>
+</body>
+</html>

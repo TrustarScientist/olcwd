@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Tech Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background: #fff;
+      color: #333;
+      border-radius: 15px;
+      padding: 30px 40px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 90%;
+      transition: transform 0.3s ease;
+    }
+
+    .quiz-container:hover {
+      transform: translateY(-5px);
+    }
+
+    .quiz-header {
+      margin-bottom: 25px;
+    }
+
+    .quiz-header h2 {
+      font-size: 1.5rem;
+      color: #0f2027;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .option {
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .option:hover {
+      background-color: #e0f7fa;
+      border-color: #00796b;
+      color: #00796b;
+    }
+
+    .btn-submit {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: #00796b;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="quiz-header">
+      <h2>What does HTML stand for?</h2>
+    </div>
+    <div class="options">
+      <div class="option">Hyper Text Markup Language</div>
+      <div class="option">High Text Machine Learning</div>
+      <div class="option">Hyperlink and Text Machine Logic</div>
+      <div class="option">Home Tool Markup Language</div>
+    </div>
+    <button class="btn-submit">Submit</button>
+  </div>
+</body>
+</html>
