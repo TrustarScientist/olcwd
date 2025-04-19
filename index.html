@@ -1,145 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Project Hub | GitCodes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Roboto', sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitCodes Web Development Journey</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n5UYrMEh1bPbkRWc+puZyf+o4uHh0d8L0n" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #f0f8ff, #e0f2f7); /* Light and inviting background */
+            color: #333; /* Darker text for better readability */
+            font-family: 'Nunito', sans-serif;
+            padding-top: 60px; /* Adjust for fixed navbar */
+        }
 
-    body {
-      background: linear-gradient(to bottom right, #121212, #1f1f1f);
-      color: #fff;
-      padding: 2rem;
-    }
+        .navbar {
+            background-color: #007bff !important; /* Vibrant primary color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #fff !important;
+        }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            margin-left: 1rem;
+        }
 
-    p {
-      font-size: 1rem;
-      color: #ccc;
-    }
+        .navbar-nav .nav-link:hover {
+            color: #f8f9fa !important;
+        }
 
-    .projects {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
 
-    .project-card {
-      background: #2a2a2a;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      transition: transform 0.3s ease;
-      width: 280px;
-    }
+        h1 {
+            font-size: 2.8rem;
+            color: #007bff; /* Primary color for emphasis */
+            margin-bottom: 0.75rem;
+        }
 
-    .project-card:hover {
-      transform: scale(1.05);
-    }
+        .lead {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
 
-    .project-card h2 {
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
-      color: #ffd700;
-    }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-    .project-card p {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
+        .project-card {
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease-in-out;
+            border: 1px solid #eee;
+        }
 
-    .project-card a {
-      text-decoration: none;
-      color: #00c3ff;
-      font-weight: bold;
-    }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-  </style>
+        .project-card h2 {
+            font-size: 1.6rem;
+            color: #28a745; /* Success color for project titles */
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .project-card .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-weight: bold;
+        }
+
+        .project-card .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+            color: #777;
+            background-color: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+
+        .curriculum-link {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .curriculum-link .btn-info {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none !important;
+            color: #fff !important;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .curriculum-link .btn-info:hover {
+            background-color: #138496;
+            border-color: #138496;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>🎓 Web Development Projects for Beginners</h1>
-    <p>Explore fun projects to get go! 💻</p>
-  </header>
-<a href="web_curriculum.html" style="color:white"> Check out the curriculum </a>
-  
-  <section class="projects">
-    <div class="project-card">
-      <h2>Simple Card Design</h2>
-      <p>A simple card design to learn fundamental CSS concepts</p>
-      <a href="pt1-card-design.html" target="_blank">Check it out →</a>
-    </div>
-    <div class="project-card">
-      <h2>Simple Gallery Design</h2>
-      <p>A gallery of things...photos, cards etc.</p>
-      <a href="pt2-gallery.html" target="_blank">Check it out →</a>
-    </div>
-    <div class="project-card">
-      <h2>Portfolio Page Design</h2>
-      <p>A simple portfolio design to learn some intermediate web design topics</p>
-      <a href="pt3-me.html" target="_blank">Check it out →</a>
-    </div>
-    <div class="project-card">
-      <h2>Product Page Design</h2>
-      <p>A product design for business and the curious minds...</p>
-      <a href="pt4-product-page.html" target="_blank">Check it out →</a>
-    </div>
-    <div class="project-card">
-      <h2>E-commerce Design</h2>
-      <p>A simple sample online market platform to spark creativity</p>
-      <a href="pt5-ecommerce.html" target="_blank">Check it out →</a>
-    </div>
-    <div class="project-card">
-      <h2>Simple Image Slider</h2>
-      <p>Change images per button click...with JavaScript</p>
-      <a href="pt6-image-slider.html" target="_blank">Check it out →</a>
-    </div>
-    <div class="project-card">
-      <h2>Simple Quiz App</h2>
-      <p>Build your own quiz engine now!</p>
-      <a href="pt7-quickquizapp.html" target="_blank">Play Game →</a>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">🚀 GitCodes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Projects <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="web_curriculum.html">Curriculum</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <header class="mb-4">
+            <h1>✨ Unlock Your Coding Potential with GitCodes! ✨</h1>
+            <p class="lead">Dive into exciting web development projects designed for beginners and watch your skills grow!</p>
+        </header>
+
+        <section class="projects">
+            <div class="project-card">
+                <h2>🎨 Simple Card Design</h2>
+                <p>Master the basics of CSS by creating stylish and engaging card layouts.</p>
+                <a href="pt1-card-design.html" class="btn btn-primary btn-sm" target="_blank">Explore Project →</a>
+            </div>
+            <div class="project-card">
+                <h2>🖼️ Simple Gallery Design</h2>
+                <p>Learn to showcase images and content beautifully with a responsive gallery.</p>
+                <a href="pt2-gallery.html" class="btn btn-primary btn-sm" target="_blank">See the Gallery →</a>
+            </div>
+            <div class="project-card">
+                <h2>👤 Portfolio Page Design</h2>
+                <p>Build your personal online presence and learn intermediate web design techniques.</p>
+                <a href="pt3-me.html" class="btn btn-primary btn-sm" target="_blank">View Portfolio →</a>
+            </div>
+            <div class="project-card">
+                <h2>🛒 Product Page Design</h2>
+                <p>Understand the fundamentals of e-commerce design and create compelling product presentations.</p>
+                <a href="pt4-product-page.html" class="btn btn-primary btn-sm" target="_blank">Discover Product →</a>
+            </div>
+            <div class="project-card">
+                <h2>🛍️ E-commerce Design</h2>
+                <p>Spark your creativity by designing a sample online marketplace platform.</p>
+                <a href="pt5-ecommerce.html" class="btn btn-primary btn-sm" target="_blank">Visit Marketplace →</a>
+            </div>
+            <div class="project-card">
+                <h2><i class="bi bi-image-fill"></i> Simple Image Slider</h2>
+                <p>Bring your web pages to life with dynamic image transitions using JavaScript.</p>
+                <a href="pt6-image-slider.html" class="btn btn-primary btn-sm" target="_blank">Try the Slider →</a>
+            </div>
+            <div class="project-card">
+                <h2>❓ Simple Quiz App</h2>
+                <p>Develop your logic and JavaScript skills by building an interactive quiz application.</p>
+                <a href="pt7-quickquizapp.html" class="btn btn-success btn-sm" target="_blank">Play Game →</a>
+            </div>
+            <div class="project-card">
+                <h2>🐦 Simple Flappy Bird Clone</h2>
+                <p>Have fun while learning game development basics with this classic game clone.</p>
+                <a href="pt8-flappybird-game.html" class="btn btn-success btn-sm" target="_blank">Play Game →</a>
+            </div>
+            <div class="project-card">
+                <h2><i class="bi bi-cloud-sun-fill"></i> Weather App</h2>
+                <p>Learn to fetch and display real-time data using APIs and your city.</p>
+                <a href="pt9-weather.html" class="btn btn-info btn-sm" target="_blank">Open App →</a>
+            </div>
+        </section>
+
+        <div class="curriculum-link">
+            <a href="web_curriculum.html" class="btn btn-info btn-lg">📚 Explore Our Comprehensive Curriculum</a>
+        </div>
+
+        <footer>
+            Made with 💙 by TrustarScientist and our enthusiastic students
+        </footer>
     </div>
 
-    <div class="project-card">
-      <h2>Simple Flappy Bird Clone</h2>
-      <p>Get flappybird-like experience</p>
-      <a href="pt8-flappybird-game.html" target="_blank">Play Game →</a>
-    </div>
-
-    <div class="project-card">
-      <h2>Weather App</h2>
-      <p>Check live weather data using an API and your city name.</p>
-      <a href="pt9-weather.html" target="_blank">Open App →</a>
-    </div>
-
-  </section>
-
-  <footer>
-    Made with 💙 by TrustarScientist and students
-  </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnF9mHt5OUt+wF0nEIGGpH" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2v5Pdgy6vpjyVv" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css">
 </body>
 </html>
