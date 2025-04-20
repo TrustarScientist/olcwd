@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KSHARER Navigation</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=inter@1&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    header, nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: white;
+      border-bottom: 1px solid #ddd;
+    }
+    .logo {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .nav-bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-top: 1px solid #ddd;
+      padding: 8px 0;
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+      color: #333;
+    }
+    .nav-item svg {
+      width: 24px;
+      height: 24px;
+    }
+    .user-sidebar {
+      display: none;
+      flex-direction: column;
+      background: #f9f9f9;
+      width: 200px;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+      height: 100vh;
+    }
+    .search-box {
+      flex: 1;
+      margin: 0 16px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    @media (min-width: 768px) {
+      .nav-bottom .nav-item span {
+        display: inline;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .nav-bottom .nav-item span {
+        display: none;
+      }
+      .top-nav-mobile {
+        justify-content: space-between;
+      }
+      .top-nav-mobile .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .top-nav-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 24px;
+        border-bottom: 1px solid #ddd;
+      }
+      .nav-bottom {
+        display: none;
+      }
+      .user-sidebar {
+        display: flex;
+        position: fixed;
+        top: 60px;
+        left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Top Nav -->
+<header class="top-nav-mobile">
+  <div id="userIcon" onclick="toggleUserModal()">
+    <i data-lucide="user"></i>
+  </div>
+  <div class="logo">KSHARER</div>
+  <div id="searchIcon" onclick="openSearchModal()">
+    <i data-lucide="search"></i>
+  </div>
+</header>
+
+<!-- Desktop Nav -->
+<header class="top-nav-desktop" style="display:none">
+  <div class="logo">KSHARER</div>
+  <div id="desktopUserIcon">
+    <i data-lucide="user"></i>
+  </div>
+  <div class="search-box">
+    <input type="text" placeholder="Search...">
+  </div>
+</header>
+
+<!-- User Sidebar for Desktop -->
+<div class="user-sidebar">
+  <p><strong>User Options</strong></p>
+  <ul>
+    <li>Profile</li>
+    <li>Settings</li>
+    <li>Logout</li>
+  </ul>
+</div>
+
+<!-- Bottom Nav -->
+<nav class="nav-bottom">
+  <div class="nav-item">
+    <i data-lucide="home"></i>
+    <span>Feed</span>
+  </div>
+  <div class="nav-item">
+    <i data-lucide="book"></i>
+    <span>Resources</span>
+  </div>
+  <div class="nav-item" onclick="openPostModal()">
+    <i data-lucide="plus-circle"></i>
+    <span>Post</span>
+  </div>
+  <div class="nav-item">
+    <i data-lucide="cpu"></i>
+    <span>Labs</span>
+  </div>
+  <div class="nav-item">
+    <i data-lucide="message-circle"></i>
+    <span>Messages</span>
+  </div>
+</nav>
+
+<script>
+  function toggleUserModal() {
+    alert("Show user modal (mobile only)");
+  }
+
+  function openSearchModal() {
+    alert("Open full screen search modal (mobile only)");
+  }
+
+  function openPostModal() {
+    alert("Open full screen post creation modal");
+  }
+
+  // Responsive check
+  function adjustNavLayout() {
+    const width = window.innerWidth;
+    const mobileTop = document.querySelector('.top-nav-mobile');
+    const desktopTop = document.querySelector('.top-nav-desktop');
+
+    if (width >= 1024) {
+      mobileTop.style.display = 'none';
+      desktopTop.style.display = 'flex';
+    } else {
+      mobileTop.style.display = 'flex';
+      desktopTop.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', adjustNavLayout);
+  window.addEventListener('load', () => {
+    lucide.createIcons();
+    adjustNavLayout();
+  });
+</script>
+
+</body>
+</html>
