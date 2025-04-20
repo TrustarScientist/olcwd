@@ -69,6 +69,81 @@
       border: 1px solid #ccc;
     }
 
+        .thought-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .thought-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 0.75rem;
+    }
+
+    .user-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .username {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .timestamp {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .more-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .thought-content {
+      font-size: 15px;
+      margin-bottom: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .thought-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .thought-footer button {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .thought-footer button:hover {
+      color: #111;
+    }
+
     @media (min-width: 768px) {
       .nav-bottom .nav-item span {
         display: inline;
@@ -166,6 +241,31 @@
     <span>Messages</span>
   </div>
 </nav>
+<main>
+    <div class="thought-card">
+    <div class="thought-header">
+      <img src="https://i.pravatar.cc/40?u=trustar" alt="User Avatar" class="avatar">
+      <div class="user-info">
+        <span class="username">Trustar</span>
+        <span class="timestamp">2h ago</span>
+      </div>
+      <button class="more-btn" aria-label="More Options">
+        <i data-lucide="more-vertical"></i>
+      </button>
+    </div>
+
+    <div class="thought-content">
+      We're building <strong>KSHARER</strong> to make knowledge-sharing more accessible to everyone. #EdTech 🚀
+    </div>
+
+    <div class="thought-footer">
+      <button><i data-lucide="message-circle"></i> <span>12</span></button>
+      <button><i data-lucide="repeat"></i> <span>3</span></button>
+      <button><i data-lucide="heart"></i> <span>27</span></button>
+      <button><i data-lucide="share-2"></i></button>
+    </div>
+  </div>
+</main>
 
 <script>
   function toggleUserModal() {
