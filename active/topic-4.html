@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 4 - Introduction to CSS</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f9ff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #0984e3;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #0984e3;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    iframe {
+      width: 100%;
+      height: 220px;
+      border: 1px solid #999;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      background: #00cec9;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .quiz input {
+      margin-right: 5px;
+    }
+
+    .badge {
+      background: #ffeaa7;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #2d3436;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎨 Topic 4: Introduction to CSS</h1>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>🧠 Topic Overview</h2>
+      <p>
+        CSS stands for <strong>Cascading Style Sheets</strong>. It’s what we use to make our web pages look beautiful!
+        With CSS, you can change colors, sizes, fonts, borders, and much more.
+      </p>
+      <p>Here’s how CSS works:</p>
+      <ul>
+        <li>You can write CSS inside a <code>&lt;style&gt;</code> tag in the <code>&lt;head&gt;</code> of your HTML page.</li>
+        <li>You select an element like <code>h1</code> or <code>p</code> and give it a style.</li>
+        <li>Example: <code>p { color: blue; }</code> makes all paragraphs blue!</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧪 Try It Yourself!</h2>
+      <p>Edit the code and click "Run Code" to see how CSS changes the look 👇</p>
+      <textarea id="code">
+<!-- Try editing this! -->
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    h1 {
+      color: darkgreen;
+      font-size: 30px;
+    }
+
+    p {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Hello CSS!</h1>
+<p>This is a paragraph styled with CSS.</p>
+
+</body>
+</html>
+      </textarea>
+      <br />
+      <button onclick="runCode()">Run Code</button>
+      <iframe id="result"></iframe>
+    </section>
+
+    <section>
+      <h2>🎯 Mini Challenge</h2>
+      <p>
+        Try changing the heading color to red, and make the paragraph text bold!  
+        You can add <code>font-weight: bold;</code> inside the <code>p</code> style.
+      </p>
+    </section>
+
+    <section class="quiz">
+      <h2>❓ Quick Quiz</h2>
+      <p>1. What does CSS stand for?</p>
+      <label><input type="radio" name="q1"> Cool Style System</label><br>
+      <label><input type="radio" name="q1" id="q1a"> Cascading Style Sheets</label><br>
+      <label><input type="radio" name="q1"> Color Style Script</label><br>
+
+      <p>2. Which tag can we use to write CSS in HTML?</p>
+      <label><input type="radio" name="q2"> &lt;css&gt;</label><br>
+      <label><input type="radio" name="q2" id="q2a">&lt;style&gt;</label><br>
+      <label><input type="radio" name="q2"> &lt;script&gt;</label><br>
+
+      <button onclick="checkQuiz()">Check Answers</button>
+      <p id="quizResult"></p>
+    </section>
+
+    <section>
+      <h2>🏅 Your Badge</h2>
+      <p class="badge">💅 CSS Beginner</p>
+    </section>
+
+    <section>
+      <a href="index.html">⬅️ Back to Curriculum</a>
+    </section>
+  </div>
+
+  <script>
+    function runCode() {
+      const code = document.getElementById("code").value;
+      const iframe = document.getElementById("result");
+      iframe.srcdoc = code;
+    }
+
+    function checkQuiz() {
+      const q1 = document.getElementById("q1a").checked;
+      const q2 = document.getElementById("q2a").checked;
+      const result = document.getElementById("quizResult");
+      if (q1 && q2) {
+        result.innerHTML = "✅ You nailed it! 🎉";
+      } else {
+        result.innerHTML = "❌ Try again. Remember what CSS means!";
+      }
+    }
+  </script>
+
+</body>
+</html>
