@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 7: HTML Forms</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      color: #0077cc;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 160px;
+      margin-top: 10px;
+      font-family: monospace;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: 1px solid #ddd;
+      margin-top: 10px;
+    }
+
+    button {
+      background: #0077cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .badge {
+      background-color: gold;
+      color: #222;
+      padding: 6px 12px;
+      display: inline-block;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .quiz-result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Topic 7: HTML Forms</h1>
+
+    <section>
+      <h2>📝 Topic Overview</h2>
+      <p>
+        HTML forms allow users to enter data that can be sent to a server. Forms include inputs like:
+        <strong>text fields</strong>, <strong>password fields</strong>, <strong>radio buttons</strong>,
+        <strong>checkboxes</strong>, <strong>submit buttons</strong>, and more.
+      </p>
+      <p>
+        Think of forms like the digital version of filling out a paper form! You can ask the user to enter their name,
+        choose their favorite color, or even vote in a poll!
+      </p>
+    </section>
+
+    <section>
+      <h2>💻 Code Example (Editable)</h2>
+      <textarea id="codeInput">
+<form>
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br><br>
+
+  <label>Choose a color:</label><br>
+  <input type="radio" name="color" value="Red"> Red
+  <input type="radio" name="color" value="Blue"> Blue<br><br>
+
+  <input type="submit" value="Submit">
+</form>
+      </textarea>
+      <button onclick="runCode()">Run Code</button>
+      <iframe id="preview"></iframe>
+    </section>
+
+    <section>
+      <h2>🎯 Mini Challenge</h2>
+      <p>Modify the form to include:</p>
+      <ul>
+        <li>A password field</li>
+        <li>A checkbox to agree to terms</li>
+        <li>Change the submit button text to "Register"</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>❓ Quiz Time</h2>
+      <p><strong>1. Which tag is used to create an input field in HTML?</strong></p>
+      <label><input type="radio" name="q1" value="a"> &lt;input&gt;</label><br>
+      <label><input type="radio" name="q1" value="b"> &lt;form&gt;</label><br>
+      <label><input type="radio" name="q1" value="c"> &lt;text&gt;</label><br>
+      <button onclick="checkQuiz()">Check Answer</button>
+      <div class="quiz-result" id="quizResult"></div>
+    </section>
+
+    <section>
+      <h2>🏅 Mini Badge</h2>
+      <p>Complete the challenge and quiz to earn:</p>
+      <div class="badge">Form Beginner 🧾</div>
+    </section>
+  </div>
+
+  <script>
+    function runCode() {
+      const code = document.getElementById("codeInput").value;
+      const iframe = document.getElementById("preview");
+      iframe.srcdoc = code;
+    }
+
+    function checkQuiz() {
+      const answer = document.querySelector('input[name="q1"]:checked');
+      const result = document.getElementById("quizResult");
+
+      if (answer && answer.value === "a") {
+        result.textContent = "✅ Correct! The <input> tag is used to collect user data.";
+        result.style.color = "green";
+      } else {
+        result.textContent = "❌ Oops! Try again. Hint: It's one of the most common tags!";
+        result.style.color = "red";
+      }
+    }
+  </script>
+</body>
+</html>
