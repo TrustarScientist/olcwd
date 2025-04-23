@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 8: HTML Tables</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fb;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #0077cc;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 160px;
+      font-family: monospace;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      margin-top: 10px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      background-color: #0077cc;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .quiz-result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .badge {
+      background-color: #ffcc00;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Topic 8: HTML Tables</h1>
+
+    <section>
+      <h2>📝 Topic Overview</h2>
+      <p>
+        HTML Tables are used to organize information in rows and columns. Just like your school timetable or a class attendance list!
+      </p>
+      <p>
+        The main tags used in tables are:
+        <ul>
+          <li><strong>&lt;table&gt;</strong> - the main table wrapper</li>
+          <li><strong>&lt;tr&gt;</strong> - table row</li>
+          <li><strong>&lt;th&gt;</strong> - table header</li>
+          <li><strong>&lt;td&gt;</strong> - table data (the normal cells)</li>
+        </ul>
+      </p>
+    </section>
+
+    <section>
+      <h2>💻 Code Example (Editable)</h2>
+      <textarea id="codeInput">
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+  <tr>
+    <td>Amina</td>
+    <td>95</td>
+  </tr>
+  <tr>
+    <td>Joseph</td>
+    <td>88</td>
+  </tr>
+</table>
+      </textarea>
+      <button onclick="runCode()">Run Code</button>
+      <iframe id="preview"></iframe>
+    </section>
+
+    <section>
+      <h2>🎯 Mini Challenge</h2>
+      <p>Add a third column to the table called <strong>"Grade"</strong> and fill it in for each student!</p>
+    </section>
+
+    <section>
+      <h2>❓ Quiz Time</h2>
+
+      <p><strong>1. Which tag is used for a table row?</strong></p>
+      <label><input type="radio" name="q1" value="a"> &lt;tr&gt;</label><br>
+      <label><input type="radio" name="q1" value="b"> &lt;td&gt;</label><br>
+      <label><input type="radio" name="q1" value="c"> &lt;th&gt;</label><br><br>
+
+      <p><strong>2. What does &lt;td&gt; stand for?</strong></p>
+      <label><input type="radio" name="q2" value="a"> Table data</label><br>
+      <label><input type="radio" name="q2" value="b"> Table display</label><br>
+      <label><input type="radio" name="q2" value="c"> Table divider</label><br><br>
+
+      <p><strong>3. Which tag makes the text bold and centered in a table?</strong></p>
+      <label><input type="radio" name="q3" value="a"> &lt;td&gt;</label><br>
+      <label><input type="radio" name="q3" value="b"> &lt;th&gt;</label><br>
+      <label><input type="radio" name="q3" value="c"> &lt;tr&gt;</label><br><br>
+
+      <button onclick="checkQuiz()">Check Answers</button>
+      <div class="quiz-result" id="quizResult"></div>
+    </section>
+
+    <section>
+      <h2>🏅 Mini Badge</h2>
+      <p>Great job learning about tables!</p>
+      <div class="badge">Table Star ⭐</div>
+    </section>
+  </div>
+
+  <script>
+    function runCode() {
+      const code = document.getElementById("codeInput").value;
+      document.getElementById("preview").srcdoc = code;
+    }
+
+    function checkQuiz() {
+      const results = document.getElementById("quizResult");
+      const q1 = document.querySelector('input[name="q1"]:checked')?.value;
+      const q2 = document.querySelector('input[name="q2"]:checked')?.value;
+      const q3 = document.querySelector('input[name="q3"]:checked')?.value;
+
+      let score = 0;
+      if (q1 === "a") score++;
+      if (q2 === "a") score++;
+      if (q3 === "b") score++;
+
+      if (score === 3) {
+        results.textContent = `🎉 Excellent! You got all 3 correct.`;
+        results.style.color = "green";
+      } else {
+        results.textContent = `🔍 You got ${score}/3 correct. Try again!`;
+        results.style.color = "orange";
+      }
+    }
+  </script>
+</body>
+</html>
