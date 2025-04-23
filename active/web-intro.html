@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 1: Intro to Web Design</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f5f8ff;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .code {
+      background: #1e1e1e;
+      color: #eee;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: "Courier New", monospace;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .quiz input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #2ecc71;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .wrong {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Topic 1: Introduction to Web Design</h1>
+
+  <div class="section">
+    <h2>✅ Topic Overview</h2>
+    <p>Web design involves creating websites using:</p>
+    <ul>
+      <li><strong>HTML</strong> – structure</li>
+      <li><strong>CSS</strong> – styling</li>
+      <li><strong>JavaScript</strong> – interactivity</li>
+    </ul>
+    <p>Websites usually have two sides:</p>
+    <ol>
+      <li><strong>Frontend</strong> – What users see</li>
+      <li><strong>Backend</strong> – The behind-the-scenes logic</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>💻 Editable Code Example</h2>
+    <pre class="code" contenteditable="true">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First Web Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welcome to My Website!&lt;/h1&gt;
+    &lt;p&gt;This is my very first web page. Excited to learn more!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+    <p>You can edit the code above. Try changing the text!</p>
+    <button onclick="alert('You can try this code in CodePen, JSFiddle, or your own HTML file!')">Try It</button>
+  </div>
+
+  <div class="section">
+    <h2>🧠 Mini Challenge</h2>
+    <p>Create your own first HTML page with:</p>
+    <ul>
+      <li>A title in the <code>&lt;head&gt;</code> section</li>
+      <li>A heading inside <code>&lt;body&gt;</code></li>
+      <li>A short paragraph introduction</li>
+    </ul>
+    <p>Save it as <strong>my_first_page.html</strong> and open it in your browser!</p>
+  </div>
+
+  <div class="section quiz">
+    <h2>❓ Quick Quiz</h2>
+    <form id="quizForm">
+      <p>1. The &lt;body&gt; tag contains everything you see on the web page.</p>
+      <input type="radio" name="q1" value="true"> True<br>
+      <input type="radio" name="q1" value="false"> False<br>
+
+      <p>2. CSS is used to structure the content of a website.</p>
+      <input type="radio" name="q2" value="true"> True<br>
+      <input type="radio" name="q2" value="false"> False<br>
+
+      <p>3. You must always start your HTML file with <code>&lt;!DOCTYPE html&gt;</code>.</p>
+      <input type="radio" name="q3" value="true"> True<br>
+      <input type="radio" name="q3" value="false"> False<br>
+
+      <br>
+      <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+      <div id="quizResult"></div>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>🌟 Mini Badge</h2>
+    <p class="badge">🏅 Web Explorer</p>
+    <p>You’ve learned how websites are structured and created your first page!</p>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const answers = {
+        q1: "true",
+        q2: "false",
+        q3: "true"
+      };
+
+      let score = 0;
+      let output = "";
+
+      Object.keys(answers).forEach((q, index) => {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+          output += `<p class="correct">Question ${index + 1}: Correct ✅</p>`;
+        } else {
+          output += `<p class="wrong">Question ${index + 1}: Wrong ❌</p>`;
+        }
+      });
+
+      output += `<p><strong>Score: ${score}/3</strong></p>`;
+      document.getElementById("quizResult").innerHTML = output;
+    }
+  </script>
+
+</body>
+</html>
