@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 2: HTML Tags and Structure</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #fcfcff;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      color: #2d3436;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .code {
+      background: #1e1e1e;
+      color: #eee;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: "Courier New", monospace;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      background: #0984e3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .quiz input[type="radio"] {
+      margin-right: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fd79a8;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .wrong {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧱 Topic 2: Understanding HTML Tags and Structure</h1>
+
+  <div class="section">
+    <h2>📖 Topic Overview</h2>
+    <p>
+      Imagine building a house. You need bricks, doors, windows, and a roof, right? Well, websites are like houses too!
+      And instead of bricks, we use something called <strong>HTML tags</strong>.
+    </p>
+    <p>
+      <strong>HTML</strong> stands for <em>HyperText Markup Language</em>. It’s what we use to tell the computer: 
+      “Hey! This is a heading”, or “That’s a picture!”, or “Please show a paragraph here!”
+    </p>
+    <p>
+      HTML is made up of many small building blocks called <strong>tags</strong>. These tags tell the browser how to show each part of your webpage.
+    </p>
+
+    <h3>💡 Tags come in pairs!</h3>
+    <p>Most tags have an <strong>opening tag</strong> and a <strong>closing tag</strong>. Example:</p>
+    <pre class="code">
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+    </pre>
+    <ul>
+      <li><code>&lt;p&gt;</code> is the opening tag</li>
+      <li><code>&lt;/p&gt;</code> is the closing tag</li>
+    </ul>
+
+    <h3>📦 Common Tags You’ll Use a Lot:</h3>
+    <ul>
+      <li><code>&lt;h1&gt; to &lt;h6&gt;</code> – Headings</li>
+      <li><code>&lt;p&gt;</code> – Paragraph</li>
+      <li><code>&lt;img&gt;</code> – Image</li>
+      <li><code>&lt;a&gt;</code> – Link</li>
+      <li><code>&lt;ul&gt;</code> and <code>&lt;li&gt;</code> – List</li>
+    </ul>
+    <p>
+      When you combine many tags, you build a full webpage – just like bricks forming a house!
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>🛠️ Editable Code Example</h2>
+    <pre class="code" contenteditable="true">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;HTML Tags Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;My First Page&lt;/h1&gt;
+    &lt;p&gt;Hello! I love learning HTML.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;HTML&lt;/li&gt;
+      &lt;li&gt;CSS&lt;/li&gt;
+      &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+    <p>Try changing some text or adding another list item!</p>
+    <button onclick="alert('Copy this into CodePen or your text editor to try it out!')">Try It</button>
+  </div>
+
+  <div class="section">
+    <h2>🎯 Mini Challenge</h2>
+    <p>Create your own page that includes:</p>
+    <ul>
+      <li>An <code>&lt;h2&gt;</code> heading</li>
+      <li>A <code>&lt;p&gt;</code> paragraph about your favorite food</li>
+      <li>A list (<code>&lt;ul&gt;</code>) of 3 things you like to do</li>
+    </ul>
+    <p>Save it as <strong>html_tags_practice.html</strong> and open it in your browser!</p>
+  </div>
+
+  <div class="section quiz">
+    <h2>🧠 Quick Quiz</h2>
+    <form id="quizForm">
+      <p>1. HTML tags help structure the content on a webpage.</p>
+      <input type="radio" name="q1" value="true"> True<br>
+      <input type="radio" name="q1" value="false"> False<br>
+
+      <p>2. The &lt;p&gt; tag is used for making images.</p>
+      <input type="radio" name="q2" value="true"> True<br>
+      <input type="radio" name="q2" value="false"> False<br>
+
+      <p>3. The &lt;ul&gt; tag is used to create a list.</p>
+      <input type="radio" name="q3" value="true"> True<br>
+      <input type="radio" name="q3" value="false"> False<br>
+
+      <br>
+      <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+      <div id="quizResult"></div>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>🏅 Mini Badge</h2>
+    <p class="badge">🎖️ Tag Master</p>
+    <p>Great job! You've learned about HTML tags and how to structure a webpage. You're on your way to becoming a real Web Hero!</p>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      const answers = {
+        q1: "true",
+        q2: "false",
+        q3: "true"
+      };
+
+      let score = 0;
+      let output = "";
+
+      Object.keys(answers).forEach((q, index) => {
+        const selected = document.querySelector(`input[name="${q}"]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+          output += `<p class="correct">Question ${index + 1}: Correct ✅</p>`;
+        } else {
+          output += `<p class="wrong">Question ${index + 1}: Wrong ❌</p>`;
+        }
+      });
+
+      output += `<p><strong>Score: ${score}/3</strong></p>`;
+      document.getElementById("quizResult").innerHTML = output;
+    }
+  </script>
+
+</body>
+</html>
