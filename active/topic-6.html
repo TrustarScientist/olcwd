@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 6: HTML Tables</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #004080;
+    }
+    .section {
+      margin-bottom: 2rem;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .code-box {
+      background: #eee;
+      padding: 1rem;
+      font-family: monospace;
+      white-space: pre-wrap;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .editable {
+      border: 2px dashed #ccc;
+      background: #fff;
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+    button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0066cc;
+    }
+    .quiz input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    .quiz label {
+      display: block;
+      margin: 0.5rem 0;
+    }
+    .badge {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: gold;
+      color: black;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 6: HTML Tables</h1>
+
+  <div class="section">
+    <h2>Topic Overview</h2>
+    <p>
+      HTML Tables are used to organize data into rows and columns. Think of them like spreadsheets where you can clearly show information like timetables, score sheets, or student data. Tables are created using the <code>&lt;table&gt;</code> element, and inside it, we use <code>&lt;tr&gt;</code> for table rows, <code>&lt;td&gt;</code> for data cells, and <code>&lt;th&gt;</code> for header cells.
+    </p>
+    <p>
+      Understanding how to structure a table in HTML helps you present complex data in an organized and easy-to-read manner. It's very useful for web apps, dashboards, and information-heavy pages.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Code Example</h2>
+    <div class="code-box">
+&lt;table border="1" cellpadding="10">
+  &lt;tr>
+    &lt;th>Name&lt;/th>
+    &lt;th>Age&lt;/th>
+    &lt;th>Class&lt;/th>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>John&lt;/td>
+    &lt;td>12&lt;/td>
+    &lt;td>JSS 1&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>Mary&lt;/td>
+    &lt;td>13&lt;/td>
+    &lt;td>JSS 2&lt;/td>
+  &lt;/tr>
+&lt;/table>
+    </div>
+    <h3>Try It Yourself:</h3>
+    <div class="editable" contenteditable="true">
+&lt;table border="1">
+  &lt;tr>
+    &lt;th>Item&lt;/th>
+    &lt;th>Price&lt;/th>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>Pen&lt;/td>
+    &lt;td>₦50&lt;/td>
+  &lt;/tr>
+&lt;/table>
+    </div>
+  </div>
+
+  <div class="section quiz">
+    <h2>Quick Quiz</h2>
+    <p>What tag is used to create a table row?</p>
+    <label><input type="radio" name="quiz1"> &lt;td&gt;</label>
+    <label><input type="radio" name="quiz1" id="correct"> &lt;tr&gt;</label>
+    <label><input type="radio" name="quiz1"> &lt;table&gt;</label>
+    <button onclick="checkQuiz()">Check Answer</button>
+    <div id="result"></div>
+  </div>
+
+  <div class="section">
+    <h2>Mini Challenge</h2>
+    <p>Create a timetable of your weekly school schedule using an HTML table.</p>
+  </div>
+
+  <div class="section">
+    <h2>Your Badge</h2>
+    <div class="badge">🏅 HTML Table Pro!</div>
+  </div>
+
+  <script>
+    function checkQuiz() {
+      const isCorrect = document.getElementById('correct').checked;
+      document.getElementById('result').innerText = isCorrect
+        ? '✅ Correct!'
+        : '❌ Try again! The correct answer is <tr>';
+    }
+  </script>
+</body>
+</html>
