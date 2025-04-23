@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Topic 3 - Using Links and Images in HTML</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdf6e3;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff7675;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #d63031;
+    }
+
+    textarea {
+      width: 100%;
+      height: 180px;
+      font-family: monospace;
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: 1px solid #999;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      background: #00b894;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .quiz input {
+      margin-right: 5px;
+    }
+
+    .badge {
+      background: #ffeaa7;
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #2d3436;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🌐 Topic 3: Using Links and Images in HTML</h1>
+  </header>
+
+  <div class="container">
+    <section>
+      <h2>🧠 Topic Overview</h2>
+      <p>
+        Links and images are very important in web pages! They help us connect to other pages and show pictures. 
+        In HTML, we use the <code>&lt;a&gt;</code> tag to create a **link** and the <code>&lt;img&gt;</code> tag to show an **image**.
+      </p>
+      <ul>
+        <li><code>&lt;a href="URL"&gt;Click Me&lt;/a&gt;</code> - for links</li>
+        <li><code>&lt;img src="image.jpg" alt="description"&gt;</code> - for images</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🧪 Try It Yourself!</h2>
+      <p>Edit the code and click "Run Code" to see the result 👇</p>
+      <textarea id="code">
+<!-- Try editing this! -->
+<a href="https://www.google.com" target="_blank">Go to Google</a><br>
+
+<img src="https://www.w3schools.com/html/img_chania.jpg" alt="Chania Beach" width="300">
+      </textarea>
+      <br />
+      <button onclick="runCode()">Run Code</button>
+      <iframe id="result"></iframe>
+    </section>
+
+    <section>
+      <h2>🎯 Mini Challenge</h2>
+      <p>
+        Create a link that says <strong>Visit YouTube</strong> and points to <code>https://youtube.com</code>.  
+        Also, add an image from the web with a width of 250 pixels.
+      </p>
+    </section>
+
+    <section class="quiz">
+      <h2>❓ Quick Quiz</h2>
+      <p>1. What tag is used to make a link?</p>
+      <label><input type="radio" name="q1"> &lt;img&gt;</label><br>
+      <label><input type="radio" name="q1" id="q1a">&lt;a&gt;</label><br>
+      <label><input type="radio" name="q1"> &lt;p&gt;</label><br>
+
+      <p>2. What tag do we use to show pictures?</p>
+      <label><input type="radio" name="q2" id="q2a">&lt;img&gt;</label><br>
+      <label><input type="radio" name="q2"> &lt;link&gt;</label><br>
+      <label><input type="radio" name="q2"> &lt;div&gt;</label><br>
+
+      <button onclick="checkQuiz()">Check Answers</button>
+      <p id="quizResult"></p>
+    </section>
+
+    <section>
+      <h2>🏅 Your Badge</h2>
+      <p class="badge">🖼️ Link & Image Beginner</p>
+    </section>
+
+    <section>
+      <a href="index.html">⬅️ Back to Curriculum</a>
+    </section>
+  </div>
+
+  <script>
+    function runCode() {
+      const code = document.getElementById("code").value;
+      const iframe = document.getElementById("result");
+      iframe.srcdoc = code;
+    }
+
+    function checkQuiz() {
+      const q1 = document.getElementById("q1a").checked;
+      const q2 = document.getElementById("q2a").checked;
+      const result = document.getElementById("quizResult");
+      if (q1 && q2) {
+        result.innerHTML = "✅ Great job! You got all answers correct!";
+      } else {
+        result.innerHTML = "❌ Try again. Hint: Check the tags we used above.";
+      }
+    }
+  </script>
+
+</body>
+</html>
