@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web Design Curriculum</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #00a8ff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    .intro {
+      background: #dfe6e9;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #0984e3;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #55efc4;
+      color: #2d3436;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚀 Welcome to Web Design Class!</h1>
+    <p>HTML, CSS & JavaScript for Beginners</p>
+  </header>
+
+  <div class="container">
+    <div class="intro">
+      <p>
+        Hello, young coders! 🎉 This is your web design learning hub.
+        Every topic comes with fun explanations, editable code, challenges, quizzes, and badges to earn.
+        Click on any topic card to start learning. Let's build the web together! 💻
+      </p>
+    </div>
+
+    <div class="topics">
+      <div class="card">
+        <h3>🔹 Topic 1: Introduction to Web Design</h3>
+        <span class="badge">Completed</span>
+        <a href="topic-1.html">Start Topic</a>
+      </div>
+
+      <div class="card">
+        <h3>🔸 Topic 2: HTML Tags & Structure</h3>
+        <span class="badge">In Progress</span>
+        <a href="topic-2.html">Start Topic</a>
+      </div>
+
+      <div class="card">
+        <h3>🔹 Topic 3: Links & Images in HTML</h3>
+        <span class="badge">Locked</span>
+        <a href="#">Coming Soon</a>
+      </div>
+
+      <div class="card">
+        <h3>🔸 Topic 4: Introduction to CSS</h3>
+        <span class="badge">Locked</span>
+        <a href="#">Coming Soon</a>
+      </div>
+
+      <div class="card">
+        <h3>🔹 Topic 5: Styling Text with CSS</h3>
+        <span class="badge">Locked</span>
+        <a href="#">Coming Soon</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
