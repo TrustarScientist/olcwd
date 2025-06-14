@@ -12,6 +12,196 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/auth.css">
+    <style>
+        /* Color Variables (consistent with dashboard.css) */
+:root {
+    --primary-blue-dark: #2c3e50; /* Base for main elements, text */
+    --primary-blue-light: #3498db; /* Brighter blue for accents, buttons */
+    --fire-brown-dark: #bf5700;   /* Deeper brown for strong accents */
+    --fire-brown-light: #e74c3c;  /* Brighter red/orange for strong accents */
+    --light-bg: #f8f9fa;          /* Off-white background */
+    --white: #ffffff;
+    --text-color-dark: #333;
+    --text-color-light: #6c757d;
+    --card-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    --hover-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    background-color: var(--light-bg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--primary-blue-dark);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-blue-light);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--fire-brown-dark);
+}
+
+.link-fire-brown {
+    color: var(--fire-brown-light);
+}
+
+.link-fire-brown:hover {
+    color: var(--fire-brown-dark);
+}
+
+/* --- Auth Wrapper Layout --- */
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-blue-light) 0%, var(--primary-blue-dark) 100%);
+    padding: 20px;
+}
+
+.auth-container {
+    max-width: 500px; /* Max width for the entire auth card block */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auth-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    color: var(--white);
+}
+
+.auth-header .school-logo-circle {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--fire-brown-light) 0%, var(--fire-brown-dark) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.auth-header .school-name {
+    font-size: 2em;
+    font-weight: 700;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.auth-card {
+    background-color: var(--white);
+    border: none;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 30px;
+    width: 100%; /* Ensure it takes full width of auth-container */
+}
+
+.auth-card .card-title {
+    font-size: 1.8em;
+    color: var(--primary-blue-dark);
+}
+
+/* Form Control Customizations */
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-blue-light);
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-blue-light);
+    border-color: var(--primary-blue-light);
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+/* User Type Fields */
+.user-type-fields h5 {
+    color: var(--primary-blue-dark);
+    font-size: 1.1em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 25px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-blue-light);
+    border-color: var(--primary-blue-light);
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-blue-dark);
+    border-color: var(--primary-blue-dark);
+}
+
+.auth-footer {
+    margin-top: 30px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+    .auth-wrapper {
+        padding: 15px;
+    }
+    .auth-card {
+        padding: 20px;
+    }
+    .auth-header .school-logo-circle {
+        width: 70px;
+        height: 70px;
+        font-size: 2em;
+    }
+    .auth-header .school-name {
+        font-size: 1.8em;
+    }
+    .auth-card .card-title {
+        font-size: 1.5em;
+    }
+    .btn-primary {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+}
+    </style>
 </head>
 <body>
 
@@ -62,6 +252,60 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/login.js"></script>
+    <!-- <script src="assets/js/login.js"></script> -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        if (loginForm.checkValidity() === false) {
+            event.stopPropagation(); // Stop propagation if form is invalid
+            loginForm.classList.add('was-validated'); // Show Bootstrap validation feedback
+            alert('Please enter your email and password.'); // Basic alert for user feedback
+            return;
+        }
+
+        // --- At this point, the form is client-side valid ---
+        // Gather form data
+        const formData = new FormData(loginForm);
+        const loginData = {};
+        formData.forEach((value, key) => {
+            loginData[key] = value;
+        });
+
+        console.log('Login data:', loginData);
+        alert('Login form submitted! (Check console for data. This is client-side only.)');
+
+        // --- IMPORTANT: For a real application, you would send this data to your backend API ---
+        /*
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // If sending JSON
+            },
+            body: JSON.stringify(loginData) // Convert your data to JSON
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Login successful! Redirecting to dashboard...');
+                window.location.href = 'dashboard.html'; // Redirect to dashboard
+            } else {
+                alert('Login failed: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error during login:', error);
+            alert('An error occurred during login. Please try again.');
+        });
+        */
+
+        // Remove validation class after submission attempt
+        loginForm.classList.remove('was-validated');
+    });
+});
+    </script>
 </body>
 </html>
