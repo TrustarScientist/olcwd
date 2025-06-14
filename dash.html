@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Maas Modern Int'l School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding-top: 70px;
+        }
+
+        /* Fixed Navigation */
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            height: 70px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--card-shadow);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .school-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification-icon {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .notification-icon:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transform: scale(1.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .user-profile:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .menu-icon {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .menu-icon:hover {
+            background: rgba(52, 152, 219, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* Floating Action Button (Mobile) */
+        .fab-menu {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1020;
+        }
+
+        .fab-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--hover-shadow);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fab-button:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .fab-button.active {
+            transform: rotate(45deg);
+        }
+
+        /* Sidebar Menu (Desktop) */
+        .sidebar-menu {
+            position: fixed;
+            left: 0;
+            top: 70px;
+            width: 280px;
+            height: calc(100vh - 70px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1010;
+        }
+
+        .sidebar-menu.show {
+            transform: translateX(0);
+        }
+
+        /* Modal Menu (Mobile) */
+        .modal-menu {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--hover-shadow);
+            min-width: 250px;
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.3s ease;
+            z-index: 1015;
+            pointer-events: none;
+        }
+
+        .modal-menu.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item:hover {
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .menu-item i {
+            width: 20px;
+            margin-right: 15px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.sidebar-open {
+            margin-left: 280px;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--success-color));
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin-right: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .card-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+
+        .card-subtitle {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .card-action {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .card-action:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        /* Colors for different card types */
+        .students-card { --card-color: var(--secondary-color); }
+        .teachers-card { --card-color: var(--success-color); }
+        .classes-card { --card-color: var(--warning-color); }
+        .attendance-card { --card-color: var(--accent-color); }
+
+        .students-card .card-icon { background: var(--secondary-color); }
+        .teachers-card .card-icon { background: var(--success-color); }
+        .classes-card .card-icon { background: var(--warning-color); }
+        .attendance-card .card-icon { background: var(--accent-color); }
+
+        .students-card .stat-number { color: var(--secondary-color); }
+        .teachers-card .stat-number { color: var(--success-color); }
+        .classes-card .stat-number { color: var(--warning-color); }
+        .attendance-card .stat-number { color: var(--accent-color); }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .fab-menu {
+                display: none;
+            }
+            
+            .sidebar-menu {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 280px;
+            }
+            
+            .modal-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .sidebar-menu {
+                display: none;
+            }
+            
+            .navbar-fixed {
+                padding: 0 15px;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Overlay for mobile menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1005;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Navigation -->
+    <nav class="navbar-fixed">
+        <div class="navbar-brand">
+            <div class="school-logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <span>Maas Modern Int'l School</span>
+        </div>
+        
+        <div class="navbar-right">
+            <button class="notification-icon" onclick="showNotifications()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </button>
+            
+            <div class="user-profile" onclick="showUserMenu()">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="User" class="user-avatar">
+                <span class="d-none d-md-inline">John Doe</span>
+            </div>
+            
+            <button class="menu-icon d-md-none" onclick="toggleMobileMenu()">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar Menu (Desktop) -->
+    <aside class="sidebar-menu">
+        <div class="menu-items">
+            <a href="#" class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-user-graduate"></i>
+                <span>Students</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Teachers</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Classes</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Attendance</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Reports</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Fees</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Mobile FAB Menu -->
+    <div class="fab-menu d-md-none">
+        <button class="fab-button" onclick="toggleMobileMenu()">
+            <i class="fas fa-plus"></i>
+        </button>
+        
+        <div class="modal-menu">
+            <a href="#" class="menu-item">
+                <i class="fas fa-user-graduate"></i>
+                <span>Students</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Teachers</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-book"></i>
+                <span>Classes</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-calendar-check"></i>
+                <span>Attendance</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Reports</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Fees</span>
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container-fluid">
+            <!-- Welcome Section -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h2 class="text-white mb-1">Welcome back, John!</h2>
+                    <p class="text-white-50">Here's what's happening at your school today.</p>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card students-card">
+                    <div class="stat-number">1,247</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+                <div class="stat-card teachers-card">
+                    <div class="stat-number">85</div>
+                    <div class="stat-label">Teachers</div>
+                </div>
+                <div class="stat-card classes-card">
+                    <div class="stat-number">42</div>
+                    <div class="stat-label">Classes</div>
+                </div>
+                <div class="stat-card attendance-card">
+                    <div class="stat-number">94%</div>
+                    <div class="stat-label">Attendance Today</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Cards -->
+            <div class="dashboard-grid">
+                <div class="dashboard-card students-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Student Management</h3>
+                        </div>
+                    </div>
+                    <div class="card-value">1,247</div>
+                    <div class="card-subtitle">Active students enrolled</div>
+                    <a href="#" class="card-action">
+                        <i class="fas fa-users"></i> Manage Students
+                    </a>
+                </div>
+
+                <div class="dashboard-card teachers-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Teachers & Staff</h3>
+                        </div>
+                    </div>
+                    <div class="card-value">85</div>
+                    <div class="card-subtitle">Teaching staff members</div>
+                    <a href="#" class="card-action">
+                        <i class="fas fa-user-tie"></i> View Teachers
+                    </a>
+                </div>
+
+                <div class="dashboard-card classes-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Class Management</h3>
+                        </div>
+                    </div>
+                    <div class="card-value">42</div>
+                    <div class="card-subtitle">Active classes this term</div>
+                    <a href="#" class="card-action">
+                        <i class="fas fa-calendar-alt"></i> View Classes
+                    </a>
+                </div>
+
+                <div class="dashboard-card attendance-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Attendance Today</h3>
+                        </div>
+                    </div>
+                    <div class="card-value">94%</div>
+                    <div class="card-subtitle">Students present today</div>
+                    <a href="#" class="card-action">
+                        <i class="fas fa-chart-bar"></i> View Reports
+                    </a>
+                </div>
+
+                <div class="dashboard-card" style="--card-color: #9b59b6;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #9b59b6;">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Fee Collection</h3>
+                        </div>
+                    </div>
+                    <div class="card-value">₦12.4M</div>
+                    <div class="card-subtitle">Collected this term</div>
+                    <a href="#" class="card-action">
+                        <i class="fas fa-credit-card"></i> Fee Management
+                    </a>
+                </div>
+
+                <div class="dashboard-card" style="--card-color: #1abc9c;">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: #1abc9c;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="card-title">Academic Reports</h3>
+                        </div>
+                    </div>
+                    <div class="card-value">125</div>
+                    <div class="card-subtitle">Reports generated</div>
+                    <a href="#" class="card-action">
+                        <i class="fas fa-file-alt"></i> View Reports
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let mobileMenuOpen = false;
+
+        function toggleMobileMenu() {
+            const fabButton = document.querySelector('.fab-button');
+            const modalMenu = document.querySelector('.modal-menu');
+            const overlay = document.querySelector('.overlay');
+            
+            mobileMenuOpen = !mobileMenuOpen;
+            
+            if (mobileMenuOpen) {
+                fabButton.classList.add('active');
+                modalMenu.classList.add('show');
+                overlay.classList.add('show');
+            } else {
+                closeMobileMenu();
+            }
+        }
+
+        function closeMobileMenu() {
+            const fabButton = document.querySelector('.fab-button');
+            const modalMenu = document.querySelector('.modal-menu');
+            const overlay = document.querySelector('.overlay');
+            
+            mobileMenuOpen = false;
+            fabButton.classList.remove('active');
+            modalMenu.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        function showNotifications() {
+            // Implement notification dropdown
+            alert('Notifications clicked! Implement notification dropdown here.');
+        }
+
+        function showUserMenu() {
+            // Implement user menu dropdown
+            alert('User menu clicked! Implement user dropdown here.');
+        }
+
+        // Close mobile menu when clicking on menu items
+        document.querySelectorAll('.modal-menu .menu-item').forEach(item => {
+            item.addEventListener('click', closeMobileMenu);
+        });
+
+        // Add some interactive animations
+        document.querySelectorAll('.dashboard-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Simulate real-time updates
+        function updateStats() {
+            const attendanceCard = document.querySelector('.attendance-card .card-value');
+            const currentValue = parseInt(attendanceCard.textContent);
+            const variation = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
+            const newValue = Math.max(85, Math.min(100, currentValue + variation));
+            attendanceCard.textContent = newValue + '%';
+        }
+
+        // Update stats every 30 seconds
+        setInterval(updateStats, 30000);
+
+        // Add loading states for card actions
+        document.querySelectorAll('.card-action').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                this.style.pointerEvents = 'none';
+                
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.style.pointerEvents = 'auto';
+                    // Here you would typically navigate to the actual page
+                    console.log('Navigating to:', this.href || 'dashboard section');
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
