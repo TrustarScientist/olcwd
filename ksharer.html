@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ksharer - Newsfeed</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ964fWz3y/A+94fCqGq9x+86C9T8A54qB4k4y/e06f0fW7/n4p8aWqB4Q6w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ksharer-green: #28a745; /* Your Ksharer green accent color */
+            --ksharer-green-dark: #1e7e34; /* Darker shade for hover */
+            --ksharer-gold: #FFD700; /* Gold color for ZiniCoin */
+        }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin-bottom: 70px; /* Ensure space for the fixed bottom nav */
+        }
+        .navbar {
+            border-bottom: 1px solid #dee2e6;
+            background-color: #ffffff;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+        .navbar-brand {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            color: var(--ksharer-green);
+            font-size: 1.8rem;
+            text-decoration: none;
+        }
+        .navbar-brand:hover {
+            color: var(--ksharer-green-dark);
+        }
+        .nav-link {
+            color: #343a40;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover {
+            color: var(--ksharer-green);
+            border-bottom-color: var(--ksharer-green);
+        }
+        
+        /* User Image and Search Icon for Mobile */
+        .user-avatar-mobile {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #adb5bd;
+        }
+        .search-icon-mobile {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .search-icon-mobile i {
+            font-size: 1.5rem;
+            color: #343a40;
+        }
+        
+        /* Desktop Search Bar and Links */
+        .search-input-desktop {
+            width: 100%;
+            max-width: 450px;
+            padding: 0.5rem 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+        }
+        .search-input-desktop:focus {
+            border-color: var(--ksharer-green);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        }
+        .user-avatar-desktop {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            border: 2px solid #adb5bd;
+        }
+
+        /* Mobile Bottom Nav */
+        .bottom-nav {
+            background-color: #ffffff;
+            border-top: 1px solid #dee2e6;
+            padding: 0.5rem 0;
+            z-index: 1030;
+            bottom: 0;
+        }
+        .bottom-nav .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #6c757d;
+            padding: 0;
+            font-size: 0.75rem;
+            text-decoration: none;
+        }
+        .bottom-nav .nav-link:hover {
+            color: var(--ksharer-green);
+        }
+        .bottom-nav .nav-link i {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .bottom-nav .nav-link.active {
+            color: var(--ksharer-green);
+        }
+        
+        /* Thoughts Feed Styling */
+        .feed-container {
+            max-width: 700px;
+        }
+        .thought-card {
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .thought-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .thought-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        .thought-author h6 {
+            margin-bottom: 0;
+            font-weight: 600;
+        }
+        .thought-author .handle {
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+        .thought-content {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .thought-actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: 0.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+        .thought-actions .btn {
+            color: #6c757d;
+        }
+        .thought-actions .btn:hover {
+            color: var(--ksharer-green);
+        }
+        .thought-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .thought-header-actions .btn {
+            font-size: 0.8rem;
+        }
+        .thought-community {
+            font-size: 0.8rem;
+        }
+        .thought-community .community-tag {
+            color: var(--ksharer-green);
+            font-weight: 600;
+        }
+        
+        /* New Post Modal Styling */
+        .new-post-modal .modal-header {
+            border-bottom: none;
+        }
+        .new-post-modal .modal-body {
+            padding: 1rem;
+        }
+        .new-post-textarea {
+            border: none;
+            resize: none;
+            font-size: 1.25rem;
+        }
+        .new-post-textarea:focus {
+            box-shadow: none;
+        }
+        .new-post-actions .btn {
+            color: #6c757d;
+        }
+        /* Resource Card Styling */
+        .resource-card {
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05); /* Subtle shadow to make it stand out */
+        }
+        .resource-thumbnail {
+            width: 100%;
+            height: 200px; /* Fixed height for consistent look */
+            object-fit: cover;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+        .resource-body {
+            padding: 1.5rem;
+        }
+        .resource-type {
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: var(--ksharer-green);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            text-transform: uppercase;
+        }
+        .resource-price {
+            font-weight: 600;
+            color: var(--ksharer-green);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        .resource-price .fa-solid {
+            color: var(--ksharer-gold);
+            margin-right: 0.25rem;
+        }
+        .resource-fact-check {
+            color: #4CAF50;
+        }
+        /* Niche Card design */
+        /* Niche Card Recommendation Styles */
+.niche-card-recommendation {
+    max-width: 350px; /* Adjust as needed to fit your newsfeed columns */
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.niche-card-header {
+    position: relative;
+    height: 120px;
+}
+
+.niche-card-logo-container {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.niche-card-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background-color: #6c757d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.niche-card-recommendation .card-body {
+    position: relative;
+}
+/* tool code */
+/* No changes to the existing .tool-card styles are needed. */
+/* Just a small addition to style the price element. */
+.tool-price {
+    color: var(--ksharer-green);
+}
+
+/* people style code */
+/* Recommended Person Card Styles */
+.recommended-person-card {
+    max-width: 250px; /* Adjust width as needed for your sidebar or grid layout */
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.recommended-person-card .card-body {
+    padding: 1rem;
+}
+
+.recommended-person-card img {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+/* updated resource code */
+/* Styling for the Resource Card */
+.resource-card {
+    max-width: 400px; /* Adjust as needed for your newsfeed grid */
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.resource-card .resource-thumbnail {
+    height: 200px;
+    object-fit: cover;
+}
+
+.resource-type-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.resource-price {
+    color: var(--ksharer-green);
+}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar bg-white sticky-top">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between d-md-none w-100">
+                <img src="https://www.shutterstock.com/image-photo/blond-hair-girl-taking-photo-260nw-2492842415.jpg" class="user-avatar-mobile" alt="User Avatar" data-bs-toggle="modal" data-bs-target="#userMenuModal">
+                <a class="navbar-brand me-0" href="#">Ksharer</a>
+                <div class="search-icon-mobile" data-bs-toggle="modal" data-bs-target="#searchModal">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            <div class="d-none d-md-flex align-items-center w-100">
+                <a class="navbar-brand me-4" href="#">Ksharer</a>
+                <form class="d-flex flex-grow-1 me-4">
+                    <input class="form-control d-lg-block search-input-desktop mx-auto" type="search" placeholder="Search Ksharer..." aria-label="Search">
+                </form>
+                <div class="d-flex align-items-center ms-auto">
+                    <a class="nav-link mx-3 d-none d-lg-block" href="#">Home</a>
+                    <a class="nav-link mx-3" href="#">Explore</a>
+                    <a class="nav-link mx-3" href="#">New Post</a>
+                    <a class="nav-link mx-3" href="#">Profile</a>
+                    <img src="https://www.shutterstock.com/image-photo/blond-hair-girl-taking-photo-260nw-2492842415.jpg" class="user-avatar-desktop ms-3" alt="User Avatar">
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <nav class="navbar fixed-bottom bottom-nav d-md-none">
+        <div class="container-fluid d-flex justify-content-around">
+            <a class="nav-link active" aria-current="page" href="#">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a class="nav-link" href="#">
+                <i class="fa-solid fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#newPostModal">
+                <i class="fa-solid fa-square-plus"></i>
+                <span>New Post</span>
+            </a>
+            <a class="nav-link" href="#">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="container py-4 feed-container">
+        <!-- updated resource code -->
+         <div class="card resource-card mb-4">
+    <div class="position-relative">
+        <img src="https://via.placeholder.com/400x200/28a745/fff?text=Article+Thumbnail" class="card-img-top resource-thumbnail" alt="Resource Thumbnail">
+        <span class="resource-type-badge"><i class="fa-solid fa-newspaper me-1"></i> Article</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title fw-bold">Mastering React Hooks</h5>
+        <p class="card-text text-muted small">By <a href="#" class="text-decoration-none">John Doe</a> in <a href="#" class="text-decoration-none">#webdev</a></p>
+        <hr class="my-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="resource-price d-flex align-items-center">
+                <i class="fa-solid fa-coins me-2 fs-5"></i>
+                <span class="fw-bold fs-5">250 ZiniCoin</span>
+            </div>
+            <button class="btn ksharer-btn-green btn-sm">Buy & Access</button>
+        </div>
+    </div>
+</div>
+
+<div class="card resource-card mb-4">
+    <div class="position-relative">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAPHesVYsVt7KKjkm_SMQSJrpCnzmVuXTtPRFIdCWEXnYacg3_XedCGSo&s" class="card-img-top resource-thumbnail" alt="Video Thumbnail">
+        <span class="resource-type-badge"><i class="fa-solid fa-video me-1"></i> Video</span>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title fw-bold">The Ultimate Guide to Node.js</h5>
+        <p class="card-text text-muted small">By <a href="#" class="text-decoration-none">Jane Smith</a> in <a href="#" class="text-decoration-none">#backend</a></p>
+        <hr class="my-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="resource-price d-flex align-items-center">
+                <i class="fa-solid fa-coins me-2 fs-5"></i>
+                <span class="fw-bold fs-5">500 ZiniCoin</span>
+            </div>
+            <button class="btn ksharer-btn-green btn-sm">Buy & Access</button>
+        </div>
+    </div>
+</div>
+        <!-- peoeple code -->
+         <div class="card recommended-person-card mb-4">
+    <div class="card-body text-center">
+        <img src="https://www.shutterstock.com/image-photo/blond-hair-girl-taking-photo-260nw-2492842415.jpg" class="rounded-circle mb-3" alt="User Avatar">
+        <h5 class="card-title fw-bold mb-1">Jane Doe</h5>
+        <p class="text-muted small mb-2">@janedoe</p>
+        <p class="card-text small text-muted mb-3">Front-end developer and AI enthusiast. Sharing my learning journey one post at a time.</p>
+        <button class="btn btn-primary btn-sm w-100">Follow</button>
+    </div>
+</div>
+
+<div class="card recommended-person-card mb-4">
+    <div class="card-body text-center">
+        <img src="https://via.placeholder.com/100x100/adb5bd/fff?text=J" class="rounded-circle mb-3" alt="User Avatar">
+        <h5 class="card-title fw-bold mb-1">John Smith</h5>
+        <p class="text-muted small mb-2">@johnsmith_tech</p>
+        <p class="card-text small text-muted mb-3">AI and Machine Learning researcher. Passionate about building intelligent systems.</p>
+        <button class="btn btn-primary btn-sm w-100">Follow</button>
+    </div>
+</div>
+        <!-- people code ends -->
+        <!-- tool  -->
+        <div class="card tool-card mb-4">
+    <img src="https://via.placeholder.com/350x200/007bff/fff?text=Quiz+Engine+Thumbnail" class="card-img-top tool-thumbnail" alt="Quiz Engine Thumbnail">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-2">
+            <h5 class="card-title fw-bold mb-0 me-2">JAMB CBT Practice</h5>
+            <span class="badge bg-danger">Premium</span>
+        </div>
+        <p class="card-text text-muted">A comprehensive practice lab for the Joint Admissions and Matriculation Board exam.</p>
+        <hr class="my-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="tool-price d-flex align-items-center">
+                <i class="fa-solid fa-coins me-2 fs-5"></i>
+                <span class="fw-bold fs-5">50 ZiniCoin</span>
+            </div>
+            <button class="btn btn-sm btn-primary"><i class="fa-solid fa-play me-1"></i> Launch</button>
+        </div>
+    </div>
+</div>
+
+<div class="card tool-card mb-4">
+    <img src="https://via.placeholder.com/350x200/ffc107/343a40?text=Web+Editor+Thumbnail" class="card-img-top tool-thumbnail" alt="Online Web Editor Thumbnail">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-2">
+            <h5 class="card-title fw-bold mb-0 me-2">Online Web Editor</h5>
+            <span class="badge bg-warning text-dark">Beta</span>
+        </div>
+        <p class="card-text text-muted">Write and run HTML, CSS, and JavaScript directly in your browser.</p>
+        <hr class="my-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="tool-price d-flex align-items-center">
+                <i class="fa-solid fa-coins me-2 fs-5"></i>
+                <span class="fw-bold fs-5">10 ZiniCoin / Hr</span>
+            </div>
+            <button class="btn btn-sm btn-primary"><i class="fa-solid fa-play me-1"></i> Launch</button>
+        </div>
+    </div>
+</div>
+        <!-- tool ends -->
+        <div class="card niche-card-recommendation mb-4">
+    <div class="niche-card-header">
+        <img src="https://cdn.serif.com/affinity/img/photo/og-photo-080820220738.png" class="card-img-top" alt="Niche Banner">
+        <div class="niche-card-logo-container">
+            <img src="https://media.istockphoto.com/id/528415916/photo/beautiful-red-rose-with-strong-contrast-on-black-background.jpg?s=170667a&w=0&k=20&c=srA4C1CIVrN_knLhk3KNw610I9dIa6oeKRFEXfSwt3U=" class="niche-card-logo" alt="Niche Logo">
+        </div>
+    </div>
+    <div class="card-body text-center pt-5">
+        <div class="d-flex justify-content-center align-items-center mb-2">
+            <h5 class="fw-bold mb-0 me-2">Web Development</h5>
+            <span class="badge bg-primary"><i class="fa-solid fa-earth-americas"></i> Public</span>
+        </div>
+        <p class="text-muted small mb-3">#webdev</p>
+        <p class="card-text">A community for all things front-end, back-end, and full-stack development.</p>
+        <p class="card-text text-muted small">
+            <i class="fa-solid fa-users me-1"></i> 15.4K Members
+        </p>
+        <hr class="my-3">
+        <button class="btn btn-primary w-100"><i class="fa-solid fa-plus me-1"></i> Join Niche</button>
+    </div>
+</div>
+        <div class="resource-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTtxrDoxUcql-VK6Ac0kmPqXMoyAjFJB664A&s" class="resource-thumbnail" alt="Resource Thumbnail">
+            <div class="resource-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex align-items-center">
+                        <img width="30px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTtxrDoxUcql-VK6Ac0kmPqXMoyAjFJB664A&s" class="rounded-circle me-2" alt="Author Avatar">
+                        <div class="thought-author">
+                            <h6 class="mb-0">Alex K. <span class="handle ms-1">@alexk</span></h6>
+                            <small class="text-muted">3 hours ago</small>
+                        </div>
+                    </div>
+                    <div class="thought-header-actions">
+                        <span class="resource-type me-2">Article</span>
+                        <i class="fa-solid fa-user-shield resource-fact-check me-2" title="Fact-checked content"></i>
+                        <button class="btn btn-sm text-secondary" data-bs-toggle="modal" data-bs-target="#resourcePreviewModal">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                    </div>
+                </div>
+                <h5 class="card-title mb-3">The Future of AI in Web Development</h5>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div class="resource-price">
+                        <i class="fa-solid fa-coins"></i> 25 ZiniCoin
+                    </div>
+                    <button class="btn btn-primary btn-sm">View Resource</button>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">In <a href="#" class="community-tag text-decoration-none">#webdev</a> Niche</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="thought-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center">
+                    <img src="https://via.placeholder.com/50x50/adb5bd/fff?text=P1" class="thought-avatar" alt="User Avatar">
+                    <div class="thought-author">
+                        <h6>Patience Ene<span class="handle ms-2">@patience_e</span></h6>
+                        <small class="text-muted">1 hour ago</small>
+                    </div>
+                </div>
+                <div class="thought-header-actions">
+                    <button class="btn btn-sm btn-outline-secondary">Follow</button>
+                    <button class="btn btn-sm text-secondary" data-bs-toggle="modal" data-bs-target="#thoughtMenuModal">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="thought-content">
+                <p>The latest advancements in AI are truly incredible. The pace of innovation feels faster than ever before. Exciting times!</p>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="thought-actions">
+                    <button class="btn btn-sm me-2">
+                        <i class="fa-regular fa-heart"></i> 124
+                    </button>
+                    <button class="btn btn-sm me-2" data-bs-toggle="modal" data-bs-target="#postDetailModal">
+                        <i class="fa-regular fa-comment"></i> 32
+                    </button>
+                    <button class="btn btn-sm me-2">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </button>
+                    <button class="btn btn-sm me-2">
+                        <i class="fa-solid fa-thumbtack"></i>
+                    </button>
+                </div>
+                <div class="thought-community">
+                    <a href="#" class="community-tag text-decoration-none">#AI</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="thought-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center">
+                    <img src="https://via.placeholder.com/50x50/adb5bd/fff?text=J" class="thought-avatar" alt="User Avatar">
+                    <div class="thought-author">
+                        <h6>Jibril A. <span class="handle ms-2">@jibril_codes</span></h6>
+                        <small class="text-muted">6 hours ago</small>
+                    </div>
+                </div>
+                <div class="thought-header-actions">
+                    <button class="btn btn-sm btn-primary">Follow</button>
+                    <button class="btn btn-sm text-secondary" data-bs-toggle="modal" data-bs-target="#thoughtMenuModal">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="thought-content">
+                <p>Happy to announce I've just pushed my first major feature to production! So many late nights, but it's worth it.</p>
+            </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="thought-actions">
+                    <button class="btn btn-sm me-2">
+                        <i class="fa-regular fa-heart"></i> 412
+                    </button>
+                    <button class="btn btn-sm me-2" data-bs-toggle="modal" data-bs-target="#postDetailModal">
+                        <i class="fa-regular fa-comment"></i> 105
+                    </button>
+                    <button class="btn btn-sm me-2">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </button>
+                    <button class="btn btn-sm me-2">
+                        <i class="fa-solid fa-thumbtack"></i>
+                    </button>
+                </div>
+                <div class="thought-community">
+                    <a href="#" class="community-tag text-decoration-none">#dev</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <div class="modal fade new-post-modal" id="newPostModal" tabindex="-1" aria-labelledby="newPostModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newPostModalLabel">New Thought</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex mb-3">
+                        <img src="https://via.placeholder.com/50x50/adb5bd/fff?text=U" class="rounded-circle me-3" alt="Your Avatar">
+                        <textarea class="form-control new-post-textarea" rows="8" placeholder="What's on your mind?"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between align-items-center">
+                    <div class="new-post-actions">
+                        <button class="btn"><i class="fa-solid fa-image"></i></button>
+                        <button class="btn"><i class="fa-brands fa-youtube"></i></button>
+                        <button class="btn"><i class="fa-solid fa-headphones"></i></button>
+                        <button class="btn"><i class="fa-solid fa-link"></i></button>
+                    </div>
+                    <button class="btn btn-primary">Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="postDetailModal" tabindex="-1" aria-labelledby="postDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="thought-card border-0 mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="d-flex align-items-center">
+                                <img src="https://via.placeholder.com/50x50/adb5bd/fff?text=P1" class="thought-avatar" alt="User Avatar">
+                                <div class="thought-author">
+                                    <h6>Patience Ene<span class="handle ms-2">@patience_e</span></h6>
+                                    <small class="text-muted">1 hour ago</small>
+                                </div>
+                            </div>
+                            <div class="thought-header-actions">
+                                <button class="btn btn-sm btn-outline-secondary">Follow</button>
+                                <button class="btn btn-sm text-secondary" data-bs-toggle="modal" data-bs-target="#thoughtMenuModal"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                            </div>
+                        </div>
+                        <div class="thought-content">
+                            <p>The latest advancements in AI are truly incredible. The pace of innovation feels faster than ever before. Exciting times!</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="thought-actions">
+                                <button class="btn btn-sm me-2"><i class="fa-regular fa-heart"></i> 124</button>
+                                <button class="btn btn-sm me-2" data-bs-toggle="modal" data-bs-target="#postDetailModal"><i class="fa-regular fa-comment"></i> 32</button>
+                                <button class="btn btn-sm me-2"><i class="fa-solid fa-share-nodes"></i></button>
+                                <button class="btn btn-sm me-2"><i class="fa-solid fa-thumbtack"></i></button>
+                            </div>
+                            <div class="thought-community">
+                                <a href="#" class="community-tag text-decoration-none">#AI</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="comments-section mt-4">
+                        <h6>Comments (32)</h6>
+                        <div class="d-flex align-items-start mb-3">
+                            <img src="https://via.placeholder.com/40x40/adb5bd/fff?text=C1" class="rounded-circle me-3" alt="Commenter Avatar">
+                            <div>
+                                <strong>John Doe</strong>
+                                <span class="text-muted ms-2 small">@johndoe</span>
+                                <p class="mb-0">I completely agree! It's amazing to see what's being built.</p>
+                                <small class="text-muted">2 mins ago</small>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-3">
+                            <img src="https://via.placeholder.com/40x40/adb5bd/fff?text=C2" class="rounded-circle me-3" alt="Commenter Avatar">
+                            <div>
+                                <strong>Jane Smith</strong>
+                                <span class="text-muted ms-2 small">@janesmith</span>
+                                <p class="mb-0">What's the most exciting development you've seen recently?</p>
+                                <small class="text-muted">5 mins ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex align-items-center">
+                    <img src="https://via.placeholder.com/40x40/adb5bd/fff?text=U" class="rounded-circle me-3" alt="Your Avatar">
+                    <input type="text" class="form-control" placeholder="Write a comment...">
+                    <button class="btn btn-primary ms-2"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="userMenuModal" tabindex="-1" aria-labelledby="userMenuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userMenuModalLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex flex-column align-items-center mb-4">
+                        <img src="https://via.placeholder.com/80x80/adb5bd/fff?text=U" class="user-avatar-mobile" style="width: 80px; height: 80px;" alt="User Avatar">
+                        <h4 class="mt-2">Username</h4>
+                        <p class="text-muted small">@username_handle</p>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="nav-link"><i class="fa-solid fa-user me-2"></i> My Profile</a></li>
+                        <li class="mb-2"><a href="#" class="nav-link"><i class="fa-solid fa-share-nodes me-2"></i> My Shares</a></li>
+                        <li class="mb-2"><a href="#" class="nav-link"><i class="fa-solid fa-bell me-2"></i> Notifications</a></li>
+                        <li class="mb-2"><a href="#" class="nav-link"><i class="fa-solid fa-user-group me-2"></i> Connections</a></li>
+                        <li class="mb-2"><a href="#" class="nav-link"><i class="fa-solid fa-list me-2"></i> Communities</a></li>
+                        <li class="mb-2"><a href="#" class="nav-link"><i class="fa-solid fa-gear me-2"></i> Settings</a></li>
+                        <hr>
+                        <li class="mb-2"><a href="#" class="nav-link text-danger"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="searchModalLabel">Search Ksharer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control form-control-lg" placeholder="Search..." aria-label="Search">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                    <div class="mt-4">
+                        <h6 class="text-muted">Suggested Searches</h6>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">#blockchain</li>
+                            <li class="list-group-item">#web3</li>
+                            <li class="list-group-item">#ai</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="thoughtMenuModal" tabindex="-1" aria-labelledby="thoughtMenuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="#" class="nav-link text-dark">Edit Post</a></li>
+                        <li class="list-group-item"><a href="#" class="nav-link text-dark">Delete Post</a></li>
+                        <li class="list-group-item"><a href="#" class="nav-link text-dark">Report Post</a></li>
+                        <li class="list-group-item"><a href="#" class="nav-link text-dark">Hide Post</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="resourcePreviewModal" tabindex="-1" aria-labelledby="resourcePreviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="resourcePreviewModalLabel">Resource Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://via.placeholder.com/700x200/28a745/fff?text=Resource+Preview" class="img-fluid rounded mb-3" alt="Resource Preview">
+                    <h4>The Future of AI in Web Development</h4>
+                    <small class="text-muted">By Alex K. <span class="handle ms-1">@alexk</span></small>
+                    <hr>
+                    <p>This is a brief preview of the resource content. The full, detailed content will be available after purchase. This resource provides an in-depth analysis of AI's impact on front-end and back-end development, including case studies and future projections.</p>
+                    <ul class="list-unstyled d-flex flex-wrap gap-3 mt-4">
+                        <li><i class="fa-solid fa-eye me-1"></i> <strong>Views:</strong> 1.2k</li>
+                        <li><i class="fa-regular fa-bookmark me-1"></i> <strong>Wishlist:</strong> 250</li>
+                        <li><i class="fa-solid fa-list-check me-1"></i> <strong>Type:</strong> Article</li>
+                    </ul>
+                </div>
+                <div class="modal-footer d-flex justify-content-between align-items-center">
+                    <button class="btn btn-outline-secondary"><i class="fa-regular fa-bookmark me-1"></i> Add to Wishlist</button>
+                    <div>
+                        <button class="btn btn-outline-secondary"><i class="fa-solid fa-share-nodes"></i></button>
+                        <button class="btn btn-danger"><i class="fa-solid fa-ban"></i> Block</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b8c639f9b4.js" crossorigin="anonymous"></script>
+    </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive Layout Assignment</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    nav, main, aside {
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    nav {
+      background-color: #f2f2f2;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    main {
+      background-color: #ddd;
+      flex: 2;
+      min-width: 300px;
+    }
+
+    aside {
+      background-color: #bbb;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    /* ✅ Media Query for Mobile (Max width: 768px) */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      nav, main, aside {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My Responsive Webpage</h1>
+  </header>
+
+  <div class="container">
+    <nav>
+      <h3>Navigation</h3>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+
+    <main>
+      <h2>Main Content</h2>
+      <p>This is the main content area. It should take up more space on larger screens.</p>
+    </main>
+
+    <aside>
+      <h3>Sidebar</h3>
+      <p>Some additional content here.</p>
+    </aside>
+  </div>
+
+</body>
+</html>
