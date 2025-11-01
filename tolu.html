@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .intro{
+            text-align: center;
+            font-size: 20px;
+        }
+        .tagline{
+            text-align: center;
+            font-size: 30px;
+            display: block;
+
+        }
+        .desc{
+            text-align: center;
+            font-size: 15px;
+            padding-left: 20%;
+            padding-right: 20%;
+        }
+        .photos{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .photos img{
+            height: 200px;
+            width: 200px;
+            margin: 10px;
+        }
+        @media (min-width: 320px) and (max-width: 480px) {
+            .photos img{
+                width: 100%;
+                height: 250px;
+            }
+        }
+        @media (min-width: 481px) and (max-width: 768px) {
+            .photos img{
+                width: 46%;
+                height: 250px;
+            }
+        }
+        /* tablet screen */
+        @media (min-width: 768px) and (max-width: 990px) {
+            .photos img{
+                width: 44%;
+                height: 250px;
+            }
+        }
+
+        /* Desktop screens */
+        @media (min-width: 1024px) and (max-width: 4000px) {
+            .photos img{
+                width: 30%;
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h3 class="intro">Our story</h3>
+    <b class="tagline">Trendy Tradition</b>
+    <p class="desc">I love fashion. I also love clothes that live longer than a single season. After all, if you’ve found an item that you
+    really love, don’t you want to wear it longer than a single season? We wanted to build a store that sells clothes that
+    are more than just trendy.</p>
+    <div class="photos">
+        <img src="https://mir-s3-cdn-cf.behance.net/projects/404/18168225.548d88b1d8478.jpg" alt="">
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/cc9e62104301999.5f60333a55985.jpg" alt="">
+        <img src="https://www.boxmodels.ng/wp-content/uploads/2021/08/Morenike_BoxModel1-370x441.jpg" alt="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLAtyzy2ChkMBFqOG2KjUiAhVuOpwLdeZgbA&s" alt="">
+    </div>
+</body>
+</html>
