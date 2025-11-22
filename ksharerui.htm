@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ksharer — Knowledge Islands</title>
 
     <!-- Fonts: Inter + Merriweather for that "Knowledge" feel -->
@@ -22,7 +22,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        serif: ['Merriweather', 'serif'], // Added for "Knowledge" accents
+                        serif: ['Merriweather', 'serif'],
                     },
                     colors: {
                         ksharer: {
@@ -47,27 +47,30 @@
             /* Subtle grain or gradient for the "Sea" */
             background: linear-gradient(180deg, #F0F4F8 0%, #E2E8F0 100%);
             background-attachment: fixed;
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
         }
 
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
         .glass-dock {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="text-slate-800 antialiased selection:bg-green-100 selection:text-ksharer-dark">
 
-    <div class="min-h-screen flex justify-center max-w-[1350px] mx-auto gap-6 md:px-4 lg:px-8">
+    <div class="min-h-screen flex justify-center max-w-[1350px] mx-auto md:gap-6 md:px-4 lg:px-8">
 
         <!-- ============================== -->
         <!-- LEFT: NAVIGATION DOCK          -->
         <!-- ============================== -->
-        <!-- Now a distinct floating "Island" instead of a sticky border -->
         <aside class="hidden md:flex w-[260px] flex-col h-[calc(100vh-2rem)] sticky top-4 bg-white/80 backdrop-blur-xl rounded-3xl shadow-island border border-white/50 justify-between py-6 px-4 z-20">
             
             <div>
@@ -87,19 +90,19 @@
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 font-medium text-slate-500 hover:bg-white hover:shadow-sm rounded-2xl transition-all hover:text-ksharer-green">
                         <i class="ph ph-island text-xl"></i> 
-                        <span>My Islands</span> <!-- Replaces "Communities" -->
+                        <span>My Islands</span> 
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 font-medium text-slate-500 hover:bg-white hover:shadow-sm rounded-2xl transition-all hover:text-ksharer-green">
                         <i class="ph ph-books text-xl"></i> 
-                        <span>Library</span> <!-- Replaces "Resources" -->
+                        <span>Library</span> 
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 font-medium text-slate-500 hover:bg-white hover:shadow-sm rounded-2xl transition-all hover:text-ksharer-green">
                         <i class="ph ph-bell text-xl"></i> 
-                        <span>Signals</span> <!-- Replaces "Notifications" -->
+                        <span>Signals</span> 
                     </a>
                     <a href="#" class="flex items-center gap-3 px-4 py-3 font-medium text-slate-500 hover:bg-white hover:shadow-sm rounded-2xl transition-all hover:text-ksharer-green">
                         <i class="ph ph-user text-xl"></i> 
-                        <span>Passport</span> <!-- Replaces "Profile" -->
+                        <span>Passport</span> 
                     </a>
                 </nav>
 
@@ -124,10 +127,10 @@
         <!-- ============================== -->
         <!-- MIDDLE: THE STREAM             -->
         <!-- ============================== -->
-        <main class="flex-1 max-w-[640px] min-h-screen pb-24 md:pb-10 pt-4 md:pt-4">
+        <main class="flex-1 w-full max-w-[640px] min-h-screen pb-28 md:pb-10 pt-4 md:pt-4 px-3 md:px-0">
             
             <!-- Mobile Header (Floating Glass) -->
-            <div class="md:hidden fixed top-4 left-4 right-4 z-50 glass-dock rounded-2xl px-4 py-3 flex justify-between items-center shadow-island">
+            <div class="md:hidden fixed top-4 left-3 right-3 z-50 glass-dock rounded-2xl px-4 py-3 flex justify-between items-center shadow-float">
                 <img src="https://i.pravatar.cc/150?u=myprofile" class="w-8 h-8 rounded-lg border border-white shadow-sm">
                 <div class="flex items-center gap-2">
                     <div class="w-6 h-6 bg-ksharer-green rounded-md flex items-center justify-center">
@@ -140,9 +143,9 @@
                     <span class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
                 </div>
             </div>
-            <div class="h-16 md:hidden"></div> <!-- Spacer -->
+            <div class="h-20 md:hidden"></div> <!-- Increased spacer for mobile header -->
 
-            <!-- "Plant Idea" Input (Desktop) -->
+            <!-- "Plant Idea" Input (Desktop Only) -->
             <div class="hidden md:block bg-white rounded-3xl shadow-island p-5 mb-8 border border-white/50 relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-ksharer-green to-emerald-600"></div>
                 <div class="flex gap-4">
@@ -161,23 +164,25 @@
             </div>
 
             <!-- Section Title -->
-            <div class="flex items-center justify-between mb-4 px-2">
-                <h2 class="font-serif font-bold text-xl text-slate-700">Rising Tides</h2>
-                <button class="text-sm font-medium text-ksharer-green flex items-center gap-1">Filter <i class="ph-bold ph-sliders-horizontal"></i></button>
+            <div class="flex items-center justify-between mb-4 px-1">
+                <h2 class="font-serif font-bold text-lg md:text-xl text-slate-700">Rising Tides</h2>
+                <button class="text-sm font-medium text-ksharer-green flex items-center gap-1 bg-white/50 px-3 py-1 rounded-full md:bg-transparent md:p-0">
+                    Filter <i class="ph-bold ph-sliders-horizontal"></i>
+                </button>
             </div>
 
             <!-- Filter Pills (Horizontal Scroll) -->
-            <div class="overflow-x-auto hide-scrollbar whitespace-nowrap mb-6 pb-2 px-1">
-                <button class="inline-flex items-center gap-2 px-5 py-2.5 bg-ksharer-dark text-white rounded-2xl shadow-md mr-3 transition-transform hover:scale-105">
+            <div class="overflow-x-auto hide-scrollbar whitespace-nowrap mb-6 pb-2 px-1 -mx-1">
+                <button class="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-ksharer-dark text-white rounded-2xl shadow-md mr-2 md:mr-3 transition-transform active:scale-95 text-sm md:text-base">
                     <i class="ph-fill ph-squares-four"></i> All
                 </button>
-                <button class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-600 rounded-2xl shadow-sm border border-slate-100 mr-3 hover:shadow-md transition-all">
+                <button class="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-white text-slate-600 rounded-2xl shadow-sm border border-slate-100 mr-2 md:mr-3 active:scale-95 text-sm md:text-base">
                     <i class="ph-fill ph-cpu text-blue-500"></i> Computing
                 </button>
-                <button class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-600 rounded-2xl shadow-sm border border-slate-100 mr-3 hover:shadow-md transition-all">
+                <button class="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-white text-slate-600 rounded-2xl shadow-sm border border-slate-100 mr-2 md:mr-3 active:scale-95 text-sm md:text-base">
                     <i class="ph-fill ph-lightning text-yellow-500"></i> Energy
                 </button>
-                <button class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-600 rounded-2xl shadow-sm border border-slate-100 mr-3 hover:shadow-md transition-all">
+                <button class="inline-flex items-center gap-2 px-4 py-2 md:px-5 md:py-2.5 bg-white text-slate-600 rounded-2xl shadow-sm border border-slate-100 mr-2 md:mr-3 active:scale-95 text-sm md:text-base">
                     <i class="ph-fill ph-plant text-green-500"></i> Agri
                 </button>
             </div>
@@ -185,55 +190,55 @@
             <!-- FEED STREAM (The Islands) -->
 
             <!-- Knowledge Island #1 -->
-            <article class="bg-white rounded-[2rem] p-6 shadow-island mb-6 border border-slate-100/50 hover:shadow-float transition-all duration-300 cursor-pointer relative overflow-hidden group">
+            <article class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-6 shadow-island mb-6 border border-slate-100/50 hover:shadow-float transition-all duration-300 cursor-pointer relative overflow-hidden group">
                 <!-- Decorative subtle background accent -->
                 <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl -mr-16 -mt-16 opacity-50 pointer-events-none"></div>
 
-                <div class="flex gap-4 relative z-10">
-                    <img src="https://i.pravatar.cc/150?u=lightmann" class="w-12 h-12 rounded-2xl object-cover shadow-sm border-2 border-white">
+                <div class="flex gap-3 md:gap-4 relative z-10">
+                    <img src="https://i.pravatar.cc/150?u=lightmann" class="w-10 h-10 md:w-12 md:h-12 rounded-2xl object-cover shadow-sm border-2 border-white shrink-0">
                     
-                    <div class="flex-1">
+                    <div class="flex-1 min-w-0"> <!-- min-w-0 forces truncate to work in flex -->
                         <div class="flex items-center justify-between mb-2">
                             <div>
-                                <span class="font-bold text-slate-900 text-lg">LightMann Official</span>
-                                <div class="flex items-center gap-1 text-xs text-slate-400 font-medium">
+                                <span class="font-bold text-slate-900 text-base md:text-lg block leading-tight">LightMann Official</span>
+                                <div class="flex items-center gap-1 text-xs text-slate-400 font-medium mt-0.5">
                                     <span>@lightmann_energy</span>
                                     <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
-                                    <span>2h ago</span>
+                                    <span>2h</span>
                                 </div>
                             </div>
                             <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-50 text-slate-400"><i class="ph-bold ph-dots-three"></i></button>
                         </div>
 
-                        <p class="text-slate-700 leading-relaxed mb-4 font-medium">
-                            Solving the infrastructure equation requires a dual approach. <br>
-                            <span class="bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-md text-sm font-bold mx-1">ENERGY</span> + 
-                            <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded-md text-sm font-bold mx-1">COMPUTE</span>
+                        <p class="text-slate-700 leading-relaxed mb-4 font-medium text-sm md:text-base">
+                            Solving the infrastructure equation requires a dual approach. <br class="hidden md:block">
+                            <span class="inline-block mt-2 md:mt-0 bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-md text-xs md:text-sm font-bold mr-1">ENERGY</span>+ 
+                            <span class="inline-block bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded-md text-xs md:text-sm font-bold ml-1">COMPUTE</span>
                         </p>
 
                         <!-- Embedded Content Card -->
-                        <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 mb-4">
+                        <div class="bg-slate-50 rounded-2xl p-3 md:p-4 border border-slate-100 mb-4">
                             <div class="flex items-center gap-3 mb-2">
-                                <div class="bg-green-100 p-2 rounded-lg text-green-700"><i class="ph-fill ph-chart-line-up"></i></div>
-                                <span class="font-bold text-sm text-slate-700">Impact Metric</span>
+                                <div class="bg-green-100 p-1.5 md:p-2 rounded-lg text-green-700"><i class="ph-fill ph-chart-line-up text-sm md:text-base"></i></div>
+                                <span class="font-bold text-xs md:text-sm text-slate-700">Impact Metric</span>
                             </div>
-                            <p class="text-2xl font-serif font-bold text-slate-800">45% Reduction</p>
-                            <p class="text-sm text-slate-500">In operational costs for solar-powered rural clinics using Ksharer diagnostic AI.</p>
+                            <p class="text-xl md:text-2xl font-serif font-bold text-slate-800">45% Reduction</p>
+                            <p class="text-xs md:text-sm text-slate-500 leading-snug">In operational costs for solar-powered rural clinics using Ksharer diagnostic AI.</p>
                         </div>
 
                         <!-- Action Dock -->
-                        <div class="flex items-center justify-between mt-2 bg-slate-50 rounded-2xl p-2 px-4">
-                            <button class="flex items-center gap-2 text-slate-400 hover:text-blue-500 transition-colors">
-                                <i class="ph ph-chat-circle text-xl"></i> <span class="text-xs font-bold">24</span>
+                        <div class="flex items-center justify-between mt-2 bg-slate-50 rounded-2xl p-2 px-3 md:px-4">
+                            <button class="flex items-center gap-1.5 md:gap-2 text-slate-400 hover:text-blue-500 transition-colors">
+                                <i class="ph ph-chat-circle text-lg md:text-xl"></i> <span class="text-xs font-bold">24</span>
                             </button>
-                            <button class="flex items-center gap-2 text-slate-400 hover:text-green-500 transition-colors">
-                                <i class="ph ph-arrows-left-right text-xl"></i> <span class="text-xs font-bold">12</span>
+                            <button class="flex items-center gap-1.5 md:gap-2 text-slate-400 hover:text-green-500 transition-colors">
+                                <i class="ph ph-arrows-left-right text-lg md:text-xl"></i> <span class="text-xs font-bold">12</span>
                             </button>
-                            <button class="flex items-center gap-2 text-slate-400 hover:text-pink-500 transition-colors">
-                                <i class="ph ph-heart text-xl"></i> <span class="text-xs font-bold">156</span>
+                            <button class="flex items-center gap-1.5 md:gap-2 text-slate-400 hover:text-pink-500 transition-colors">
+                                <i class="ph ph-heart text-lg md:text-xl"></i> <span class="text-xs font-bold">156</span>
                             </button>
-                            <button class="flex items-center gap-2 text-slate-400 hover:text-ksharer-green transition-colors">
-                                <i class="ph ph-share-network text-xl"></i>
+                            <button class="flex items-center gap-1.5 md:gap-2 text-slate-400 hover:text-ksharer-green transition-colors">
+                                <i class="ph ph-share-network text-lg md:text-xl"></i>
                             </button>
                         </div>
                     </div>
@@ -242,14 +247,14 @@
 
             <!-- Resource Shelf (Horizontal) -->
             <div class="mb-8 relative">
-                <div class="flex items-center justify-between px-2 mb-3">
+                <div class="flex items-center justify-between px-1 mb-3">
                     <h3 class="font-serif font-bold text-lg text-slate-700">Knowledge Banks</h3>
-                    <a href="#" class="text-sm text-ksharer-green font-bold">View Library -></a>
+                    <a href="#" class="text-xs md:text-sm text-ksharer-green font-bold">View Library -></a>
                 </div>
                 
-                <div class="overflow-x-auto hide-scrollbar flex gap-4 pb-4 px-1">
+                <div class="overflow-x-auto hide-scrollbar flex gap-3 md:gap-4 pb-4 px-1 -mx-1">
                     <!-- Book 1 -->
-                    <div class="min-w-[200px] bg-ksharer-dark text-white p-5 rounded-[20px] shadow-lg shadow-green-900/20 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
+                    <div class="min-w-[180px] md:min-w-[200px] bg-ksharer-dark text-white p-4 md:p-5 rounded-[20px] shadow-lg shadow-green-900/20 relative overflow-hidden group active:scale-95 transition-transform duration-300 cursor-pointer">
                         <i class="ph-fill ph-code absolute -bottom-4 -right-4 text-8xl text-white/10 rotate-12 group-hover:rotate-0 transition-transform"></i>
                         <div class="bg-white/20 backdrop-blur-sm w-8 h-8 rounded-lg flex items-center justify-center mb-3 text-sm font-bold">01</div>
                         <h4 class="font-bold text-lg leading-tight mb-1">Agri-Code</h4>
@@ -257,7 +262,7 @@
                     </div>
 
                     <!-- Book 2 -->
-                    <div class="min-w-[200px] bg-white text-slate-800 p-5 rounded-[20px] shadow-island border border-slate-100 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
+                    <div class="min-w-[180px] md:min-w-[200px] bg-white text-slate-800 p-4 md:p-5 rounded-[20px] shadow-island border border-slate-100 relative overflow-hidden group active:scale-95 transition-transform duration-300 cursor-pointer">
                         <div class="absolute top-0 right-0 w-16 h-16 bg-blue-50 rounded-bl-full -mr-2 -mt-2"></div>
                         <i class="ph-fill ph-lightning text-blue-500 text-3xl mb-3 relative z-10"></i>
                         <h4 class="font-bold text-lg leading-tight mb-1">MicroGrids</h4>
@@ -265,7 +270,7 @@
                     </div>
 
                     <!-- Book 3 -->
-                    <div class="min-w-[200px] bg-white text-slate-800 p-5 rounded-[20px] shadow-island border border-slate-100 relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300 cursor-pointer">
+                    <div class="min-w-[180px] md:min-w-[200px] bg-white text-slate-800 p-4 md:p-5 rounded-[20px] shadow-island border border-slate-100 relative overflow-hidden group active:scale-95 transition-transform duration-300 cursor-pointer">
                          <div class="absolute top-0 right-0 w-16 h-16 bg-purple-50 rounded-bl-full -mr-2 -mt-2"></div>
                         <i class="ph-fill ph-heart-beat text-purple-500 text-3xl mb-3 relative z-10"></i>
                         <h4 class="font-bold text-lg leading-tight mb-1">TeleMed UX</h4>
@@ -275,24 +280,24 @@
             </div>
 
             <!-- Knowledge Island #2 -->
-            <article class="bg-white rounded-[2rem] p-6 shadow-island mb-6 border border-slate-100/50 hover:shadow-float transition-all duration-300 cursor-pointer group">
-                <div class="flex gap-4">
-                    <img src="https://i.pravatar.cc/150?u=dev1" class="w-12 h-12 rounded-2xl object-cover shadow-sm border-2 border-white">
+            <article class="bg-white rounded-[1.5rem] md:rounded-[2rem] p-4 md:p-6 shadow-island mb-6 border border-slate-100/50 hover:shadow-float transition-all duration-300 cursor-pointer group">
+                <div class="flex gap-3 md:gap-4">
+                    <img src="https://i.pravatar.cc/150?u=dev1" class="w-10 h-10 md:w-12 md:h-12 rounded-2xl object-cover shadow-sm border-2 border-white shrink-0">
                     
-                    <div class="flex-1">
+                    <div class="flex-1 min-w-0">
                         <div class="flex items-center justify-between mb-2">
                             <div>
-                                <span class="font-bold text-slate-900 text-lg">Sarah Codes</span>
-                                <div class="flex items-center gap-1 text-xs text-slate-400 font-medium">
+                                <span class="font-bold text-slate-900 text-base md:text-lg block leading-tight">Sarah Codes</span>
+                                <div class="flex items-center gap-1 text-xs text-slate-400 font-medium mt-0.5">
                                     <span>@sarah_dev</span>
                                     <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
-                                    <span>4h ago</span>
+                                    <span>4h</span>
                                 </div>
                             </div>
                             <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-50 text-slate-400"><i class="ph-bold ph-dots-three"></i></button>
                         </div>
 
-                        <p class="text-slate-700 leading-relaxed mb-3 font-medium">
+                        <p class="text-slate-700 leading-relaxed mb-3 font-medium text-sm md:text-base">
                             The "Intro to Web Dev" module on Ksharer is fantastic. It connects code directly to real-world problems in Education. 
                             <br>
                             <a href="#" class="text-ksharer-green font-bold hover:underline">#EdTech</a> 
@@ -300,28 +305,28 @@
                         </p>
 
                         <!-- Rich Media Island -->
-                        <div class="relative w-full h-64 bg-slate-800 rounded-2xl overflow-hidden mb-4 group shadow-md">
+                        <div class="relative w-full h-48 md:h-64 bg-slate-800 rounded-2xl overflow-hidden mb-4 group shadow-md">
                             <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-500">
-                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
-                                <i class="ph-fill ph-code text-4xl text-emerald-400 mb-2"></i>
-                                <h3 class="text-white font-bold text-xl">View Code Snippet</h3>
-                                <span class="text-slate-300 text-sm">Python • Data Analysis</span>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6">
+                                <i class="ph-fill ph-code text-3xl md:text-4xl text-emerald-400 mb-2"></i>
+                                <h3 class="text-white font-bold text-lg md:text-xl">View Code Snippet</h3>
+                                <span class="text-slate-300 text-xs md:text-sm">Python • Data Analysis</span>
                             </div>
                         </div>
 
                         <!-- Action Dock -->
-                        <div class="flex items-center justify-between mt-2 bg-slate-50 rounded-2xl p-2 px-4">
-                            <button class="flex items-center gap-2 text-slate-400 hover:text-blue-500 transition-colors">
-                                <i class="ph ph-chat-circle text-xl"></i>
+                        <div class="flex items-center justify-between mt-2 bg-slate-50 rounded-2xl p-2 px-3 md:px-4">
+                            <button class="flex items-center gap-1.5 md:gap-2 text-slate-400 hover:text-blue-500 transition-colors">
+                                <i class="ph ph-chat-circle text-lg md:text-xl"></i>
                             </button>
-                            <button class="flex items-center gap-2 text-slate-400 hover:text-green-500 transition-colors">
-                                <i class="ph ph-arrows-left-right text-xl"></i>
+                            <button class="flex items-center gap-1.5 md:gap-2 text-slate-400 hover:text-green-500 transition-colors">
+                                <i class="ph ph-arrows-left-right text-lg md:text-xl"></i>
                             </button>
-                            <button class="flex items-center gap-2 text-pink-500 hover:text-pink-600 transition-colors">
-                                <i class="ph-fill ph-heart text-xl"></i>
+                            <button class="flex items-center gap-1.5 md:gap-2 text-pink-500 hover:text-pink-600 transition-colors">
+                                <i class="ph-fill ph-heart text-lg md:text-xl"></i>
                             </button>
-                            <button class="flex items-center gap-2 text-slate-400 hover:text-ksharer-green transition-colors">
-                                <i class="ph ph-share-network text-xl"></i>
+                            <button class="flex items-center gap-1.5 md:gap-2 text-slate-400 hover:text-ksharer-green transition-colors">
+                                <i class="ph ph-share-network text-lg md:text-xl"></i>
                             </button>
                         </div>
                     </div>
@@ -417,21 +422,23 @@
 
     </div>
 
-    <!-- Mobile Bottom Nav (Floating Dock Style) -->
-    <div class="md:hidden fixed bottom-6 left-6 right-6 glass-dock rounded-3xl shadow-2xl z-50 h-16 flex justify-between items-center px-6">
-        <a href="#" class="text-ksharer-green transform hover:scale-110 transition-transform"><i class="ph-fill ph-house text-2xl"></i></a>
-        <a href="#" class="text-slate-400 hover:text-slate-600 transform hover:scale-110 transition-transform"><i class="ph-bold ph-magnifying-glass text-2xl"></i></a>
+    <!-- Mobile Bottom Nav (Floating Dock Style - Optimized width) -->
+    <div class="md:hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 w-[94%] max-w-[400px] glass-dock rounded-3xl shadow-2xl z-50 h-16 flex justify-between items-center px-6">
+        <a href="#" class="text-ksharer-green active:scale-95 transition-transform"><i class="ph-fill ph-house text-2xl"></i></a>
+        <a href="#" class="text-slate-400 hover:text-slate-600 active:scale-95 transition-transform"><i class="ph-bold ph-magnifying-glass text-2xl"></i></a>
         
         <!-- Center Action Button -->
         <div class="relative -top-6">
-            <button class="w-14 h-14 bg-ksharer-dark rounded-full shadow-lg flex items-center justify-center text-white transform hover:scale-105 hover:rotate-90 transition-all">
+            <button class="w-14 h-14 bg-ksharer-dark rounded-full shadow-lg flex items-center justify-center text-white active:scale-95 hover:rotate-90 transition-all">
                 <i class="ph-bold ph-plus text-2xl"></i>
             </button>
         </div>
 
-        <a href="#" class="text-slate-400 hover:text-slate-600 transform hover:scale-110 transition-transform"><i class="ph-bold ph-bell text-2xl"></i></a>
-        <a href="#" class="text-slate-400 hover:text-slate-600 transform hover:scale-110 transition-transform"><i class="ph-bold ph-user text-2xl"></i></a>
+        <a href="#" class="text-slate-400 hover:text-slate-600 active:scale-95 transition-transform"><i class="ph-bold ph-bell text-2xl"></i></a>
+        <a href="#" class="text-slate-400 hover:text-slate-600 active:scale-95 transition-transform"><i class="ph-bold ph-user text-2xl"></i></a>
     </div>
 
 </body>
 </html>
+
+
