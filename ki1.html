@@ -280,105 +280,103 @@
     </div>
 
     <!-- main content -->
-    <main class="pt-16 pb-20 md:pb-0 lg:pl-64 min-h-screen bg-white transition-all">
+    <main class="pt-16 pb-20 md:pb-0 lg:pl-64 min-h-screen bg-canvas transition-all">
     
-        <section class="bg-slate-50 border-b border-slate-100 px-6 py-10">
-            <div class="max-w-6xl mx-auto flex items-center gap-6">
+        <header class="bg-surface border-b border-border px-6 py-8">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-heading tracking-tight mb-2">Knowledge Library</h1>
+                    <p class="text-muted text-sm max-w-lg">Access specialized resources curated for the Computable Energy
+                        ecosystem.</p>
+                </div>
+    
+                <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
+                    <button
+                        class="px-5 py-2 bg-brand-main text-white rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md">All</button>
+                    <button
+                        class="px-5 py-2 bg-white border border-border text-muted rounded-full text-[11px] font-bold uppercase tracking-wider hover:border-brand-main transition">Videos</button>
+                    <button
+                        class="px-5 py-2 bg-white border border-border text-muted rounded-full text-[11px] font-bold uppercase tracking-wider hover:border-brand-main transition">E-Books</button>
+                    <button
+                        class="px-5 py-2 bg-white border border-border text-muted rounded-full text-[11px] font-bold uppercase tracking-wider hover:border-brand-main transition">R-Chains</button>
+                </div>
+            </div>
+        </header>
+    
+        <div class="max-w-7xl mx-auto px-6 py-10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    
                 <div
-                    class="w-16 h-16 bg-brand-main rounded-2xl flex items-center justify-center text-white shadow-lg shadow-brand-main/20 shrink-0">
-                    <i data-lucide="brain" class="w-8 h-8"></i>
+                    class="group bg-surface border border-border rounded-2xl overflow-hidden hover:border-brand-main/40 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 flex flex-col">
+                    <div class="relative aspect-[16/10] bg-slate-100 overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-300">
+                            <i data-lucide="book-open" class="w-12 h-12"></i>
+                        </div>
+                        <div
+                            class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur shadow-sm rounded-full text-[9px] font-black uppercase tracking-widest text-slate-700">
+                            E-Book
+                        </div>
+                    </div>
+    
+                    <div class="p-5 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3
+                                class="text-sm font-bold text-heading group-hover:text-brand-main transition-colors leading-tight">
+                                Thermodynamics of Blockchain</h3>
+                            <div class="flex items-center gap-1 text-brand-main shrink-0 ml-2">
+                                <i data-lucide="coins" class="w-3.5 h-3.5"></i>
+                                <span class="text-xs font-bold">45</span>
+                            </div>
+                        </div>
+                        <p class="text-[12px] text-muted leading-relaxed line-clamp-2 mb-6">
+                            An in-depth study on how hashing algorithms impact local heat signatures in smart housing.
+                        </p>
+    
+                        <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">By Dr. Aris</span>
+                            <button class="text-[11px] font-bold text-brand-main uppercase hover:underline">Access</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex-1">
-                    <h1 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">Philosophy of Computable Energy
-                    </h1>
-                    <p class="text-slate-500 text-xs mt-1 font-medium uppercase tracking-widest">Ksharer Niche ID: #CE-2025
-                    </p>
+    
+                <div
+                    class="group bg-brand-dark border border-brand-dark rounded-2xl overflow-hidden shadow-lg shadow-brand-dark/10 flex flex-col">
+                    <div class="relative aspect-[16/10] bg-emerald-900/50 flex items-center justify-center overflow-hidden">
+                        <div class="absolute w-24 h-32 bg-white/10 rounded-lg rotate-12 translate-x-4"></div>
+                        <div
+                            class="absolute w-24 h-32 bg-white/5 rounded-lg -rotate-12 -translate-x-4 border border-white/10">
+                        </div>
+                        <i data-lucide="layers" class="w-12 h-12 text-brand-main relative z-10"></i>
+    
+                        <div
+                            class="absolute top-4 left-4 px-3 py-1 bg-brand-main shadow-sm rounded-full text-[9px] font-black uppercase tracking-widest text-white">
+                            R-Chain
+                        </div>
+                    </div>
+    
+                    <div class="p-5 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-sm font-bold text-white leading-tight">Complete Energy Auditor Pathway</h3>
+                            <div class="flex items-center gap-1 text-brand-main shrink-0 ml-2">
+                                <i data-lucide="coins" class="w-3.5 h-3.5"></i>
+                                <span class="text-xs font-bold">250</span>
+                            </div>
+                        </div>
+                        <p class="text-[12px] text-emerald-100/60 leading-relaxed line-clamp-2 mb-6">
+                            A bundle of 5 videos, 2 templates, and 1 exam for official CE certification.
+                        </p>
+    
+                        <div class="mt-auto pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-emerald-100/30 uppercase tracking-widest">8
+                                Modules</span>
+                            <button
+                                class="px-4 py-1.5 bg-brand-main text-white rounded-full text-[10px] font-bold uppercase hover:bg-brand-hover transition">Buy
+                                Chain</button>
+                        </div>
+                    </div>
                 </div>
-                <button onclick="toggleNicheSidebar()"
-                    class="md:hidden p-3 bg-white border border-slate-200 rounded-full text-slate-600 shadow-sm">
-                    <i data-lucide="info" class="w-5 h-5"></i>
-                </button>
+    
             </div>
-        </section>
-    
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-0 md:gap-8 px-0 md:px-6">
-    
-            <div class="md:col-span-8 border-r border-slate-100 min-h-screen bg-white">
-    
-                <nav class="sticky top-16 bg-white/95 backdrop-blur-md border-b border-slate-100 z-30 px-6">
-                    <div class="flex gap-8">
-                        <button onclick="switchNicheTab('thoughts')" id="tab-thoughts"
-                            class="niche-tab py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-main border-b-2 border-brand-main transition-all">
-                            Thoughts
-                        </button>
-                        <button onclick="switchNicheTab('resources')" id="tab-resources"
-                            class="niche-tab py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 border-b-2 border-transparent transition-all">
-                            Resources
-                        </button>
-                        <button onclick="switchNicheTab('members')" id="tab-members"
-                            class="niche-tab py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-400 border-b-2 border-transparent transition-all">
-                            Members
-                        </button>
-                    </div>
-                </nav>
-    
-                <div id="niche-dynamic-content">
-                    <section id="content-thoughts" class="niche-content">
-                        <div class="p-12 text-center text-slate-300 italic text-sm">No thoughts shared yet...</div>
-                    </section>
-                </div>
-            </div>
-    
-            <aside id="nicheSidebar"
-                class="hidden md:block md:col-span-4 py-8 space-y-8 fixed md:static inset-y-0 right-0 w-80 md:w-auto bg-white md:bg-transparent z-[100] md:z-10 shadow-2xl md:shadow-none p-6 md:p-0 transition-transform duration-300 transform translate-x-full md:translate-x-0">
-    
-                <button onclick="toggleNicheSidebar()" class="md:hidden absolute top-6 right-6 text-slate-400">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-    
-                <section class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                    <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">About Niche</h2>
-                    <p class="text-sm text-slate-600 leading-relaxed mb-6">
-                        This niche focuses on the **HEAT SEEM FC** integration, specifically linking energy-centric physics
-                        with computational security and ethics.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-400">Founded</span>
-                            <span class="text-xs font-bold text-slate-800">Aug 2025</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs text-slate-400">Access Level</span>
-                            <span class="text-xs font-bold text-brand-main">Public Open</span>
-                        </div>
-                    </div>
-                </section>
-    
-                <section class="px-2">
-                    <h2 class="text-[11px] font-bold text-slate-400 uppercase tracking-[0.2em] mb-6">Niche Vitality</h2>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-4 bg-white border border-slate-100 rounded-xl text-center">
-                            <p class="text-xl font-bold text-slate-900">12.4k</p>
-                            <p class="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Contributions</p>
-                        </div>
-                        <div class="p-4 bg-white border border-slate-100 rounded-xl text-center">
-                            <p class="text-xl font-bold text-slate-900">340</p>
-                            <p class="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Resources</p>
-                        </div>
-                    </div>
-                </section>
-    
-                <section class="bg-brand-dark rounded-2xl p-6 text-white">
-                    <h2 class="text-[10px] font-bold text-brand-main uppercase tracking-[0.2em] mb-4">Scholarly Conduct</h2>
-                    <ul class="space-y-3 text-[12px] text-emerald-100/70">
-                        <li class="flex gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-main shrink-0"></i>
-                            No energy-wasteful compute.</li>
-                        <li class="flex gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-main shrink-0"></i>
-                            Cite all resource references.</li>
-                    </ul>
-                </section>
-            </aside>
-    
         </div>
     </main>
 
@@ -480,40 +478,40 @@
         lucide.createIcons();
 
         function switchNicheTab(tabName) {
-                // 1. Hide all content sections
-                document.querySelectorAll('.niche-content').forEach(section => {
-                    section.classList.add('hidden');
-                });
+            // 1. Hide all content sections
+            document.querySelectorAll('.niche-content').forEach(section => {
+                section.classList.add('hidden');
+            });
 
-                // 2. Reset all tab styles to "Inactive"
-                document.querySelectorAll('.niche-tab').forEach(tab => {
-                    tab.classList.remove('text-brand-main', 'border-brand-main');
-                    tab.classList.add('text-slate-400', 'border-transparent');
-                });
+            // 2. Reset all tab styles to "Inactive"
+            document.querySelectorAll('.niche-tab').forEach(tab => {
+                tab.classList.remove('text-brand-main', 'border-brand-main');
+                tab.classList.add('text-slate-400', 'border-transparent');
+            });
 
-                // 3. Show the target content
-                document.getElementById('content-' + tabName).classList.remove('hidden');
+            // 3. Show the target content
+            document.getElementById('content-' + tabName).classList.remove('hidden');
 
-                // 4. Highlight the active tab
-                const activeTab = document.getElementById('tab-' + tabName);
-                activeTab.classList.add('text-brand-main', 'border-brand-main');
-                activeTab.classList.remove('text-slate-400', 'border-transparent');
-            }
+            // 4. Highlight the active tab
+            const activeTab = document.getElementById('tab-' + tabName);
+            activeTab.classList.add('text-brand-main', 'border-brand-main');
+            activeTab.classList.remove('text-slate-400', 'border-transparent');
+        }
 
         // Niche Sidebar Toggle for Mobile
         function toggleNicheSidebar() {
-                const sidebar = document.getElementById('nicheSidebar');
-                const isHidden = sidebar.classList.contains('translate-x-full');
+            const sidebar = document.getElementById('nicheSidebar');
+            const isHidden = sidebar.classList.contains('translate-x-full');
 
-                if (isHidden) {
-                    sidebar.classList.remove('hidden', 'translate-x-full');
-                    sidebar.classList.add('flex');
-                } else {
-                    sidebar.classList.add('translate-x-full');
-                    // Small delay to allow animation before hiding
-                    setTimeout(() => sidebar.classList.add('hidden'), 300);
-                }
+            if (isHidden) {
+                sidebar.classList.remove('hidden', 'translate-x-full');
+                sidebar.classList.add('flex');
+            } else {
+                sidebar.classList.add('translate-x-full');
+                // Small delay to allow animation before hiding
+                setTimeout(() => sidebar.classList.add('hidden'), 300);
             }
+        }
     </script>
 
 </body>
