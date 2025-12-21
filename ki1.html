@@ -280,107 +280,135 @@
     </div>
 
     <!-- main content -->
-    <main class="pt-16 pb-20 md:pb-0 lg:pl-64 min-h-screen bg-canvas transition-all">
+    <main class="pt-16 pb-0 lg:pl-64 h-[calc(100vh)] bg-white flex overflow-hidden transition-all">
     
-        <header class="bg-surface border-b border-border px-6 py-8">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-6">
-                <div>
-                    <h1 class="text-2xl md:text-3xl font-bold text-heading tracking-tight mb-2">Knowledge Library</h1>
-                    <p class="text-muted text-sm max-w-lg">Access specialized resources curated for the Computable Energy
-                        ecosystem.</p>
+        <aside id="chat-list"
+            class="w-full md:w-80 lg:w-96 border-r border-slate-100 flex flex-col bg-white transition-all">
+            <div class="p-6 bg-white">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-xl font-black text-slate-900 tracking-tight">Messages</h1>
+                    <button class="p-2 bg-slate-50 text-slate-400 rounded-full hover:text-brand-main transition">
+                        <i data-lucide="edit-3" class="w-4 h-4"></i>
+                    </button>
                 </div>
-    
-                <div class="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-                    <button
-                        class="px-5 py-2 bg-brand-main text-white rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md">All</button>
-                    <button
-                        class="px-5 py-2 bg-white border border-border text-muted rounded-full text-[11px] font-bold uppercase tracking-wider hover:border-brand-main transition">Videos</button>
-                    <button
-                        class="px-5 py-2 bg-white border border-border text-muted rounded-full text-[11px] font-bold uppercase tracking-wider hover:border-brand-main transition">E-Books</button>
-                    <button
-                        class="px-5 py-2 bg-white border border-border text-muted rounded-full text-[11px] font-bold uppercase tracking-wider hover:border-brand-main transition">R-Chains</button>
+                <div class="relative group">
+                    <i data-lucide="search"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-brand-main transition-colors"></i>
+                    <input type="text" placeholder="Search scholars..."
+                        class="w-full bg-slate-50 border border-transparent rounded-2xl py-3 pl-11 pr-4 text-xs focus:bg-white focus:border-brand-main focus:ring-0 transition-all outline-none">
                 </div>
             </div>
-        </header>
     
-        <div class="max-w-7xl mx-auto px-6 py-10">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-    
-                <div
-                    class="group bg-surface border border-border rounded-2xl overflow-hidden hover:border-brand-main/40 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 flex flex-col">
-                    <div class="relative aspect-[16/10] bg-slate-100 overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-300">
-                            <i data-lucide="book-open" class="w-12 h-12"></i>
-                        </div>
-                        <div
-                            class="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur shadow-sm rounded-full text-[9px] font-black uppercase tracking-widest text-slate-700">
-                            E-Book
-                        </div>
-                    </div>
-    
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3
-                                class="text-sm font-bold text-heading group-hover:text-brand-main transition-colors leading-tight">
-                                Thermodynamics of Blockchain</h3>
-                            <div class="flex items-center gap-1 text-brand-main shrink-0 ml-2">
-                                <i data-lucide="coins" class="w-3.5 h-3.5"></i>
-                                <span class="text-xs font-bold">45</span>
+            <div class="flex-1 overflow-y-auto no-scrollbar pb-24">
+                <div onclick="openChat()"
+                    class="p-4 bg-brand-light/30 border-b border-slate-50 border-l-4 border-l-brand-main cursor-pointer">
+                    <div class="flex gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa"
+                            class="w-12 h-12 rounded-full shadow-sm">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h3 class="text-sm font-bold text-slate-900 truncate">Lisa Wright</h3>
+                                <span class="text-[10px] text-slate-400 font-bold uppercase">10:45 AM</span>
                             </div>
-                        </div>
-                        <p class="text-[12px] text-muted leading-relaxed line-clamp-2 mb-6">
-                            An in-depth study on how hashing algorithms impact local heat signatures in smart housing.
-                        </p>
-    
-                        <div class="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between">
-                            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">By Dr. Aris</span>
-                            <button class="text-[11px] font-bold text-brand-main uppercase hover:underline">Access</button>
+                            <p class="text-[13px] text-brand-main font-semibold truncate leading-tight">I've sent the energy
+                                audits...</p>
                         </div>
                     </div>
                 </div>
     
-                <div
-                    class="group bg-brand-dark border border-brand-dark rounded-2xl overflow-hidden shadow-lg shadow-brand-dark/10 flex flex-col">
-                    <div class="relative aspect-[16/10] bg-emerald-900/50 flex items-center justify-center overflow-hidden">
-                        <div class="absolute w-24 h-32 bg-white/10 rounded-lg rotate-12 translate-x-4"></div>
-                        <div
-                            class="absolute w-24 h-32 bg-white/5 rounded-lg -rotate-12 -translate-x-4 border border-white/10">
-                        </div>
-                        <i data-lucide="layers" class="w-12 h-12 text-brand-main relative z-10"></i>
-    
-                        <div
-                            class="absolute top-4 left-4 px-3 py-1 bg-brand-main shadow-sm rounded-full text-[9px] font-black uppercase tracking-widest text-white">
-                            R-Chain
-                        </div>
-                    </div>
-    
-                    <div class="p-5 flex-1 flex flex-col">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-sm font-bold text-white leading-tight">Complete Energy Auditor Pathway</h3>
-                            <div class="flex items-center gap-1 text-brand-main shrink-0 ml-2">
-                                <i data-lucide="coins" class="w-3.5 h-3.5"></i>
-                                <span class="text-xs font-bold">250</span>
+                <div onclick="openChat()"
+                    class="p-4 hover:bg-slate-50 border-b border-slate-50 cursor-pointer transition-all">
+                    <div class="flex gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+                            class="w-12 h-12 rounded-full grayscale-[0.4]">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex justify-between items-baseline mb-1">
+                                <h3 class="text-sm font-bold text-slate-600">Felix Mentor</h3>
+                                <span class="text-[10px] text-slate-400 font-medium">Yesterday</span>
                             </div>
-                        </div>
-                        <p class="text-[12px] text-emerald-100/60 leading-relaxed line-clamp-2 mb-6">
-                            A bundle of 5 videos, 2 templates, and 1 exam for official CE certification.
-                        </p>
-    
-                        <div class="mt-auto pt-4 border-t border-white/10 flex items-center justify-between">
-                            <span class="text-[10px] font-bold text-emerald-100/30 uppercase tracking-widest">8
-                                Modules</span>
-                            <button
-                                class="px-4 py-1.5 bg-brand-main text-white rounded-full text-[10px] font-bold uppercase hover:bg-brand-hover transition">Buy
-                                Chain</button>
+                            <p class="text-[13px] text-slate-400 truncate">ZiniCoin transfer confirmed.</p>
                         </div>
                     </div>
                 </div>
-    
             </div>
-        </div>
+        </aside>
+    
+        <section id="active-chat" class="hidden md:flex flex-1 flex-col bg-white">
+            <header
+                class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-20">
+                <div class="flex items-center gap-4">
+                    <button onclick="closeChat()" class="md:hidden p-2 -ml-2 text-slate-400 hover:text-slate-900">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <div class="relative">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa" class="w-10 h-10 rounded-full">
+                        <span
+                            class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-brand-main border-2 border-white rounded-full"></span>
+                    </div>
+                    <div>
+                        <h2 class="text-sm font-bold text-slate-900">Lisa Wright</h2>
+                        <p class="text-[10px] text-brand-main font-bold uppercase tracking-widest">Active Now</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button class="p-2.5 text-slate-400 hover:bg-slate-50 rounded-xl transition"><i data-lucide="video"
+                            class="w-5 h-5"></i></button>
+                    <button class="p-2.5 text-slate-400 hover:bg-slate-50 rounded-xl transition"><i
+                            data-lucide="more-vertical" class="w-5 h-5"></i></button>
+                </div>
+            </header>
+    
+            <div class="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 no-scrollbar">
+                <div class="flex justify-center">
+                    <span
+                        class="px-4 py-1 bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-widest rounded-full">Today</span>
+                </div>
+    
+                <div class="flex items-start gap-4 max-w-[85%] md:max-w-2xl">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa"
+                        class="w-8 h-8 rounded-full mt-1 shrink-0">
+                    <div class="space-y-1">
+                        <div class="bg-slate-50 p-4 rounded-2xl rounded-tl-none border border-slate-100">
+                            <p class="text-[15px] text-slate-700 leading-relaxed">
+                                Hello! I just uploaded the thermal distribution paper to the #Energy niche. Let me know if
+                                the ZiniCoin allocation works for you.
+                            </p>
+                        </div>
+                        <span class="text-[9px] text-slate-300 font-bold uppercase ml-1">10:42 AM</span>
+                    </div>
+                </div>
+    
+                <div class="flex items-start justify-end gap-4 ml-auto max-w-[85%] md:max-w-2xl">
+                    <div class="space-y-1 text-right">
+                        <div
+                            class="bg-brand-main p-4 rounded-2xl rounded-tr-none shadow-lg shadow-brand-main/10 text-white">
+                            <p class="text-[15px] leading-relaxed">
+                                Got it. The allocation is perfect. I'll review the heat signatures by evening.
+                            </p>
+                        </div>
+                        <span class="text-[9px] text-slate-300 font-bold uppercase mr-1">10:45 AM · Read</span>
+                    </div>
+                </div>
+            </div>
+    
+            <footer class="p-6 bg-white border-t border-slate-100">
+                <div
+                    class="max-w-4xl mx-auto flex items-end gap-3 p-1.5 rounded-[1.5rem] border border-slate-200 focus-within:border-brand-main focus-within:ring-4 focus-within:ring-brand-main/5 transition-all">
+                    <button class="p-2.5 text-slate-400 hover:text-brand-main transition"><i data-lucide="paperclip"
+                            class="w-5 h-5"></i></button>
+                    <textarea rows="1" placeholder="Write a message..."
+                        class="flex-1 bg-transparent border-none focus:ring-0 py-3 text-sm text-slate-700 resize-none outline-none"></textarea>
+                    <button
+                        class="p-3 bg-brand-main text-white rounded-2xl shadow-lg shadow-brand-main/20 hover:scale-105 transition-all">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </footer>
+        </section>
     </main>
 
     <!-- modals -->
+     
     <div id="createThoughtModal"
         class="hidden fixed inset-0 z-[150] flex items-end sm:items-center justify-center p-0 sm:p-4">
         <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="toggleModal('createThoughtModal')">
