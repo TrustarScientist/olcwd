@@ -280,135 +280,123 @@
     </div>
 
     <!-- main content -->
-    <main class="pt-16 pb-0 lg:pl-64 h-[calc(100vh)] bg-white flex overflow-hidden transition-all">
+    <main class="pt-16 pb-20 md:pb-0 lg:pl-64 min-h-screen bg-white transition-all">
     
-        <aside id="chat-list"
-            class="w-full md:w-80 lg:w-96 border-r border-slate-100 flex flex-col bg-white transition-all">
-            <div class="p-6 bg-white">
-                <div class="flex items-center justify-between mb-6">
-                    <h1 class="text-xl font-black text-slate-900 tracking-tight">Messages</h1>
-                    <button class="p-2 bg-slate-50 text-slate-400 rounded-full hover:text-brand-main transition">
-                        <i data-lucide="edit-3" class="w-4 h-4"></i>
-                    </button>
-                </div>
-                <div class="relative group">
-                    <i data-lucide="search"
-                        class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-brand-main transition-colors"></i>
-                    <input type="text" placeholder="Search scholars..."
-                        class="w-full bg-slate-50 border border-transparent rounded-2xl py-3 pl-11 pr-4 text-xs focus:bg-white focus:border-brand-main focus:ring-0 transition-all outline-none">
-                </div>
-            </div>
-    
-            <div class="flex-1 overflow-y-auto no-scrollbar pb-24">
-                <div onclick="openChat()"
-                    class="p-4 bg-brand-light/30 border-b border-slate-50 border-l-4 border-l-brand-main cursor-pointer">
-                    <div class="flex gap-4">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa"
-                            class="w-12 h-12 rounded-full shadow-sm">
-                        <div class="flex-1 min-w-0">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <h3 class="text-sm font-bold text-slate-900 truncate">Lisa Wright</h3>
-                                <span class="text-[10px] text-slate-400 font-bold uppercase">10:45 AM</span>
-                            </div>
-                            <p class="text-[13px] text-brand-main font-semibold truncate leading-tight">I've sent the energy
-                                audits...</p>
-                        </div>
-                    </div>
-                </div>
-    
-                <div onclick="openChat()"
-                    class="p-4 hover:bg-slate-50 border-b border-slate-50 cursor-pointer transition-all">
-                    <div class="flex gap-4">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
-                            class="w-12 h-12 rounded-full grayscale-[0.4]">
-                        <div class="flex-1 min-w-0">
-                            <div class="flex justify-between items-baseline mb-1">
-                                <h3 class="text-sm font-bold text-slate-600">Felix Mentor</h3>
-                                <span class="text-[10px] text-slate-400 font-medium">Yesterday</span>
-                            </div>
-                            <p class="text-[13px] text-slate-400 truncate">ZiniCoin transfer confirmed.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-    
-        <section id="active-chat" class="hidden md:flex flex-1 flex-col bg-white">
-            <header
-                class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-white/80 backdrop-blur-md sticky top-0 z-20">
-                <div class="flex items-center gap-4">
-                    <button onclick="closeChat()" class="md:hidden p-2 -ml-2 text-slate-400 hover:text-slate-900">
-                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                    </button>
-                    <div class="relative">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa" class="w-10 h-10 rounded-full">
-                        <span
-                            class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-brand-main border-2 border-white rounded-full"></span>
-                    </div>
-                    <div>
-                        <h2 class="text-sm font-bold text-slate-900">Lisa Wright</h2>
-                        <p class="text-[10px] text-brand-main font-bold uppercase tracking-widest">Active Now</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button class="p-2.5 text-slate-400 hover:bg-slate-50 rounded-xl transition"><i data-lucide="video"
-                            class="w-5 h-5"></i></button>
-                    <button class="p-2.5 text-slate-400 hover:bg-slate-50 rounded-xl transition"><i
-                            data-lucide="more-vertical" class="w-5 h-5"></i></button>
-                </div>
-            </header>
-    
-            <div class="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 no-scrollbar">
-                <div class="flex justify-center">
-                    <span
-                        class="px-4 py-1 bg-slate-50 text-[10px] font-bold text-slate-400 uppercase tracking-widest rounded-full">Today</span>
-                </div>
-    
-                <div class="flex items-start gap-4 max-w-[85%] md:max-w-2xl">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa"
-                        class="w-8 h-8 rounded-full mt-1 shrink-0">
-                    <div class="space-y-1">
-                        <div class="bg-slate-50 p-4 rounded-2xl rounded-tl-none border border-slate-100">
-                            <p class="text-[15px] text-slate-700 leading-relaxed">
-                                Hello! I just uploaded the thermal distribution paper to the #Energy niche. Let me know if
-                                the ZiniCoin allocation works for you.
-                            </p>
-                        </div>
-                        <span class="text-[9px] text-slate-300 font-bold uppercase ml-1">10:42 AM</span>
-                    </div>
-                </div>
-    
-                <div class="flex items-start justify-end gap-4 ml-auto max-w-[85%] md:max-w-2xl">
-                    <div class="space-y-1 text-right">
+        <section class="border-b border-slate-100">
+            <div class="h-32 md:h-48 bg-gradient-to-r from-slate-50 to-brand-light/30 relative">
+                <div class="absolute -bottom-12 left-6 md:left-12">
+                    <div class="relative group">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aris"
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-[2rem] bg-white p-1 border-4 border-white shadow-xl">
                         <div
-                            class="bg-brand-main p-4 rounded-2xl rounded-tr-none shadow-lg shadow-brand-main/10 text-white">
-                            <p class="text-[15px] leading-relaxed">
-                                Got it. The allocation is perfect. I'll review the heat signatures by evening.
-                            </p>
+                            class="absolute -bottom-2 -right-2 bg-brand-main text-white p-1.5 rounded-xl border-4 border-white shadow-lg">
+                            <i data-lucide="check-badge" class="w-5 h-5"></i>
                         </div>
-                        <span class="text-[9px] text-slate-300 font-bold uppercase mr-1">10:45 AM · Read</span>
                     </div>
                 </div>
             </div>
     
-            <footer class="p-6 bg-white border-t border-slate-100">
-                <div
-                    class="max-w-4xl mx-auto flex items-end gap-3 p-1.5 rounded-[1.5rem] border border-slate-200 focus-within:border-brand-main focus-within:ring-4 focus-within:ring-brand-main/5 transition-all">
-                    <button class="p-2.5 text-slate-400 hover:text-brand-main transition"><i data-lucide="paperclip"
-                            class="w-5 h-5"></i></button>
-                    <textarea rows="1" placeholder="Write a message..."
-                        class="flex-1 bg-transparent border-none focus:ring-0 py-3 text-sm text-slate-700 resize-none outline-none"></textarea>
-                    <button
-                        class="p-3 bg-brand-main text-white rounded-2xl shadow-lg shadow-brand-main/20 hover:scale-105 transition-all">
-                        <i data-lucide="send" class="w-5 h-5"></i>
+            <div class="flex justify-end px-6 md:px-12 py-4 gap-3">
+                <button class="p-2 border border-slate-200 rounded-full text-slate-400 hover:text-brand-main transition">
+                    <i data-lucide="share-2" class="w-5 h-5"></i>
+                </button>
+                <button
+                    class="px-6 py-2 bg-slate-900 text-white rounded-full text-xs font-bold hover:bg-black transition shadow-lg">
+                    Follow Scholar
+                </button>
+            </div>
+    
+            <div class="px-6 md:px-12 pb-8 mt-4">
+                <div class="max-w-4xl">
+                    <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Dr. Aris Thorne</h1>
+                    <p class="text-brand-main text-xs font-bold uppercase tracking-widest mt-1">Certified Energy Architect
+                    </p>
+    
+                    <p class="text-slate-600 text-[15px] mt-4 max-w-2xl leading-relaxed">
+                        Lead researcher at LightMann. Focused on the <strong>HEAT SEEM FC</strong> framework. Building the
+                        bridge between computational waste and sustainable housing.
+                    </p>
+    
+                    <div class="flex flex-wrap gap-6 mt-6">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-black text-slate-900">2.4k</span>
+                            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Scholars</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-black text-slate-900">142</span>
+                            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Resources</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-black text-slate-900">850</span>
+                            <span
+                                class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Contributions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <div class="max-w-6xl mx-auto px-0 md:px-6">
+            <nav class="sticky top-16 bg-white/90 backdrop-blur-md border-b border-slate-50 z-30 px-6">
+                <div class="flex gap-8 overflow-x-auto no-scrollbar">
+                    <button onclick="switchProfileTab('thoughts')" id="p-tab-thoughts"
+                        class="profile-tab py-5 text-[10px] font-black uppercase tracking-[0.2em] text-brand-main border-b-2 border-brand-main whitespace-nowrap">
+                        Thoughts
+                    </button>
+                    <button onclick="switchProfileTab('resources')" id="p-tab-resources"
+                        class="profile-tab py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b-2 border-transparent whitespace-nowrap">
+                        Resources
+                    </button>
+                    <button onclick="switchProfileTab('niches')" id="p-tab-niches"
+                        class="profile-tab py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b-2 border-transparent whitespace-nowrap">
+                        Niches
+                    </button>
+                    <button onclick="switchProfileTab('connections')" id="p-tab-connections"
+                        class="profile-tab py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 border-b-2 border-transparent whitespace-nowrap">
+                        Connections
                     </button>
                 </div>
-            </footer>
-        </section>
+            </nav>
+    
+            <div class="min-h-screen">
+                <section id="p-content-thoughts" class="profile-content">
+                    <article class="p-8 border-b border-slate-50 hover:bg-slate-50/30 transition">
+                        <p class="text-slate-700 leading-relaxed italic">"True computable energy isn't about saving watts,
+                            it's about making every watt work twice."</p>
+                    </article>
+                </section>
+    
+                <section id="p-content-resources" class="profile-content hidden p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-6 bg-slate-50 border border-slate-100 rounded-2xl">
+                            <div class="flex justify-between items-start mb-4">
+                                <i data-lucide="video" class="w-6 h-6 text-brand-main"></i>
+                                <span class="text-[10px] font-bold text-slate-400">Owner</span>
+                            </div>
+                            <h4 class="font-bold text-slate-900 mb-2">Introduction to Heat Exchange</h4>
+                            <button class="text-xs text-brand-main font-bold">Open Resource →</button>
+                        </div>
+                    </div>
+                </section>
+    
+                <section id="p-content-niches" class="profile-content hidden p-6">
+                    <div class="flex flex-wrap gap-4">
+                        <div
+                            class="px-6 py-4 bg-white border border-slate-100 rounded-2xl flex items-center gap-4 shadow-sm">
+                            <div
+                                class="w-10 h-10 bg-brand-light rounded-xl flex items-center justify-center text-brand-main">
+                                <i data-lucide="zap" class="w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-slate-800">Energy Systems</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
 
     <!-- modals -->
-     
+
     <div id="createThoughtModal"
         class="hidden fixed inset-0 z-[150] flex items-end sm:items-center justify-center p-0 sm:p-4">
         <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="toggleModal('createThoughtModal')">
