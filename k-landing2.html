@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSHARER | The Knowledge Infrastructure</title>
+    <title>KSHARER | The Intellectual Network</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .grid-bg {
-            background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
-                              linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
-            background-size: 40px 40px;
+        /* A subtle pattern to give it texture (not sterile white) */
+        .dot-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
         }
     </style>
     <script>
@@ -23,8 +23,12 @@
                         brand: {
                             main: '#10b981', // Emerald 500
                             dark: '#0f172a', // Slate 900
-                            subtle: '#f8fafc', // Slate 50
+                            light: '#ecfdf5', // Emerald 50
                         }
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 20px -5px rgba(16, 185, 129, 0.3)'
                     }
                 }
             }
@@ -33,206 +37,260 @@
 </head>
 <body class="bg-white text-slate-900 antialiased selection:bg-brand-main selection:text-white">
 
-    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-slate-900 text-white rounded-lg flex items-center justify-center font-black text-lg">K</div>
-                <span class="font-black text-lg tracking-tight text-slate-900 uppercase">Ksharer</span>
+                <div class="w-8 h-8 bg-brand-main rounded-lg flex items-center justify-center text-white font-black shadow-lg shadow-brand-main/20">K</div>
+                <span class="font-black text-xl tracking-tighter text-slate-900 uppercase">Ksharer</span>
             </div>
-            
-            <div class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-500">
-                <a href="#pillars" class="hover:text-brand-main transition">Pillars</a>
-                <a href="#labs" class="hover:text-brand-main transition">Labs</a>
-                <a href="#pricing" class="hover:text-brand-main transition">Membership</a>
+
+            <div class="hidden md:flex items-center bg-slate-50 border border-slate-100 rounded-full px-4 py-2 w-96 text-sm text-slate-400 gap-2 hover:border-slate-300 transition cursor-text">
+                <i data-lucide="search" class="w-4 h-4"></i>
+                <span>Find thoughts, niches, or scholars...</span>
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="#" class="hidden md:block text-xs font-bold text-slate-900 hover:text-brand-main transition">Log In</a>
-                <a href="#" class="px-5 py-2 bg-slate-900 text-white rounded-lg text-xs font-bold hover:bg-black transition">
-                    Start Learning
+                <a href="#" class="text-sm font-bold text-slate-500 hover:text-slate-900">Log In</a>
+                <a href="#" class="px-5 py-2.5 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-wide hover:bg-brand-main transition shadow-xl shadow-slate-200 hover:shadow-brand-main/25">
+                    Join the Network
                 </a>
             </div>
         </div>
     </nav>
 
-    <header class="pt-32 pb-20 px-6 grid-bg border-b border-slate-100">
-        <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 mb-8 border border-slate-200">
-                <span class="w-2 h-2 bg-brand-main rounded-full"></span>
-                <span class="text-[10px] font-bold uppercase tracking-widest">MVP Live v1.0</span>
-            </div>
+    <header class="pt-32 pb-20 px-6 dot-pattern border-b border-slate-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
             
-            <h1 class="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter mb-6 leading-[1.1]">
-                Stop scrolling.<br>
-                <span class="text-brand-main">Start understanding.</span>
-            </h1>
-            
-            <p class="text-lg text-slate-500 leading-relaxed mb-10 max-w-2xl mx-auto font-medium">
-                Most platforms reward noise. <span class="text-slate-900 font-bold">Ksharer</span> is a knowledge infrastructure where thinking is encouraged, learning is structured, and practice is unavoidable.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button class="px-8 py-4 bg-brand-main text-white rounded-xl text-sm font-bold shadow-xl shadow-brand-main/20 hover:translate-y-[-2px] transition-transform">
-                    Join the Platform
-                </button>
-                <button class="px-8 py-4 bg-white border border-slate-200 text-slate-600 rounded-xl text-sm font-bold hover:bg-slate-50 transition">
-                    Explore Public Niches
-                </button>
-            </div>
-        </div>
+            <div class="max-w-2xl relative z-10">
+                <div class="inline-flex items-center gap-2 mb-6">
+                    <div class="flex -space-x-2">
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-slate-200"></div>
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-slate-300"></div>
+                        <div class="w-8 h-8 rounded-full border-2 border-white bg-brand-main flex items-center justify-center text-[10px] text-white font-bold">+2k</div>
+                    </div>
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wide ml-2">Scholars Active Now</span>
+                </div>
 
-        <div class="max-w-5xl mx-auto mt-20 relative">
-            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent z-10 h-full"></div>
-            <div class="bg-white border border-slate-200 rounded-2xl shadow-2xl overflow-hidden p-6 md:p-10">
-                <div class="flex gap-4">
-                    <div class="w-10 h-10 rounded-full bg-slate-100 flex-shrink-0"></div>
-                    <div class="flex-1 space-y-4">
-                        <div class="h-4 w-32 bg-slate-100 rounded"></div>
-                        <div class="h-4 w-full bg-slate-100 rounded"></div>
-                        <div class="h-4 w-5/6 bg-slate-100 rounded"></div>
-                        
-                        <div class="mt-6 p-4 bg-brand-subtle border-l-4 border-brand-main rounded-r-lg">
-                            <div class="flex items-center gap-2 text-brand-main mb-2">
-                                <i data-lucide="link" class="w-3 h-3"></i>
-                                <span class="text-[10px] font-bold uppercase tracking-widest">Linked Thought</span>
+                <h1 class="text-5xl md:text-6xl font-black text-slate-900 tracking-tight mb-6 leading-[1.1]">
+                    Social media for <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-main to-emerald-700">your actual brain.</span>
+                </h1>
+                
+                <p class="text-lg text-slate-600 leading-relaxed mb-10 max-w-lg font-medium">
+                    Ksharer is where curiosity meets community. Share structured thoughts, link ideas via <strong>PostChain</strong>, and learn alongside serious peers. No noise, just signal.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="px-8 py-4 bg-brand-main text-white rounded-2xl text-sm font-black uppercase tracking-wide shadow-glow hover:-translate-y-1 transition-transform flex items-center justify-center gap-2">
+                        Start Sharing
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                    <button class="px-8 py-4 bg-white border border-slate-200 text-slate-700 rounded-2xl text-sm font-black uppercase tracking-wide hover:bg-slate-50 transition flex items-center justify-center gap-2">
+                        Browse Feed
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative lg:translate-x-12">
+                <div class="absolute inset-0 bg-brand-main/10 blur-[100px] rounded-full"></div>
+                
+                <div class="relative bg-white rounded-3xl p-6 shadow-soft border border-slate-100 mb-6 rotate-[-2deg] hover:rotate-0 transition duration-500 w-full max-w-md ml-auto">
+                    <div class="flex items-start gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="w-12 h-12 rounded-xl bg-slate-100">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-slate-900">Dr. Aris Thorne</h3>
+                                <span class="text-xs text-slate-400">@aris_t • 2h</span>
                             </div>
-                            <p class="text-sm text-slate-600 font-medium">"True understanding only happens when you attempt to recreate the result yourself."</p>
+                            <p class="text-slate-700 leading-relaxed text-sm font-medium">
+                                Learning isn't about memorizing facts; it's about building a graph of connected concepts. This is why we built the #PostChain.
+                            </p>
+                            <div class="flex gap-6 mt-4 text-slate-400">
+                                <div class="flex items-center gap-1.5 text-brand-main text-xs font-bold bg-brand-light px-2 py-1 rounded-full">
+                                    <i data-lucide="git-merge" class="w-3.5 h-3.5"></i> 12 Linked
+                                </div>
+                                <div class="flex items-center gap-1.5 text-xs font-bold hover:text-brand-main cursor-pointer">
+                                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> 45
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="relative bg-white/90 backdrop-blur rounded-3xl p-6 shadow-soft border border-slate-100 rotate-[2deg] hover:rotate-0 transition duration-500 w-full max-w-md ml-auto translate-y-[-20px] lg:translate-x-[-40px]">
+                    <div class="absolute -left-3 top-8 w-1 h-12 bg-slate-200 rounded-full"></div> <div class="flex items-start gap-4">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" class="w-10 h-10 rounded-xl bg-slate-100">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <h3 class="font-bold text-slate-900">Sarah Jenks</h3>
+                                <span class="text-xs text-brand-main font-bold bg-brand-light px-2 py-0.5 rounded-full">Linked Reply</span>
+                            </div>
+                            <p class="text-slate-600 leading-relaxed text-sm">
+                                Exactly. I just linked my study on "Associative Memory" to this. The graph is growing! 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </header>
 
-    <section class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Built for Serious Minds</h2>
-                <p class="text-slate-500 mt-2">The internet is loud. Ksharer is quiet.</p>
+    <section class="py-16 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-sm font-black text-slate-400 uppercase tracking-widest">Active Communities</h2>
+                <a href="#" class="text-brand-main text-sm font-bold hover:underline">View all Niches →</a>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-brand-main/30 transition group">
-                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="brain-circuit" class="w-6 h-6 text-brand-main"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Micro-Knowledge</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">
-                        No viral tricks. Just short, focused thoughts designed to encourage insight and idea evolution.
-                    </p>
-                </div>
-
-                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-brand-main/30 transition group">
-                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="git-merge" class="w-6 h-6 text-brand-main"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">PostChain Protocol</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">
-                        Say goodbye to messy threads. Link posts logically to build arguments and clear learning paths.
-                    </p>
-                </div>
-
-                <div class="p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-brand-main/30 transition group">
-                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flask-conical" class="w-6 h-6 text-brand-main"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Virtual Labs</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed">
-                        Don't just watch. Do. Hands-on environments tied directly to the learning content.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pillars" class="py-24 px-6 bg-slate-900 text-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-12 flex justify-between items-end">
-                <div>
-                    <span class="text-brand-main font-bold text-xs uppercase tracking-widest">The Infrastructure</span>
-                    <h2 class="text-3xl md:text-4xl font-black mt-2">A Complete Ecosystem</h2>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[500px]">
-                
-                <div class="md:col-span-2 md:row-span-2 bg-slate-800 rounded-3xl p-8 border border-white/5 relative overflow-hidden group">
-                    <div class="relative z-10">
-                        <div class="w-10 h-10 bg-brand-main rounded-lg flex items-center justify-center mb-4">
-                            <i data-lucide="library" class="w-5 h-5 text-white"></i>
+            
+            <div class="flex gap-6 overflow-x-auto no-scrollbar pb-4">
+                <div class="min-w-[260px] p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-brand-main/50 hover:shadow-md transition cursor-pointer group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-brand-main shadow-sm group-hover:scale-110 transition-transform">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Resources</h3>
-                        <p class="text-slate-400 text-sm max-w-sm">Deep learning without chaos. Access structured PDFs, Courses, and Articles vetted by the community.</p>
-                        <ul class="mt-6 space-y-3 text-sm text-slate-300">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-main"></i> Version Controlled</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-main"></i> Quality Vetted</li>
-                        </ul>
-                    </div>
-                    <div class="absolute right-[-20px] bottom-[-20px] opacity-10 group-hover:opacity-20 transition">
-                        <i data-lucide="book-open" class="w-48 h-48"></i>
-                    </div>
-                </div>
-
-                <div class="md:col-span-2 bg-slate-800 rounded-3xl p-8 border border-white/5 flex flex-col justify-center hover:bg-slate-750 transition">
-                    <div class="flex items-start justify-between">
                         <div>
-                            <h3 class="text-xl font-bold mb-1">Niches</h3>
-                            <p class="text-xs text-slate-400 uppercase tracking-widest">Domain Governance</p>
-                            <p class="text-slate-300 text-sm mt-3">Not just "groups." Dedicated domains for Engineering, Art, Science, and Private Cohorts.</p>
+                            <h3 class="font-bold text-slate-900 text-sm">System Design</h3>
+                            <p class="text-xs text-slate-400">1.2k Scholars</p>
                         </div>
-                        <i data-lucide="layers" class="w-8 h-8 text-slate-600"></i>
+                    </div>
+                    <div class="flex -space-x-2 mt-2">
+                        <div class="w-6 h-6 rounded-full bg-slate-300 border border-white"></div>
+                        <div class="w-6 h-6 rounded-full bg-slate-400 border border-white"></div>
+                        <div class="w-6 h-6 rounded-full bg-slate-500 border border-white"></div>
+                        <span class="pl-4 text-[10px] text-slate-400 font-bold self-center">+ 45 active today</span>
                     </div>
                 </div>
 
-                <div class="md:col-span-1 bg-gradient-to-br from-brand-main to-emerald-700 rounded-3xl p-6 flex flex-col justify-between">
-                    <i data-lucide="wallet" class="w-6 h-6 text-white"></i>
-                    <div>
-                        <h3 class="text-lg font-bold">Wallet</h3>
-                        <p class="text-emerald-100 text-xs mt-1">Fair Access</p>
+                <div class="min-w-[260px] p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-brand-main/50 hover:shadow-md transition cursor-pointer group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-purple-500 shadow-sm group-hover:scale-110 transition-transform">
+                            <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Philosophy</h3>
+                            <p class="text-xs text-slate-400">850 Scholars</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2 mt-2">
+                        <div class="w-6 h-6 rounded-full bg-slate-300 border border-white"></div>
+                        <div class="w-6 h-6 rounded-full bg-slate-400 border border-white"></div>
+                        <span class="pl-4 text-[10px] text-slate-400 font-bold self-center">+ 12 active today</span>
                     </div>
                 </div>
 
-                <div class="md:col-span-1 bg-white text-slate-900 rounded-3xl p-6 flex flex-col justify-between">
-                    <i data-lucide="user-check" class="w-6 h-6 text-slate-900"></i>
-                    <div>
-                        <h3 class="text-lg font-bold">Identity</h3>
-                        <p class="text-slate-500 text-xs mt-1">Scholar Profile</p>
+                <div class="min-w-[260px] p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-brand-main/50 hover:shadow-md transition cursor-pointer group">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-blue-500 shadow-sm group-hover:scale-110 transition-transform">
+                            <i data-lucide="globe" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-sm">Climate Tech</h3>
+                            <p class="text-xs text-slate-400">3.4k Scholars</p>
+                        </div>
+                    </div>
+                    <div class="flex -space-x-2 mt-2">
+                        <div class="w-6 h-6 rounded-full bg-slate-300 border border-white"></div>
+                        <div class="w-6 h-6 rounded-full bg-slate-400 border border-white"></div>
+                        <div class="w-6 h-6 rounded-full bg-slate-500 border border-white"></div>
+                        <span class="pl-4 text-[10px] text-slate-400 font-bold self-center">+ 120 active today</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 px-6 text-center bg-white">
-        <div class="max-w-2xl mx-auto">
-            <h2 class="text-4xl font-black text-slate-900 tracking-tight mb-6">
-                Ready to think clearly?
-            </h2>
-            <p class="text-slate-500 mb-10 text-lg">
-                Join the platform where knowledge is structured, thinking is encouraged, and practice is unavoidable.
-            </p>
-            <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                <input type="email" placeholder="Enter your email" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-main">
-                <button class="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-black transition">
-                    Create Account
-                </button>
-            </form>
-            <p class="text-xs text-slate-400 mt-6">Free for early scholars. No credit card required.</p>
+    <section class="py-24 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight">Don't just consume. Contribute.</h2>
+                <p class="text-slate-500 mt-3 text-lg">Most platforms are for scrolling. Ksharer is for thinking together.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden flex flex-col justify-center min-h-[400px]">
+                    <div class="absolute top-0 right-0 p-32 bg-brand-main/20 blur-[100px] rounded-full"></div>
+                    
+                    <div class="space-y-6 relative z-10">
+                        <div class="flex items-center gap-4 opacity-50">
+                            <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm">1</div>
+                            <p class="font-medium">Read a messy thread on Twitter</p>
+                        </div>
+                        <div class="flex items-center gap-4 opacity-50">
+                            <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-bold text-sm">2</div>
+                            <p class="font-medium">Watch a passive video Course</p>
+                        </div>
+                         <div class="flex items-center gap-4 scale-105 transition-transform origin-left">
+                            <div class="w-8 h-8 rounded-full bg-brand-main flex items-center justify-center font-bold text-sm shadow-glow">3</div>
+                            <p class="font-bold text-xl text-white">Debate & Link on Ksharer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8 flex flex-col justify-center">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-green-100 text-brand-main rounded-xl flex items-center justify-center shrink-0">
+                            <i data-lucide="network" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">The PostChain</h3>
+                            <p class="text-slate-500 leading-relaxed mt-1">Connect your thought to someone else's. Build a chain of knowledge, not just a comment section.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">Niche Communities</h3>
+                            <p class="text-slate-500 leading-relaxed mt-1">Join a "Niche" that acts like a dedicated campus. Private or public, structured by topic, governed by peers.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-xl flex items-center justify-center shrink-0">
+                            <i data-lucide="flask-conical" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">Social Labs</h3>
+                            <p class="text-slate-500 leading-relaxed mt-1">Don't practice alone. Enter virtual labs where you solve problems alongside other scholars.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-slate-50 border-t border-slate-200 py-12 px-6">
+    <section class="py-32 px-6 text-center bg-brand-light">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-4xl font-black text-slate-900 tracking-tight mb-8">
+                Your peers are waiting.
+            </h2>
+            <div class="flex items-center justify-center -space-x-4 mb-8">
+                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=1" class="w-12 h-12 rounded-full border-4 border-white">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=2" class="w-12 h-12 rounded-full border-4 border-white">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=3" class="w-12 h-12 rounded-full border-4 border-white">
+                <div class="w-12 h-12 rounded-full border-4 border-white bg-white flex items-center justify-center text-xs font-bold text-slate-400">+2k</div>
+            </div>
+            <button class="bg-slate-900 text-white px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">
+                Join the Conversation
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-slate-100 py-12 px-6">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center gap-2 opacity-50">
-                <div class="w-6 h-6 bg-slate-900 rounded flex items-center justify-center text-white text-xs font-bold">K</div>
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-brand-main rounded flex items-center justify-center text-white text-xs font-bold">K</div>
                 <span class="font-bold text-slate-900 uppercase tracking-widest text-xs">Ksharer Inc.</span>
             </div>
-            <div class="flex gap-6 text-xs font-bold text-slate-500 uppercase tracking-widest">
-                <a href="#" class="hover:text-slate-900">Manifesto</a>
-                <a href="#" class="hover:text-slate-900">Niches</a>
-                <a href="#" class="hover:text-slate-900">Privacy</a>
+            <div class="flex gap-8 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                <a href="#" class="hover:text-brand-main">Trending</a>
+                <a href="#" class="hover:text-brand-main">Scholars</a>
+                <a href="#" class="hover:text-brand-main">Labs</a>
             </div>
-            <p class="text-xs text-slate-400">© 2025 Knowledge Layer.</p>
+            <p class="text-[10px] text-slate-300">© 2025 The Social Knowledge Platform.</p>
         </div>
     </footer>
 
