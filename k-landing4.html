@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSHARER | A Knowledge Island</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .dot-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+        /*  special */
+        /* --- ALIVE ANIMATIONS --- */
+
+/* Floating Card Effect */
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Background Blob Movement */
+@keyframes blob-bounce {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+}
+
+/* Pulse Glow for active tabs */
+@keyframes pulse-border {
+    0% { border-color: rgba(16, 185, 129, 0.2); }
+    50% { border-color: rgba(16, 185, 129, 0.6); }
+    100% { border-color: rgba(16, 185, 129, 0.2); }
+}
+
+.animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-blob {
+    animation: blob-bounce 10s infinite ease-in-out;
+}
+
+/* Glassmorphism for Preview Cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Tab Active State Transition */
+.tab-content {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    transform: translateY(10px) scale(0.95);
+}
+
+.tab-content.active {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.tab-btn {
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background-color: #f1f5f9; /* slate-100 */
+    border-left-color: #10b981; /* brand-main */
+    color: #0f172a; /* slate-900 */
+}
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            main: '#10b981', // Emerald 500
+                            dark: '#064e3b', // Emerald 900
+                            light: '#ecfdf5', // Emerald 50
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-white text-slate-900 antialiased selection:bg-brand-main selection:text-white">
+
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <span class="font-black text-xl tracking-tighter text-brand-main uppercase">KSHARER</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#devworks"
+                    class="text-xs font-bold text-slate-500 hover:text-slate-900 hidden sm:block">DevWorks</a>
+                <a href="/login" class="text-xs font-bold text-slate-500 hover:text-slate-900 hidden sm:block">Log
+                    In</a>
+                <a href="/register"
+                    class="px-5 py-2 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-wide hover:bg-brand-main transition-all">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 px-6 dot-pattern border-b border-slate-100 relative">
+        <div class="max-w-4xl mx-auto text-center reveal active">
+            <div
+                class="inline-flex items-center gap-2 mb-6 px-3 py-1 bg-brand-light border border-brand-main/20 rounded-full text-brand-dark text-[10px] font-bold uppercase tracking-wide">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-main animate-pulse"></span>
+                Structured Knowledge Platform
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 tracking-tight mb-6 leading-[1.1]">
+                A Knowledge Island for <br>
+                <span class="text-brand-main">Real-World Growth.</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-slate-600 leading-relaxed mb-10 max-w-2xl mx-auto font-medium">
+                KSHARER is a focused knowledge-sharing platform where practical expertise, real systems, and human
+                development meet.
+                Built for learners and professionals who want clarity, depth, and results — <span
+                    class="text-slate-900 font-bold">not noise.</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#knowledge-island"
+                    class="px-8 py-4 bg-brand-main text-white rounded-full text-sm font-black uppercase tracking-wide shadow-lg hover:-translate-y-1 hover:bg-brand-dark transition-all duration-300">
+                    Explore Knowledge
+                </a>
+                <a href="#devworks"
+                    class="px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-full text-sm font-black uppercase tracking-wide hover:bg-slate-50 transition-all duration-300">
+                    Build With Ksharer
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 px-6 bg-slate-900 text-white">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center reveal">
+            <div>
+                <h2 class="text-3xl font-black tracking-tight mb-6">What Is KSHARER?</h2>
+                <ul class="space-y-4 text-slate-400 font-medium">
+                    <li class="flex items-center gap-3 decoration-slate-600">
+                        <i data-lucide="x" class="w-5 h-5 text-red-500"></i> Not a social network.
+                    </li>
+                    <li class="flex items-center gap-3 decoration-slate-600">
+                        <i data-lucide="x" class="w-5 h-5 text-red-500"></i> Not a content dump.
+                    </li>
+                    <li class="flex items-center gap-3 decoration-slate-600">
+                        <i data-lucide="x" class="w-5 h-5 text-red-500"></i> Not built for distraction.
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-slate-800 p-8 rounded-3xl border border-slate-700">
+                <p class="text-lg leading-relaxed text-slate-200 font-medium">
+                    <span class="text-brand-main font-bold">KSHARER</span> is a structured knowledge platform designed
+                    to help people learn, build, and grow using real-world insight.
+                </p>
+                <div class="mt-6 pt-6 border-t border-slate-700">
+                    <p class="text-sm text-slate-400">
+                        Knowledge here is organized into <span class="text-white font-bold">Niches</span> — intentional
+                        spaces where learning is practical, contextual, and applied.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="knowledge-island" class="py-24 px-6 bg-white relative overflow-hidden">
+    
+        <div
+            class="absolute top-20 right-0 w-96 h-96 bg-brand-light rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob">
+        </div>
+        <div class="absolute bottom-20 left-10 w-72 h-72 bg-blue-50 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"
+            style="animation-delay: 2s"></div>
+    
+        <div class="max-w-7xl mx-auto relative z-10">
+    
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-black text-slate-900 tracking-tight mb-4">The Knowledge Ecosystem</h2>
+                <p class="text-slate-500 max-w-xl mx-auto">Don't just read about it. See how knowledge is structured on
+                    Ksharer.</p>
+            </div>
+    
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+    
+                <div class="lg:col-span-4 flex flex-col gap-4 reveal">
+                    <button onclick="switchTab('thoughts')" id="btn-thoughts"
+                        class="tab-btn active group text-left p-6 rounded-2xl border-l-4 border-transparent hover:bg-slate-50 transition-all">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-2 bg-white rounded-lg shadow-sm group-hover:text-brand-main transition-colors">
+                                <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Thoughts</h3>
+                        </div>
+                        <p class="text-sm text-slate-500 leading-relaxed pl-12">
+                            Short, focused reflections drawn from real projects. Clarity over noise.
+                        </p>
+                    </button>
+    
+                    <button onclick="switchTab('resources')" id="btn-resources"
+                        class="tab-btn group text-left p-6 rounded-2xl border-l-4 border-transparent hover:bg-slate-50 transition-all">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-2 bg-white rounded-lg shadow-sm group-hover:text-brand-main transition-colors">
+                                <i data-lucide="library" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Resources</h3>
+                        </div>
+                        <p class="text-sm text-slate-500 leading-relaxed pl-12">
+                            Structured PDFs, blueprints, and data sets designed to save time.
+                        </p>
+                    </button>
+    
+                    <button onclick="switchTab('niches')" id="btn-niches"
+                        class="tab-btn group text-left p-6 rounded-2xl border-l-4 border-transparent hover:bg-slate-50 transition-all">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="p-2 bg-white rounded-lg shadow-sm group-hover:text-brand-main transition-colors">
+                                <i data-lucide="layers" class="w-5 h-5"></i>
+                            </div>
+                            <h3 class="font-bold text-lg">Niches</h3>
+                        </div>
+                        <p class="text-sm text-slate-500 leading-relaxed pl-12">
+                            Curated knowledge spaces led by practitioners.
+                        </p>
+                    </button>
+                </div>
+    
+                <div class="lg:col-span-8 relative min-h-[500px] lg:pl-10 reveal delay-100">
+    
+                    <div id="content-thoughts" class="tab-content active">
+                        <div
+                            class="glass-card rounded-3xl p-8 shadow-xl animate-float-slow max-w-lg mx-auto border-t-4 border-t-brand-main">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-3">
+                                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+                                        class="w-10 h-10 rounded-full bg-slate-100">
+                                    <div>
+                                        <h4 class="font-bold text-slate-900 text-sm">Dr. Aris Thorne</h4>
+                                        <span class="text-xs text-slate-400">2 hours ago • Energy Systems</span>
+                                    </div>
+                                </div>
+                                <i data-lucide="more-horizontal" class="text-slate-300"></i>
+                            </div>
+    
+                            <p class="text-slate-800 font-medium text-lg leading-relaxed mb-4">
+                                We cannot discuss "Smart Cities" without discussing grid stability. My latest experiment
+                                with distributed solar storage in Lagos showed a <span
+                                    class="bg-brand-light text-brand-dark px-1 rounded">15% efficiency gain</span> when
+                                using local looping.
+                            </p>
+    
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-6">
+                                <div class="flex items-center gap-2 text-xs font-bold text-slate-500 uppercase mb-2">
+                                    <i data-lucide="link" class="w-3 h-3"></i> PostChain Connection
+                                </div>
+                                <p class="text-sm text-slate-600 italic">"Previously: The failure of centralized grids in
+                                    humid climates..."</p>
+                            </div>
+    
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+                                <div class="flex gap-4 text-slate-400">
+                                    <div
+                                        class="flex items-center gap-1 text-xs font-bold hover:text-brand-main cursor-pointer">
+                                        <i data-lucide="message-square" class="w-4 h-4"></i> 12</div>
+                                    <div
+                                        class="flex items-center gap-1 text-xs font-bold hover:text-brand-main cursor-pointer">
+                                        <i data-lucide="repeat" class="w-4 h-4"></i> 5</div>
+                                </div>
+                                <button
+                                    class="text-xs font-bold text-brand-main bg-brand-light px-3 py-1.5 rounded-full hover:bg-brand-main hover:text-white transition-colors">
+                                    Read Full Chain
+                                </button>
+                            </div>
+                        </div>
+    
+                        <div class="absolute -right-4 top-20 bg-white p-3 rounded-xl shadow-lg animate-float-slow"
+                            style="animation-delay: 1s;">
+                            <span class="text-2xl">💡</span>
+                        </div>
+                    </div>
+    
+                    <div id="content-resources" class="tab-content">
+                        <div
+                            class="glass-card rounded-3xl p-8 shadow-xl max-w-md mx-auto relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
+                            <div
+                                class="absolute top-0 right-0 p-20 bg-blue-50 rounded-bl-full opacity-50 transition-transform group-hover:scale-110">
+                            </div>
+    
+                            <div class="relative z-10">
+                                <div
+                                    class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
+                                    <i data-lucide="file-text" class="w-7 h-7"></i>
+                                </div>
+    
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-black text-2xl text-slate-900">Hydraulic Systems_v2.pdf</h3>
+                                    <span
+                                        class="bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">20
+                                        Zini</span>
+                                </div>
+                                <p class="text-slate-500 text-sm mb-6">A complete breakdown of fluid dynamics in modern
+                                    tractor systems. Includes 3 diagrams.</p>
+    
+                                <div
+                                    class="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-100 shadow-sm">
+                                    <div class="flex items-center gap-3">
+                                        <div class="bg-slate-100 p-2 rounded-lg"><i data-lucide="user-check"
+                                                class="w-4 h-4 text-slate-500"></i></div>
+                                        <div class="text-xs">
+                                            <div class="font-bold text-slate-900">Verified Author</div>
+                                            <div class="text-slate-400">@Engr_Davids</div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="p-2 bg-brand-main text-white rounded-lg hover:bg-brand-dark transition-colors">
+                                        <i data-lucide="download" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -left-4 bottom-20 bg-white p-3 rounded-xl shadow-lg animate-float-slow"
+                            style="animation-delay: 1.5s;">
+                            <span class="text-2xl">📂</span>
+                        </div>
+                    </div>
+    
+                    <div id="content-niches" class="tab-content">
+                        <div class="grid gap-4 max-w-lg mx-auto">
+                            <div
+                                class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 flex items-center gap-4 hover:border-brand-main transition-colors cursor-pointer transform hover:scale-105 duration-300">
+                                <div
+                                    class="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-slate-900">AI Ethics & Governance</h4>
+                                    <p class="text-xs text-slate-500">Private Niche • 150 Members</p>
+                                </div>
+                                <i data-lucide="lock" class="w-4 h-4 text-slate-300"></i>
+                            </div>
+    
+                            <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 flex items-center gap-4 hover:border-brand-main transition-colors cursor-pointer transform hover:scale-105 duration-300"
+                                style="transition-delay: 100ms;">
+                                <div
+                                    class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="sprout" class="w-6 h-6"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-slate-900">Sustainable Agriculture</h4>
+                                    <p class="text-xs text-slate-500">Public Niche • 1.2k Members</p>
+                                </div>
+                                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300"></i>
+                            </div>
+    
+                            <div class="bg-white p-5 rounded-2xl shadow-md border border-slate-100 flex items-center gap-4 hover:border-brand-main transition-colors cursor-pointer transform hover:scale-105 duration-300"
+                                style="transition-delay: 200ms;">
+                                <div
+                                    class="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold text-slate-900">Linguistics & Rhetoric</h4>
+                                    <p class="text-xs text-slate-500">Public Niche • 850 Members</p>
+                                </div>
+                                <i data-lucide="arrow-right" class="w-4 h-4 text-slate-300"></i>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    
+        </div>
+    </section>
+
+    <!-- <section id="knowledge-island" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight">The Knowledge Island</h2>
+                <p class="text-slate-500 mt-2">What lives on Ksharer.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div
+                    class="reveal p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-brand-main/30 transition-colors">
+                    <div
+                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-4 shadow-sm text-brand-main">
+                        <i data-lucide="pen-tool" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">Thoughts</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Short, focused reflections drawn from real projects and experiences — shared to clarify
+                        thinking, not chase attention.
+                    </p>
+                </div>
+
+                <div
+                    class="reveal delay-100 p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-brand-main/30 transition-colors">
+                    <div
+                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-4 shadow-sm text-brand-main">
+                        <i data-lucide="library" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">Resources</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Structured materials such as PDFs, guides, and blueprints — designed to save time and deliver
+                        usable knowledge.
+                    </p>
+                </div>
+
+                <div
+                    class="reveal delay-200 p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-brand-main/30 transition-colors">
+                    <div
+                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-4 shadow-sm text-brand-main">
+                        <i data-lucide="layers" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">Niches</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Small, curated knowledge areas led by practitioners — built for depth, not noise.
+                    </p>
+                </div>
+
+                <div
+                    class="reveal delay-300 p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:border-brand-main/30 transition-colors">
+                    <div
+                        class="w-10 h-10 bg-white rounded-xl flex items-center justify-center mb-4 shadow-sm text-brand-main">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">Contributors</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Carefully selected experts and practitioners who share responsibility for the quality of
+                        knowledge on the platform.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section class="py-20 px-6 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-xs font-black uppercase text-slate-400 tracking-widest mb-8">Sample Niches (MVP Stage)</h3>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="reveal group cursor-pointer">
+                    <div class="h-1 w-12 bg-slate-200 group-hover:bg-brand-main transition-colors mb-4"></div>
+                    <h4 class="font-bold text-xl text-slate-900 mb-2">Technology</h4>
+                    <p class="text-sm text-slate-500">Software systems, web engineering, and applied digital tools —
+                        built and explained from real-world projects.</p>
+                </div>
+
+                <div class="reveal delay-100 group cursor-pointer">
+                    <div class="h-1 w-12 bg-slate-200 group-hover:bg-brand-main transition-colors mb-4"></div>
+                    <h4 class="font-bold text-xl text-slate-900 mb-2">Teens & Parents</h4>
+                    <p class="text-sm text-slate-500">Practical guidance for learning, discipline, growth, and future
+                        readiness — supported by experienced coaching.</p>
+                </div>
+
+                <div class="reveal delay-200 group cursor-pointer">
+                    <div class="h-1 w-12 bg-slate-200 group-hover:bg-brand-main transition-colors mb-4"></div>
+                    <h4 class="font-bold text-xl text-slate-900 mb-2">Communication</h4>
+                    <p class="text-sm text-slate-500">Clear thinking, effective communication, and language mastery —
+                        guided by linguistic expertise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+
+            <div class="reveal">
+                <h2 class="text-3xl font-black text-slate-900 tracking-tight mb-8">Why Ksharer is Different</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div
+                            class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand-main shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-3 h-3"></i></div>
+                        <p class="text-slate-600 font-medium">Built around real systems and lived experience.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div
+                            class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand-main shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-3 h-3"></i></div>
+                        <p class="text-slate-600 font-medium">Focused on depth over virality.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div
+                            class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand-main shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-3 h-3"></i></div>
+                        <p class="text-slate-600 font-medium">Small, controlled Niches — not chaotic communities.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div
+                            class="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand-main shrink-0 mt-0.5">
+                            <i data-lucide="check" class="w-3 h-3"></i></div>
+                        <p class="text-slate-600 font-medium">KSHARER is intentionally quiet, structured, and serious.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal delay-200 bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden">
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold">Structured Resources</h2>
+                        <span class="text-[10px] font-bold uppercase bg-white/20 px-2 py-1 rounded">Paid
+                            Materials</span>
+                    </div>
+
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Some knowledge takes time, effort, and responsibility to produce. We offer practical PDFs,
+                        step-by-step guides, and system blueprints built to deliver real value.
+                    </p>
+
+                    <div class="bg-white/5 rounded-xl p-4 mb-8 border border-white/10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i data-lucide="file-text" class="w-4 h-4 text-brand-main"></i>
+                            <span class="text-sm font-bold">Example: System Blueprint</span>
+                        </div>
+                        <div class="w-full bg-white/10 h-1.5 rounded-full">
+                            <div class="w-2/3 bg-brand-main h-1.5 rounded-full"></div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="w-full py-4 bg-brand-main text-white font-black text-xs uppercase tracking-widest rounded-xl hover:bg-brand-dark transition-colors">
+                        Browse Resources
+                    </button>
+                </div>
+
+                <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-main/20 blur-3xl rounded-full"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-slate-50 border-y border-slate-100 text-center">
+        <div class="max-w-2xl mx-auto reveal">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Our Approach</h2>
+            <p class="text-lg text-slate-600 italic font-medium mb-8">
+                "KSHARER believes knowledge should be practical, accessible, and responsibly shared."
+            </p>
+            <div class="flex justify-center gap-8 text-sm font-bold text-slate-400 uppercase tracking-widest">
+                <span>Clarity</span>
+                <span>Depth</span>
+                <span>Growth</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="devworks" class="py-24 px-6 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 border-t border-slate-800 pt-12">
+
+                <div class="reveal">
+                    <span class="text-brand-main text-xs font-black uppercase tracking-widest mb-2 block">Service
+                        Arm</span>
+                    <h3 class="text-2xl font-bold mb-4">Build With KSHARER DevWorks</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        We support individuals and organizations looking to build real digital solutions — from simple
+                        websites to internal systems. Engagements are selective and focused.
+                    </p>
+                    <a href="#"
+                        class="text-sm font-bold border-b border-brand-main pb-1 hover:text-brand-main transition-colors">
+                        Explore Ksharer DevWorks &rarr;
+                    </a>
+                </div>
+
+                <div class="reveal delay-100">
+                    <span
+                        class="text-brand-main text-xs font-black uppercase tracking-widest mb-2 block">Education</span>
+                    <h3 class="text-2xl font-bold mb-4">Capacity Building</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        We support schools and organizations with programs focusing on digital literacy, foundational
+                        coding, and practical technology use. Impact without chaos.
+                    </p>
+                    <a href="#"
+                        class="text-sm font-bold border-b border-brand-main pb-1 hover:text-brand-main transition-colors">
+                        Know More &rarr;
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 text-center bg-white">
+        <div class="reveal">
+            <h2 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mb-8">
+                Start exploring a quieter,<br> deeper way to grow.
+            </h2>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="/register"
+                    class="px-10 py-4 bg-slate-900 text-white rounded-full text-sm font-black uppercase tracking-wide hover:bg-brand-main transition-all duration-300">
+                    Join Ksharer
+                </a>
+                <a href="#knowledge-island"
+                    class="px-10 py-4 bg-white border border-slate-200 text-slate-900 rounded-full text-sm font-black uppercase tracking-wide hover:bg-slate-50 transition-all duration-300">
+                    Explore Knowledge
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-slate-100 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-6 h-6 bg-brand-main rounded flex items-center justify-center text-white text-xs font-bold">
+                    K</div>
+                <span class="font-bold text-slate-900 uppercase tracking-widest text-xs">Ksharer Inc.</span>
+            </div>
+            <p class="text-[10px] text-slate-400">© 2025 The Intellectual Network.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Scroll Reveal
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+        // Tab Switching
+
+        // Tab Switching Logic
+            function switchTab(tabName) {
+                // 1. Reset all buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-slate-50', 'border-brand-main');
+                    btn.classList.add('border-transparent');
+                });
+
+                // 2. Hide all content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                // 3. Activate clicked button
+                const activeBtn = document.getElementById(`btn-${tabName}`);
+                activeBtn.classList.add('active', 'bg-slate-50', 'border-brand-main');
+                activeBtn.classList.remove('border-transparent');
+
+                // 4. Show content
+                document.getElementById(`content-${tabName}`).classList.add('active');
+            }
+
+            // Optional: Auto-rotate tabs if user is idle (Makes it feel alive)
+            let currentTab = 0;
+            const tabs = ['thoughts', 'resources', 'niches'];
+            let autoRotate = setInterval(() => {
+                currentTab = (currentTab + 1) % tabs.length;
+                switchTab(tabs[currentTab]);
+            }, 5000); // Switch every 5 seconds
+
+            // Stop rotation if user interacts
+            document.getElementById('knowledge-island').addEventListener('mouseenter', () => {
+                clearInterval(autoRotate);
+            });
+    </script>
+</body>
+
+</html>
