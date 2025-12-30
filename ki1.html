@@ -465,6 +465,45 @@
             </div>
         </div>
     </div>
+    <!-- modal for login -->
+    <div id="joinModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6 transition-all duration-500">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-md" onclick="toggleModal()"></div>
+    
+    <div class="relative bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl overflow-hidden transform transition-all">
+        <div class="p-10 text-center">
+            <div class="w-16 h-16 bg-brand-light rounded-2xl flex items-center justify-center mx-auto mb-6 text-brand-main animate-float">
+                <i data-lucide="key-round" class="w-8 h-8"></i>
+            </div>
+            
+            <h2 class="text-3xl font-black text-slate-900 tracking-tight mb-4">Step onto the Island.</h2>
+            <p class="text-slate-500 text-sm leading-relaxed mb-8">
+                To access full blueprints, join specialized Niches, and connect with practitioners, you need an account.
+            </p>
+            
+            <div class="space-y-3">
+                <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-main transition-all flex items-center justify-center gap-3">
+                    <i data-lucide="mail" class="w-4 h-4"></i> Continue with Email
+                </button>
+                <div class="flex items-center gap-4 py-2">
+                    <div class="h-px bg-slate-100 flex-1"></div>
+                    <span class="text-[10px] font-bold text-slate-300 uppercase">Or</span>
+                    <div class="h-px bg-slate-100 flex-1"></div>
+                </div>
+                <button class="w-full py-4 bg-white border-2 border-slate-100 text-slate-600 rounded-2xl font-black text-xs uppercase tracking-widest hover:border-brand-main hover:text-brand-main transition-all flex items-center justify-center gap-3">
+                    <i data-lucide="github" class="w-4 h-4"></i> Continue with GitHub
+                </button>
+            </div>
+            
+            <p class="mt-8 text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-relaxed">
+                By joining, you agree to prioritize <br> <span class="text-slate-900">depth over noise.</span>
+            </p>
+        </div>
+        
+        <button onclick="toggleModal()" class="absolute top-6 right-6 text-slate-300 hover:text-slate-900 transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+    </div>
+</div>
 
     <script>
         // Improved Toggle Function to handle both modals
@@ -528,6 +567,40 @@
                 setTimeout(() => sidebar.classList.add('hidden'), 300);
             }
         }
+        // code to control login modal
+        // Toggle Modal Function
+function toggleModal() {
+    const modal = document.getElementById('joinModal');
+    if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    } else {
+        modal.classList.remove('flex');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto'; // Re-enable scroll
+    }
+}
+
+// Add event listeners to all relevant buttons
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all buttons that should trigger the modal
+    const triggers = document.querySelectorAll('button:contains("Preview"), button:contains("Join"), button:contains("Search")');
+    
+    // For simplicity, we can just look for the text or add a class
+    // Here, we'll manually link the specific buttons for now:
+    const joinButtons = document.querySelectorAll('button, a');
+    joinButtons.forEach(btn => {
+        if (btn.innerText.includes('Join') || btn.innerText.includes('Preview') || btn.innerText.includes('Search')) {
+            btn.addEventListener('click', (e) => {
+                // Check if it's the nav 'Join' or similar to allow real links if needed
+                // But for the demo, we show the modal:
+                e.preventDefault();
+                toggleModal();
+            });
+        }
+    });
+});
     </script>
 
 </body>
