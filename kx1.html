@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSHARER | Explore the Knowledge Island</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+
+        body { font-family: 'Inter', sans-serif; }
+
+        .dot-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ambient Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            main: '#10b981', // Emerald 500
+                            dark: '#064e3b',
+                            light: '#ecfdf5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-white text-slate-900 antialiased">
+
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="font-black text-xl tracking-tighter text-brand-main uppercase">KSHARER</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-xs font-bold uppercase tracking-widest text-slate-500">
+                <a href="#" class="hover:text-brand-main transition-colors">Niches</a>
+                <a href="#" class="hover:text-brand-main transition-colors">Resources</a>
+                <a href="#" class="hover:text-brand-main transition-colors">DevWorks</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="/login" class="text-xs font-bold text-slate-900">Log In</a>
+                <a href="/register" class="px-5 py-2 bg-slate-900 text-white rounded-full text-xs font-bold uppercase tracking-wide hover:bg-brand-main transition-all">
+                    Join
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-32 pb-20 px-6 dot-pattern border-b border-slate-100">
+        <div class="max-w-4xl mx-auto text-center reveal active">
+            <h1 class="text-5xl md:text-7xl font-black text-slate-900 tracking-tight mb-6 leading-[1.1]">
+                Explore the <br>
+                <span class="text-brand-main">Knowledge Island.</span>
+            </h1>
+            <p class="text-lg text-slate-500 mb-10 max-w-2xl mx-auto font-medium">
+                A focused space for practical expertise, real systems, and human development. 
+                Search the island to start growing.
+            </p>
+
+            <div class="relative max-w-2xl mx-auto mb-6">
+                <input type="text" placeholder="Search for thoughts, blueprints, or experts..." 
+                       class="w-full pl-14 pr-32 py-5 bg-white border-2 border-slate-200 rounded-2xl shadow-2xl focus:border-brand-main focus:ring-4 focus:ring-brand-main/10 outline-none transition-all text-lg">
+                <div class="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400">
+                    <i data-lucide="search" class="w-6 h-6"></i>
+                </div>
+                <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-900 text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-brand-main transition-all">
+                    Search
+                </button>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <span>Trending:</span>
+                <a href="#" class="text-brand-main hover:underline">#WebEngineering</a>
+                <a href="#" class="text-brand-main hover:underline">#EnergySystems</a>
+                <a href="#" class="text-brand-main hover:underline">#Parenting</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 px-6 bg-white border-b border-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-10 reveal">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-900 uppercase tracking-tight">Structured Resources</h2>
+                    <p class="text-sm text-slate-500">Affordable, practical blueprints for real-world application.</p>
+                </div>
+                <a href="#" class="text-brand-main font-bold text-sm hover:underline">Browse All &rarr;</a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="reveal group">
+                    <div class="aspect-[3/4] bg-slate-100 rounded-3xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-100 group-hover:shadow-xl transition-all group-hover:-translate-y-2">
+                        <i data-lucide="file-text" class="w-16 h-16 text-slate-200 group-hover:text-brand-main/20 transition-colors"></i>
+                        <span class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">Blueprint</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1 group-hover:text-brand-main transition-colors">Solar Storage Looping Guide</h3>
+                    <p class="text-xs text-slate-400 mb-4">By Dr. Aris Thorne</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-black text-slate-900">20 Zini</span>
+                        <button class="text-xs font-black uppercase text-brand-main px-4 py-2 bg-brand-light rounded-full hover:bg-brand-main hover:text-white transition-all">Preview</button>
+                    </div>
+                </div>
+
+                <div class="reveal delay-100 group">
+                    <div class="aspect-[3/4] bg-slate-100 rounded-3xl mb-4 relative overflow-hidden flex items-center justify-center border border-slate-100 group-hover:shadow-xl transition-all group-hover:-translate-y-2">
+                        <i data-lucide="layout" class="w-16 h-16 text-slate-200 group-hover:text-brand-main/20 transition-colors"></i>
+                        <span class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">Guide</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 mb-1 group-hover:text-brand-main transition-colors">Modern UI State Architectures</h3>
+                    <p class="text-xs text-slate-400 mb-4">Ksharer DevWorks</p>
+                    <div class="flex items-center justify-between">
+                        <span class="font-black text-slate-900">15 Zini</span>
+                        <button class="text-xs font-black uppercase text-brand-main px-4 py-2 bg-brand-light rounded-full hover:bg-brand-main hover:text-white transition-all">Preview</button>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 bg-slate-50/50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16">
+            
+            <div class="lg:col-span-4 lg:sticky lg:top-24 h-fit space-y-8">
+                <div class="reveal p-8 bg-slate-900 text-white rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h2 class="text-2xl font-black mb-4 leading-tight">This is not a <br>social network.</h2>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-8">
+                            Ksharer is intentionally quiet, structured, and serious. Every thought you see here is designed to compound over time.
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center gap-3 text-xs font-bold"><i data-lucide="shield-check" class="text-brand-main w-4 h-4"></i> Verified Practitioners</li>
+                            <li class="flex items-center gap-3 text-xs font-bold"><i data-lucide="zap" class="text-brand-main w-4 h-4"></i> No Distraction Algorithm</li>
+                        </ul>
+                        <button class="w-full py-4 bg-brand-main text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-brand-dark transition-all shadow-lg shadow-brand-main/20">
+                            Join the Island
+                        </button>
+                    </div>
+                    <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-brand-main/20 blur-3xl rounded-full"></div>
+                </div>
+
+                <div class="reveal delay-200 p-8 border border-slate-200 rounded-[2.5rem] bg-white">
+                    <h3 class="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">Sample Niches</h3>
+                    <div class="space-y-3">
+                        <a href="#" class="block p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 font-bold text-sm">#Technology</a>
+                        <a href="#" class="block p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 font-bold text-sm">#TeensAndParents</a>
+                        <a href="#" class="block p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-100 font-bold text-sm">#Linguistics</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-8 space-y-8">
+                <div class="flex items-center justify-between mb-8">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">Latest Insights</h3>
+                    <div class="flex gap-2">
+                        <button class="px-3 py-1 bg-white border border-slate-200 rounded-full text-[10px] font-bold uppercase">Recent</button>
+                        <button class="px-3 py-1 text-slate-400 text-[10px] font-bold uppercase">Popular</button>
+                    </div>
+                </div>
+
+                <article class="reveal bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-brand-main/30 transition-all group">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200"></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Felix Mann</h4>
+                            <span class="text-[10px] font-bold text-brand-main uppercase">In Technology</span>
+                        </div>
+                        <span class="ml-auto text-[10px] font-bold text-slate-300">2h ago</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+                        The "Computable Energy" framework suggests that we shouldn't just build systems that consume energy; we should build systems where the computation *is* the energy management layer. 
+                    </p>
+                    <div class="flex items-center gap-6 pt-6 border-t border-slate-50">
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> 8 Responses
+                        </button>
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="link" class="w-4 h-4"></i> Chain Root
+                        </button>
+                    </div>
+                </article>
+
+                <div class="reveal py-12 px-8 bg-brand-light rounded-3xl border border-brand-main/10 text-center">
+                    <h4 class="text-brand-dark font-black text-lg mb-2">Clarity over Hype.</h4>
+                    <p class="text-brand-dark/70 text-sm">Every part of Ksharer is built with intention. Join to unlock the full depth.</p>
+                </div>
+
+                <article class="reveal bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-brand-main/30 transition-all">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200"></div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Sarah Jenkins</h4>
+                            <span class="text-[10px] font-bold text-brand-main uppercase">In Communication</span>
+                        </div>
+                        <span class="ml-auto text-[10px] font-bold text-slate-300">5h ago</span>
+                    </div>
+                    <p class="text-slate-700 leading-relaxed mb-6 font-medium">
+                        Effective communication isn't about the amount of words used—it's about the reduction of noise. In our latest coaching niche, we've identified three triggers for "Communicative Friction" in parent-teen dynamics.
+                    </p>
+                    <div class="flex items-center gap-6 pt-6 border-t border-slate-50">
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> 14 Responses
+                        </button>
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="share" class="w-4 h-4"></i> Share Insight
+                        </button>
+                    </div>
+                </article>
+
+                <div class="text-center pt-8">
+                    <button class="px-8 py-4 border-2 border-slate-200 rounded-full text-xs font-black uppercase tracking-widest text-slate-400 hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all">
+                        Load More Insights
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white border-t border-slate-100 py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <span class="font-black text-2xl tracking-tighter text-brand-main uppercase">KSHARER</span>
+                    </div>
+                    <p class="text-slate-500 text-sm max-w-sm mb-6">
+                        Ksharer is part of the Computable Energy initiative, solving problems across Housing, Education, and Technology.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:text-brand-main cursor-pointer"><i data-lucide="twitter" class="w-4 h-4"></i></div>
+                        <div class="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 hover:text-brand-main cursor-pointer"><i data-lucide="linkedin" class="w-4 h-4"></i></div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-black text-xs uppercase tracking-widest mb-6">Services</h4>
+                    <ul class="space-y-4 text-sm font-bold text-slate-400">
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">DevWorks</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Capacity Building</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Niche Leadership</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-black text-xs uppercase tracking-widest mb-6">Legal</h4>
+                    <ul class="space-y-4 text-sm font-bold text-slate-400">
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Privacy</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Terms of Use</a></li>
+                        <li><a href="#" class="hover:text-slate-900 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-100 flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                <span>© 2025 KSHARER INC.</span>
+                <span>Part of the Intellectual Network</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        // Scroll Reveal logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
