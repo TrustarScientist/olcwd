@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSHARER | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Hide Scrollbar but allow scrolling */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Mobile specific animations */
+        .snap-x {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-center {
+            scroll-snap-align: center;
+        }
+        .snap-start {
+            scroll-snap-align: start;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            main: '#10b981', // Emerald 500
+                            dark: '#064e3b',
+                            light: '#ecfdf5',
+                            soft: '#d1fae5',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-brand-main selection:text-white">
+
+    <nav class="lg:hidden fixed top-0 w-full z-40 bg-white/80 backdrop-blur-lg border-b border-slate-200 px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" class="p-2 -ml-2 text-slate-500 hover:text-brand-main">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <span class="font-black text-lg tracking-tighter text-brand-main uppercase">KSHARER</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="flex flex-col items-end mr-1">
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Zini</span>
+                <span class="text-sm font-black text-slate-900">140.50</span>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden border border-slate-300">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User">
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen flex pt-16 lg:pt-0">
+
+        <aside id="sidebar" class="fixed inset-y-0 left-0 w-72 bg-white border-r border-slate-200 transform -translate-x-full lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen z-50 transition-transform duration-300 ease-in-out flex flex-col shadow-2xl lg:shadow-none">
+            <div class="p-6 border-b border-slate-100 hidden lg:block">
+                <span class="font-black text-brand-main uppercase tracking-tighter text-2xl">KSHARER</span>
+            </div>
+            
+            <button onclick="toggleSidebar()" class="lg:hidden absolute top-4 right-4 p-2 text-slate-400">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <nav class="flex-1 p-6 space-y-8 overflow-y-auto">
+                <div>
+                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 pl-2">My Island</h4>
+                    <div class="space-y-1">
+                        <a href="#" class="flex items-center gap-3 px-4 py-3 bg-brand-light text-brand-main rounded-xl font-bold text-sm">
+                            <i data-lucide="layout-grid" class="w-5 h-5"></i> Dashboard
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-bold text-sm transition-all">
+                            <i data-lucide="book-open" class="w-5 h-5"></i> My Library
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 hover:text-slate-900 rounded-xl font-bold text-sm transition-all">
+                            <i data-lucide="compass" class="w-5 h-5"></i> Explore Niches
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 pl-2">Subscriptions</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="flex items-center justify-between px-4 py-2 text-slate-600 hover:text-brand-main text-sm font-medium group">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2 h-2 rounded-full bg-purple-500"></span> Technology
+                            </div>
+                            <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-400 group-hover:text-brand-main">12</span>
+                        </a>
+                        <a href="#" class="flex items-center justify-between px-4 py-2 text-slate-600 hover:text-brand-main text-sm font-medium group">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2 h-2 rounded-full bg-orange-500"></span> Energy
+                            </div>
+                            <span class="text-[10px] bg-slate-100 px-2 py-0.5 rounded text-slate-400 group-hover:text-brand-main">3</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="p-6 border-t border-slate-100 hidden lg:block">
+                <div class="bg-slate-900 rounded-2xl p-5 text-white shadow-lg shadow-slate-200">
+                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Available Balance</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-2xl font-black">140.50 <span class="text-xs font-normal text-slate-400">ZINI</span></span>
+                        <button class="p-1.5 bg-white/10 rounded-lg hover:bg-brand-main transition-colors">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div id="backdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+
+        <main class="flex-1 w-full max-w-3xl mx-auto lg:px-8 py-6 space-y-8">
+            
+            <div class="lg:hidden px-4 flex gap-2 overflow-x-auto scrollbar-hide snap-x">
+                <button class="snap-start shrink-0 px-5 py-2 bg-brand-main text-white rounded-full text-xs font-black uppercase shadow-lg shadow-brand-main/20">All</button>
+                <button class="snap-start shrink-0 px-5 py-2 bg-white border border-slate-200 text-slate-500 rounded-full text-xs font-bold uppercase whitespace-nowrap">Technology</button>
+                <button class="snap-start shrink-0 px-5 py-2 bg-white border border-slate-200 text-slate-500 rounded-full text-xs font-bold uppercase whitespace-nowrap">Parenting</button>
+                <button class="snap-start shrink-0 px-5 py-2 bg-white border border-slate-200 text-slate-500 rounded-full text-xs font-bold uppercase whitespace-nowrap">Agriculture</button>
+                <button class="snap-start shrink-0 px-5 py-2 bg-white border border-slate-200 text-slate-500 rounded-full text-xs font-bold uppercase whitespace-nowrap">Finance</button>
+            </div>
+
+            <div class="mx-4 lg:mx-0 bg-white rounded-[2rem] p-6 shadow-sm border border-slate-200">
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-slate-200 shrink-0 overflow-hidden">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="avatar">
+                    </div>
+                    <div class="flex-1">
+                        <textarea placeholder="Share a structured thought..." 
+                                  class="w-full bg-slate-50 border-none rounded-2xl p-4 text-sm focus:ring-2 focus:ring-brand-main/20 outline-none resize-none h-20 lg:h-24 transition-all"></textarea>
+                        <div class="flex items-center justify-between mt-3">
+                            <div class="flex gap-3">
+                                <button class="text-slate-400 hover:text-brand-main transition-colors"><i data-lucide="link-2" class="w-5 h-5"></i></button>
+                                <button class="text-slate-400 hover:text-brand-main transition-colors"><i data-lucide="image" class="w-5 h-5"></i></button>
+                            </div>
+                            <button class="bg-brand-main text-white px-5 py-2 rounded-xl text-[10px] lg:text-xs font-black uppercase tracking-widest shadow-lg shadow-brand-main/20 hover:bg-brand-dark transition-all">
+                                Post
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:hidden space-y-4">
+                <div class="px-4 flex items-center justify-between">
+                    <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">Recommended Resources</h3>
+                    <a href="#" class="text-brand-main text-xs font-bold">View All</a>
+                </div>
+                
+                <div class="flex gap-4 overflow-x-auto scrollbar-hide snap-x px-4 pb-4">
+                    <div class="snap-center shrink-0 w-64 bg-white p-4 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-16 bg-brand-light rounded-bl-[100px] -mr-8 -mt-8 z-0"></div>
+                        <div class="relative z-10">
+                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-main mb-3">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 leading-tight mb-1">Grid Systems V2</h4>
+                            <p class="text-[10px] text-slate-500 uppercase mb-4">By Engr. Davids</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-sm">15 Zini</span>
+                                <button class="p-2 bg-slate-900 text-white rounded-lg text-xs font-bold">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="snap-center shrink-0 w-64 bg-white p-4 rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-16 bg-blue-50 rounded-bl-[100px] -mr-8 -mt-8 z-0"></div>
+                        <div class="relative z-10">
+                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-blue-500 mb-3">
+                                <i data-lucide="layout" class="w-5 h-5"></i>
+                            </div>
+                            <h4 class="font-bold text-slate-900 leading-tight mb-1">Teen Coaching Map</h4>
+                            <p class="text-[10px] text-slate-500 uppercase mb-4">By Dr. Thorne</p>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="font-black text-sm">25 Zini</span>
+                                <button class="p-2 bg-slate-900 text-white rounded-lg text-xs font-bold">Preview</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4 lg:px-0">
+                <div class="flex gap-6 mb-6 border-b border-slate-200 pb-2">
+                    <button class="text-xs font-black uppercase tracking-widest text-slate-900 border-b-2 border-brand-main pb-2">Latest Insights</button>
+                    <button class="text-xs font-black uppercase tracking-widest text-slate-400 pb-2 hover:text-slate-600 transition-colors">Resources</button>
+                </div>
+
+                <article class="bg-white p-6 lg:p-8 rounded-[2rem] border border-slate-200 shadow-sm mb-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah" alt="user">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Engr. Davids</h4>
+                            <span class="text-[10px] font-bold text-purple-500 uppercase">Technology • 1h ago</span>
+                        </div>
+                        <button class="ml-auto text-slate-300"><i data-lucide="more-horizontal" class="w-5 h-5"></i></button>
+                    </div>
+                    
+                    <p class="text-slate-700 text-sm lg:text-base leading-relaxed mb-6 font-medium">
+                        I've just updated the <span class="text-brand-main font-bold">Web Engineering Blueprint</span>. We are shifting from traditional REST to a more event-driven architecture for the Ksharer backend.
+                    </p>
+
+                    <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 flex items-center gap-4 mb-6 group cursor-pointer hover:border-brand-main hover:bg-white hover:shadow-md transition-all">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-main shrink-0">
+                            <i data-lucide="file-text" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-1 min-w-0"> <h5 class="text-sm font-bold text-slate-900 truncate">Backend System V2.1 Architecture</h5>
+                            <p class="text-[10px] text-slate-400 uppercase font-bold">PDF • 4.2 MB • 5 Zini</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 group-hover:text-brand-main transition-colors"></i>
+                    </div>
+
+                    <div class="flex items-center gap-6 pt-4 border-t border-slate-50">
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="heart" class="w-4 h-4"></i> 24
+                        </button>
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="message-square" class="w-4 h-4"></i> 12 Responses
+                        </button>
+                        <button class="ml-auto text-slate-400 hover:text-brand-main">
+                            <i data-lucide="share" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="bg-white p-6 lg:p-8 rounded-[2rem] border border-slate-200 shadow-sm mb-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 overflow-hidden">
+                            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=John" alt="user">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm">Dr. Aris</h4>
+                            <span class="text-[10px] font-bold text-orange-500 uppercase">Energy • 3h ago</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-700 text-sm lg:text-base leading-relaxed mb-4 font-medium">
+                        The distinction between "Power" and "Energy" is crucial when designing rural grids. Power is instantaneous capacity; Energy is the capacity over time.
+                    </p>
+                    
+                    <div class="flex items-center gap-6 pt-4 border-t border-slate-50">
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="heart" class="w-4 h-4"></i> 89
+                        </button>
+                        <button class="flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-brand-main">
+                            <i data-lucide="message-square" class="w-4 h-4"></i> 5 Responses
+                        </button>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="lg:hidden px-4 pb-8">
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Top Contributors</h3>
+                <div class="flex gap-4 overflow-x-auto scrollbar-hide snap-x">
+                    <div class="snap-start shrink-0 flex flex-col items-center gap-2 w-20">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="w-16 h-16 rounded-full bg-slate-200 border-2 border-white shadow-sm">
+                        <span class="text-xs font-bold text-center leading-tight">Felix Mann</span>
+                        <button class="px-3 py-1 bg-brand-light text-brand-main text-[10px] font-bold uppercase rounded-full">Follow</button>
+                    </div>
+                    <div class="snap-start shrink-0 flex flex-col items-center gap-2 w-20">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Sara" class="w-16 h-16 rounded-full bg-slate-200 border-2 border-white shadow-sm">
+                        <span class="text-xs font-bold text-center leading-tight">Sara J.</span>
+                        <button class="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] font-bold uppercase rounded-full">Follow</button>
+                    </div>
+                    <div class="snap-start shrink-0 flex flex-col items-center gap-2 w-20">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aris" class="w-16 h-16 rounded-full bg-slate-200 border-2 border-white shadow-sm">
+                        <span class="text-xs font-bold text-center leading-tight">Dr. Aris</span>
+                        <button class="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] font-bold uppercase rounded-full">Follow</button>
+                    </div>
+                    <div class="snap-start shrink-0 flex flex-col items-center gap-2 w-20">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Mike" class="w-16 h-16 rounded-full bg-slate-200 border-2 border-white shadow-sm">
+                        <span class="text-xs font-bold text-center leading-tight">Mike D.</span>
+                        <button class="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] font-bold uppercase rounded-full">Follow</button>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <aside class="w-80 bg-slate-50 hidden xl:block sticky top-0 h-screen p-8 overflow-y-auto border-l border-slate-200">
+            <div class="mb-10">
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Recent Activity</h4>
+                <div class="space-y-4">
+                    <div class="flex gap-3 items-start p-3 bg-white rounded-xl border border-slate-100 shadow-sm">
+                        <div class="w-2 h-2 rounded-full bg-brand-main mt-1.5 shrink-0"></div>
+                        <p class="text-xs text-slate-600 leading-snug">New blueprint available in <span class="font-bold text-slate-900">Energy Systems</span>.</p>
+                    </div>
+                    <div class="flex gap-3 items-start p-3 hover:bg-white rounded-xl transition-colors cursor-pointer">
+                        <div class="w-2 h-2 rounded-full bg-slate-300 mt-1.5 shrink-0"></div>
+                        <p class="text-xs text-slate-600 leading-snug">Felix Mann shared a new <span class="font-bold text-slate-900">Thought</span>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-10">
+                 <div class="flex justify-between items-center mb-4">
+                    <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Recommended</h4>
+                    <a href="#" class="text-[10px] font-bold text-brand-main hover:underline">View All</a>
+                 </div>
+                 <div class="space-y-3">
+                     <div class="flex gap-3 items-center group cursor-pointer">
+                         <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden relative">
+                             <div class="absolute inset-0 bg-brand-light"></div>
+                             <i data-lucide="file-text" class="relative z-10 w-6 h-6 m-auto mt-3 text-brand-main/50"></i>
+                         </div>
+                         <div>
+                             <h5 class="text-xs font-bold text-slate-900 group-hover:text-brand-main transition-colors">Grid Systems V2</h5>
+                             <p class="text-[10px] text-slate-400">15 Zini</p>
+                         </div>
+                     </div>
+                     <div class="flex gap-3 items-center group cursor-pointer">
+                        <div class="w-12 h-12 rounded-xl bg-slate-200 overflow-hidden relative">
+                            <div class="absolute inset-0 bg-blue-50"></div>
+                            <i data-lucide="layout" class="relative z-10 w-6 h-6 m-auto mt-3 text-blue-400/50"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-900 group-hover:text-brand-main transition-colors">Teen Coaching Map</h5>
+                            <p class="text-[10px] text-slate-400">25 Zini</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="bg-slate-900 rounded-3xl p-6 text-white shadow-xl shadow-slate-200">
+                <h4 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Island Progress</h4>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between text-[10px] font-bold uppercase mb-1">
+                            <span>Technology</span>
+                            <span class="text-brand-main">80%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-brand-main h-full w-[80%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('backdrop');
+            
+            if (sidebar.classList.contains('-translate-x-full')) {
+                // Open Sidebar
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Close Sidebar
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+</body>
+</html>
