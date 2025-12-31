@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSHARER | Knowledge Island</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#ecfdf5',
+                            main: '#10b981',
+                            dark: '#064e3b',
+                            hover: '#059669',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Hide Scrollbar but allow scrolling (Netflix-style shelves) */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .snap-x {
+            scroll-snap-type: x mandatory;
+        }
+
+        .snap-start {
+            scroll-snap-align: start;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-brand-main selection:text-white">
+
+    <nav
+        class="lg:hidden fixed top-0 w-full z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 px-4 h-16 flex items-center justify-between transition-all duration-300">
+        <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()"
+                class="p-2 -ml-2 text-slate-500 hover:text-brand-main active:scale-95 transition-transform">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-brand-main rounded flex items-center justify-center text-white shadow-sm">
+                    <span class="font-black text-[10px]">K</span>
+                </div>
+                <span class="font-black text-lg tracking-tighter text-slate-900 uppercase">KSHARER</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="toggleModal('createThoughtModal')"
+                class="w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+                <i data-lucide="plus" class="w-5 h-5"></i>
+            </button>
+            <div class="w-8 h-8 rounded-full bg-slate-100 ring-2 ring-white overflow-hidden">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User">
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen flex pt-16 lg:pt-0">
+
+        <aside id="sidebar"
+            class="fixed inset-y-0 left-0 w-72 bg-slate-50/50 border-r border-slate-100 transform -translate-x-full lg:translate-x-0 lg:sticky lg:top-0 lg:h-screen z-50 transition-transform duration-300 ease-in-out flex flex-col backdrop-blur-xl lg:backdrop-blur-none">
+
+            <div class="p-6 border-b border-slate-100 hidden lg:flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-brand-main rounded-lg flex items-center justify-center text-white shadow-brand-main/20 shadow-lg">
+                    <span class="font-black">K</span>
+                </div>
+                <span class="font-black text-xl tracking-tighter text-slate-900 uppercase">KSHARER</span>
+            </div>
+
+            <button onclick="toggleSidebar()" class="lg:hidden absolute top-4 right-4 p-2 text-slate-400">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="px-6 pt-8 pb-4 text-center">
+                <div class="relative inline-block">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+                        class="w-20 h-20 rounded-2xl bg-white shadow-sm ring-4 ring-white mx-auto mb-3">
+                    <span
+                        class="absolute bottom-2 -right-1 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+                <h3 class="font-bold text-slate-900">Felix Mann</h3>
+                <p class="text-[10px] text-brand-main font-bold uppercase tracking-widest">Computable Energy Expert</p>
+            </div>
+
+            <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 bg-white border border-slate-100 text-brand-main rounded-xl shadow-sm font-semibold transition group">
+                    <i data-lucide="layout-grid" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    Dashboard
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-white hover:text-brand-main hover:shadow-sm rounded-xl transition font-medium">
+                    <i data-lucide="book-open" class="w-5 h-5"></i> Library
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-white hover:text-brand-main hover:shadow-sm rounded-xl transition font-medium">
+                    <i data-lucide="compass" class="w-5 h-5"></i> Niches
+                </a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-white hover:text-brand-main hover:shadow-sm rounded-xl transition font-medium">
+                    <i data-lucide="users" class="w-5 h-5"></i> Network
+                </a>
+            </nav>
+
+            <div class="p-4 mt-auto">
+                <div
+                    class="bg-slate-900 rounded-2xl p-5 text-white shadow-xl shadow-slate-900/10 relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 p-8 bg-brand-main/10 rounded-bl-full transition-transform group-hover:scale-110">
+                    </div>
+                    <div class="flex justify-between items-center mb-2 relative z-10">
+                        <p class="text-[9px] uppercase text-brand-main font-bold tracking-widest">Energy Balance</p>
+                        <i data-lucide="zap" class="w-3 h-3 text-brand-main"></i>
+                    </div>
+                    <div class="flex justify-between items-end relative z-10">
+                        <span class="text-2xl font-bold italic tracking-tight">2,450.00</span>
+                        <span class="text-[9px] opacity-60 font-medium mb-1">KW/h</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div id="backdrop" onclick="toggleSidebar()"
+            class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity"></div>
+
+        <main class="flex-1 w-full max-w-5xl mx-auto lg:px-8 py-6 space-y-8">
+
+            <div class="lg:hidden space-y-6">
+
+                <div class="pl-4">
+                    <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Active Niches</h2>
+                    <div class="flex gap-3 overflow-x-auto no-scrollbar snap-x pr-4">
+                        <button
+                            class="snap-start shrink-0 px-5 py-2.5 bg-slate-900 text-white rounded-full text-xs font-bold shadow-lg shadow-slate-900/20 whitespace-nowrap">
+                            All Updates
+                        </button>
+                        <button
+                            class="snap-start shrink-0 px-5 py-2.5 bg-white border border-slate-200 text-slate-600 rounded-full text-xs font-bold whitespace-nowrap flex items-center gap-2">
+                            <span class="w-2 h-2 bg-brand-main rounded-full"></span> Energy
+                        </button>
+                        <button
+                            class="snap-start shrink-0 px-5 py-2.5 bg-white border border-slate-200 text-slate-600 rounded-full text-xs font-bold whitespace-nowrap flex items-center gap-2">
+                            <span class="w-2 h-2 bg-purple-400 rounded-full"></span> Philosophy
+                        </button>
+                    </div>
+                </div>
+
+                <div class="pl-4">
+                    <div class="flex justify-between items-end pr-4 mb-3">
+                        <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">New Blueprints</h2>
+                        <span class="text-[10px] font-bold text-brand-main">View All</span>
+                    </div>
+                    <div class="flex gap-4 overflow-x-auto no-scrollbar snap-x pr-4 pb-4">
+
+                        <div
+                            class="snap-center shrink-0 w-64 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-brand-light rounded-bl-full -mr-8 -mt-8">
+                            </div>
+                            <div class="relative z-10">
+                                <div
+                                    class="w-10 h-10 bg-white rounded-xl border border-slate-100 flex items-center justify-center text-brand-main mb-3 shadow-sm">
+                                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 leading-tight mb-1 line-clamp-1">Computable Energy
+                                    Thesis</h4>
+                                <p class="text-[10px] text-slate-400 uppercase mb-4 font-bold">By LightMann</p>
+                                <div class="flex items-center justify-between mt-2 pt-3 border-t border-slate-50">
+                                    <span class="font-black text-xs text-slate-900">15 Zini</span>
+                                    <button
+                                        class="px-3 py-1.5 bg-slate-50 text-slate-600 hover:bg-slate-900 hover:text-white transition-colors rounded-lg text-[10px] font-bold uppercase tracking-wide">Preview</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="snap-center shrink-0 w-64 bg-white p-4 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-8 -mt-8"></div>
+                            <div class="relative z-10">
+                                <div
+                                    class="w-10 h-10 bg-white rounded-xl border border-slate-100 flex items-center justify-center text-blue-500 mb-3 shadow-sm">
+                                    <i data-lucide="layout" class="w-5 h-5"></i>
+                                </div>
+                                <h4 class="font-bold text-slate-900 leading-tight mb-1 line-clamp-1">Teen Coaching Map
+                                </h4>
+                                <p class="text-[10px] text-slate-400 uppercase mb-4 font-bold">By Dr. Thorne</p>
+                                <div class="flex items-center justify-between mt-2 pt-3 border-t border-slate-50">
+                                    <span class="font-black text-xs text-slate-900">25 Zini</span>
+                                    <button
+                                        class="px-3 py-1.5 bg-slate-50 text-slate-600 hover:bg-slate-900 hover:text-white transition-colors rounded-lg text-[10px] font-bold uppercase tracking-wide">Preview</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden lg:block bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+                <div class="flex gap-4">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix"
+                        class="w-12 h-12 rounded-xl bg-slate-50">
+                    <div class="flex-1">
+                        <input type="text" onclick="toggleModal('createThoughtModal')"
+                            placeholder="Share a structured thought or resource..."
+                            class="w-full h-12 bg-slate-50 rounded-xl px-4 text-sm font-medium text-slate-600 focus:outline-none focus:ring-2 focus:ring-brand-main/20 cursor-pointer hover:bg-slate-100 transition-colors">
+                        <div class="flex items-center gap-4 mt-3 pl-1">
+                            <button
+                                class="flex items-center gap-2 text-[11px] font-bold text-slate-400 hover:text-brand-main uppercase tracking-wide transition"><i
+                                    data-lucide="image" class="w-4 h-4"></i> Media</button>
+                            <button
+                                class="flex items-center gap-2 text-[11px] font-bold text-slate-400 hover:text-brand-main uppercase tracking-wide transition"><i
+                                    data-lucide="file-text" class="w-4 h-4"></i> Resource</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-4 lg:px-0 space-y-6">
+
+                <div class="hidden lg:flex items-center justify-between border-b border-slate-200 pb-4">
+                    <h2 class="text-xs font-black text-slate-400 uppercase tracking-widest">Latest Insights</h2>
+                    <div class="flex gap-2">
+                        <button
+                            class="px-3 py-1 bg-slate-900 text-white rounded-lg text-[10px] font-bold uppercase">All</button>
+                        <button
+                            class="px-3 py-1 text-slate-500 hover:bg-slate-100 rounded-lg text-[10px] font-bold uppercase transition">Technology</button>
+                        <button
+                            class="px-3 py-1 text-slate-500 hover:bg-slate-100 rounded-lg text-[10px] font-bold uppercase transition">Energy</button>
+                    </div>
+                </div>
+
+                <article
+                    class="bg-white p-6 lg:p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:border-brand-main/30 transition-all group">
+                    <header class="flex items-start justify-between mb-5">
+                        <div class="flex items-center gap-3">
+                            <div class="relative">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aris"
+                                    class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100">
+                                <span
+                                    class="absolute -bottom-1 -right-1 w-4 h-4 bg-brand-main border-2 border-white rounded-full"></span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900 text-sm">Aris Thorne</h3>
+                                <div class="flex items-center gap-2 text-[10px] mt-0.5">
+                                    <span class="font-bold text-brand-main uppercase tracking-wide">Philosophy</span>
+                                    <span class="text-slate-300">•</span>
+                                    <span class="text-slate-400 font-medium">2 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="p-2 text-slate-300 hover:text-slate-600 transition"><i
+                                data-lucide="more-horizontal" class="w-5 h-5"></i></button>
+                    </header>
+
+                    <div class="font-serif prose prose-slate max-w-none mb-5">
+                        <p class="text-slate-700 leading-relaxed text-[16px]">
+                            Is it possible that we are over-calculating data and under-calculating the <strong
+                                class="text-slate-900 font-bold">energy cost</strong> of truth? If a thought takes 1kWh
+                            to compute, is it more valuable than a thought that takes 0.01kWh? This is the core of the
+                            <span class="text-brand-main font-sans text-sm font-bold">#ComputableEnergy</span> thesis.
+                        </p>
+                    </div>
+
+                    <div
+                        class="w-full aspect-video bg-slate-100 rounded-2xl overflow-hidden border border-slate-200 mb-5 relative group/media cursor-pointer">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center text-slate-300 group-hover/media:text-brand-main transition-colors">
+                            <i data-lucide="image" class="w-12 h-12"></i>
+                        </div>
+                    </div>
+
+                    <footer class="flex items-center justify-between pt-5 border-t border-slate-50">
+                        <div class="flex items-center gap-6">
+                            <button class="flex items-center gap-2 group/action">
+                                <div
+                                    class="p-2 bg-slate-50 text-slate-400 rounded-full group-hover/action:bg-red-50 group-hover/action:text-red-500 transition-colors">
+                                    <i data-lucide="heart" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-500">124</span>
+                            </button>
+                            <button class="flex items-center gap-2 group/action">
+                                <div
+                                    class="p-2 bg-slate-50 text-slate-400 rounded-full group-hover/action:bg-blue-50 group-hover/action:text-blue-500 transition-colors">
+                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-500">18</span>
+                            </button>
+                            <button class="flex items-center gap-2 group/action">
+                                <div
+                                    class="p-2 bg-slate-50 text-slate-400 rounded-full group-hover/action:bg-brand-light group-hover/action:text-brand-main transition-colors">
+                                    <i data-lucide="zap" class="w-4 h-4"></i>
+                                </div>
+                                <span class="text-xs font-bold text-slate-500">Boost</span>
+                            </button>
+                        </div>
+                        <button class="p-2 text-slate-300 hover:text-brand-main transition"><i data-lucide="bookmark"
+                                class="w-5 h-5"></i></button>
+                    </footer>
+                </article>
+
+            </div>
+        </main>
+
+        <aside
+            class="w-80 hidden xl:block sticky top-0 h-screen p-8 border-l border-slate-100 bg-white overflow-y-auto">
+
+            <div class="mb-10">
+                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Island Growth</h2>
+                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                    <div class="mb-4">
+                        <div class="flex justify-between text-[10px] font-bold uppercase mb-1">
+                            <span>Technology</span>
+                            <span class="text-brand-main">80%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-brand-main h-full w-[80%] rounded-full"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[10px] font-bold uppercase mb-1">
+                            <span>Philosophy</span>
+                            <span class="text-purple-400">45%</span>
+                        </div>
+                        <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                            <div class="bg-purple-400 h-full w-[45%] rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Top Resources</h2>
+                    <a href="#" class="text-[10px] font-bold text-brand-main hover:underline">View All</a>
+                </div>
+                <div class="space-y-3">
+                    <div
+                        class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition cursor-pointer group">
+                        <div
+                            class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400 group-hover:bg-brand-main group-hover:text-white transition-colors">
+                            <i data-lucide="file-text" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-800 group-hover:text-brand-main transition-colors">
+                                Grid Systems V2</h5>
+                            <p class="text-[10px] text-slate-400 italic">By LightMann • 15 Zini</p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition cursor-pointer group">
+                        <div
+                            class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                            <i data-lucide="layout" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-xs font-bold text-slate-800 group-hover:text-blue-500 transition-colors">
+                                Coaching Map</h5>
+                            <p class="text-[10px] text-slate-400 italic">By Dr. Thorne • 25 Zini</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-slate-50 flex flex-wrap gap-x-4 gap-y-2">
+                <a href="#"
+                    class="text-[10px] font-bold text-slate-300 hover:text-slate-500 uppercase tracking-widest">Privacy</a>
+                <a href="#"
+                    class="text-[10px] font-bold text-slate-300 hover:text-slate-500 uppercase tracking-widest">Terms</a>
+                <span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest">© 2025 Ksharer</span>
+            </div>
+        </aside>
+
+    </div>
+
+    <div id="createThoughtModal"
+        class="hidden fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity">
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="toggleModal('createThoughtModal')">
+        </div>
+        <div
+            class="relative bg-white w-full max-w-lg rounded-t-[2rem] sm:rounded-3xl shadow-2xl overflow-hidden transform transition-all animate-in slide-in-from-bottom duration-300">
+            <div class="px-6 py-4 border-b border-slate-50 flex items-center justify-between">
+                <h2 class="text-xs font-black text-slate-800 uppercase tracking-widest">New Thought</h2>
+                <button onclick="toggleModal('createThoughtModal')"
+                    class="p-2 hover:bg-slate-50 rounded-full transition text-slate-400"><i data-lucide="x"
+                        class="w-5 h-5"></i></button>
+            </div>
+            <div class="p-6 space-y-6">
+                <div>
+                    <label class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">Select
+                        Niche</label>
+                    <div class="flex gap-2 overflow-x-auto no-scrollbar">
+                        <button
+                            class="px-4 py-2 rounded-full border border-brand-main bg-brand-light text-brand-main text-xs font-bold whitespace-nowrap">Philosophy</button>
+                        <button
+                            class="px-4 py-2 rounded-full border border-slate-200 text-slate-500 text-xs font-bold whitespace-nowrap hover:border-slate-300">Computing</button>
+                        <button
+                            class="px-4 py-2 rounded-full border border-slate-200 text-slate-500 text-xs font-bold whitespace-nowrap hover:border-slate-300">Energy</button>
+                    </div>
+                </div>
+                <textarea rows="4" placeholder="Share a structured thought..."
+                    class="w-full text-lg text-slate-700 placeholder:text-slate-300 border-none focus:ring-0 resize-none p-0 font-serif"></textarea>
+                <div class="flex items-center justify-between pt-4 border-t border-slate-50">
+                    <div class="flex items-center gap-4 text-slate-400">
+                        <button class="hover:text-brand-main transition"><i data-lucide="image"
+                                class="w-5 h-5"></i></button>
+                        <button class="hover:text-brand-main transition"><i data-lucide="link-2"
+                                class="w-5 h-5"></i></button>
+                    </div>
+                    <button
+                        class="bg-brand-main hover:bg-brand-hover text-white px-8 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest shadow-lg shadow-brand-main/20">Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('backdrop');
+
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+        }
+    </script>
+</body>
+
+</html>
