@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KSHARER | Computable Energy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { light: '#ecfdf5', main: '#10b981', dark: '#064e3b', hover: '#059669' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Merriweather', 'serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+</head>
+
+<body class="bg-white text-slate-900 font-sans antialiased pb-24 lg:pb-0">
+
+    <nav class="lg:hidden fixed top-0 w-full z-40 bg-white border-b border-slate-200 px-4 h-16 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" class="flex items-center gap-2 group">
+                <div class="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center text-white shadow-lg group-active:scale-90 transition-transform">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </div>
+                <span class="font-black text-lg tracking-tighter uppercase">KSHARER</span>
+            </button>
+        </div>
+        
+        <div class="flex items-center gap-1">
+            <button onclick="toggleModal('searchModal')" class="p-3 text-slate-700 active:bg-slate-100 rounded-full">
+                <i data-lucide="search" class="w-6 h-6"></i>
+            </button>
+            <button onclick="toggleModal('notifModal')" class="p-3 text-slate-700 active:bg-slate-100 rounded-full relative">
+                <i data-lucide="bell" class="w-6 h-6"></i>
+                <span class="absolute top-3 right-3 w-2.5 h-2.5 bg-red-600 rounded-full border-2 border-white"></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="hidden lg:flex fixed top-0 right-0 left-0 h-20 bg-white border-b border-slate-100 z-30 px-8 items-center justify-between">
+        <div class="flex items-center gap-8 w-full max-w-4xl">
+            <div class="flex items-center gap-2 shrink-0">
+                <div class="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center text-white">
+                    <span class="font-black">K</span>
+                </div>
+                <span class="font-black text-xl tracking-tighter uppercase">KSHARER</span>
+            </div>
+            
+            <div class="flex-1 relative">
+                <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+                <input type="text" placeholder="Search knowledge, people, or niches..." class="w-full h-11 bg-slate-50 border border-slate-200 focus:bg-white focus:ring-2 focus:ring-brand-main/20 focus:border-brand-main rounded-xl pl-11 pr-4 text-sm font-medium transition-all outline-none">
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-4">
+             <button onclick="toggleModal('notifModal')" class="p-2 text-slate-400 hover:text-slate-900 transition relative">
+                <i data-lucide="bell" class="w-6 h-6"></i>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-brand-main rounded-full"></span>
+            </button>
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="w-10 h-10 rounded-xl border border-slate-200 cursor-pointer">
+        </div>
+    </header>
+
+    <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden transition-opacity"></div>
+    <aside id="sidebarDrawer" class="fixed inset-y-0 left-0 w-80 bg-white z-[70] transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl flex flex-col">
+        <div class="p-6 h-20 flex items-center justify-between border-b">
+            <span class="font-black text-xl uppercase tracking-tighter">Menu</span>
+            <button onclick="toggleSidebar()" class="p-2 text-slate-400"><i data-lucide="x" class="w-6 h-6"></i></button>
+        </div>
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="#" class="flex items-center gap-4 p-4 text-brand-main bg-brand-light rounded-2xl font-bold">
+                <i data-lucide="home" class="w-5 h-5"></i> Dashboard
+            </a>
+            <a href="#" class="flex items-center gap-4 p-4 text-slate-600 hover:bg-slate-50 rounded-2xl font-bold transition">
+                <i data-lucide="compass" class="w-5 h-5"></i> Explore Niches
+            </a>
+            <a href="#" class="flex items-center gap-4 p-4 text-slate-600 hover:bg-slate-50 rounded-2xl font-bold transition">
+                <i data-lucide="library" class="w-5 h-5"></i> My Resources
+            </a>
+            <hr class="my-4 border-slate-100">
+            <div class="px-4 py-2 text-[10px] font-black text-slate-400 uppercase">My Islands</div>
+            <a href="#" class="flex items-center gap-4 p-4 text-slate-600 font-bold hover:text-brand-main transition">
+                <span class="w-2 h-2 bg-brand-main rounded-full"></span> Energy
+            </a>
+        </nav>
+    </aside>
+
+    <main class="w-full max-w-4xl mx-auto pt-24 lg:pt-32 px-4 pb-20">
+        
+        <div class="mb-10">
+            <h1 class="text-3xl font-black text-slate-900 tracking-tight">Morning, Felix.</h1>
+            <p class="text-slate-500 font-medium">Here’s what’s happening in your niches.</p>
+        </div>
+
+        <div class="space-y-6">
+            <article class="bg-white border border-slate-200 rounded-[2rem] p-6 lg:p-8 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Aris" class="w-12 h-12 rounded-2xl border bg-slate-50">
+                        <div>
+                            <h3 class="font-bold text-slate-900">Aris Thorne</h3>
+                            <p class="text-[11px] font-black text-brand-main uppercase tracking-widest">Philosophy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="font-serif text-lg text-slate-800 leading-relaxed mb-6">
+                    Computational energy isn't just a technical metric; it's the bridge between what we think and what we can actually build.
+                </div>
+                <div class="flex items-center gap-6 pt-6 border-t border-slate-50">
+                    <button class="flex items-center gap-2 font-bold text-sm text-slate-500 hover:text-red-500"><i data-lucide="heart" class="w-5 h-5"></i> 124</button>
+                    <button class="flex items-center gap-2 font-bold text-sm text-slate-500 hover:text-brand-main"><i data-lucide="message-circle" class="w-5 h-5"></i> 32</button>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <div id="searchModal" class="hidden fixed inset-0 z-[100] bg-white p-6">
+        <div class="flex items-center gap-4 mb-8">
+            <button onclick="toggleModal('searchModal')" class="p-2 text-slate-900"><i data-lucide="arrow-left" class="w-6 h-6"></i></button>
+            <input id="mobileSearchInput" type="text" placeholder="Search..." class="flex-1 text-2xl font-bold outline-none">
+        </div>
+        <div class="space-y-4">
+            <p class="text-xs font-black text-slate-400 uppercase tracking-widest">Recent Searches</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="px-4 py-2 bg-slate-100 rounded-xl text-sm font-bold text-slate-700">#EnergySystems</span>
+                <span class="px-4 py-2 bg-slate-100 rounded-xl text-sm font-bold text-slate-700">#NicheLeadership</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="notifModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="toggleModal('notifModal')"></div>
+        <div class="relative bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl overflow-hidden p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-black text-slate-900 uppercase text-xs tracking-widest">Notifications</h2>
+                <button onclick="toggleModal('notifModal')"><i data-lucide="x" class="w-6 h-6 text-slate-300"></i></button>
+            </div>
+            <div class="space-y-4">
+                <div class="p-4 bg-slate-50 rounded-2xl flex gap-4">
+                    <div class="w-10 h-10 bg-brand-main rounded-full shrink-0 flex items-center justify-center text-white"><i data-lucide="zap" class="w-5 h-5"></i></div>
+                    <p class="text-sm font-bold text-slate-900 leading-tight">Your energy balance was topped up by 500 Zini.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="lg:hidden fixed bottom-0 w-full bg-white border-t border-slate-200 h-20 flex items-center justify-around z-50 px-2 pb-safe">
+        <a href="#" class="flex flex-col items-center justify-center w-16 text-slate-900">
+            <i data-lucide="home" class="w-7 h-7 stroke-[2.5]"></i>
+            <span class="text-[10px] font-black uppercase tracking-tighter mt-1">Home</span>
+        </a>
+        <a href="#" class="flex flex-col items-center justify-center w-16 text-slate-400">
+            <i data-lucide="layers" class="w-7 h-7 stroke-[2]"></i>
+            <span class="text-[10px] font-black uppercase tracking-tighter mt-1">Niches</span>
+        </a>
+        
+        <button class="w-14 h-14 bg-slate-900 text-white rounded-2xl shadow-xl shadow-slate-300 -mt-10 border-4 border-white flex items-center justify-center transform active:scale-90 transition-all">
+            <i data-lucide="plus" class="w-8 h-8"></i>
+        </button>
+
+        <a href="#" class="flex flex-col items-center justify-center w-16 text-slate-400">
+            <i data-lucide="message-square" class="w-7 h-7 stroke-[2]"></i>
+            <span class="text-[10px] font-black uppercase tracking-tighter mt-1">Chat</span>
+        </a>
+        <a href="#" class="flex flex-col items-center justify-center w-16 text-slate-400">
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" class="w-7 h-7 rounded-lg border border-slate-200">
+            <span class="text-[10px] font-black uppercase tracking-tighter mt-1">Profile</span>
+        </a>
+    </nav>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarDrawer');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            const isHidden = sidebar.classList.contains('-translate-x-full');
+
+            if (isHidden) {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function toggleModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.toggle('hidden');
+            if(id === 'searchModal') {
+                document.getElementById('mobileSearchInput').focus();
+            }
+        }
+    </script>
+</body>
+</html>
