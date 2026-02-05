@@ -1,29 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KSHARER | Knowledge Stream</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap"
+        rel="stylesheet">
 
     <style>
-        [x-cloak] { display: none !important; }
-        body { font-family: 'Inter', sans-serif; }
-        .brand-font { font-family: 'Manrope', sans-serif; }
+        [x-cloak] {
+            display: none !important;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .brand-font {
+            font-family: 'Manrope', sans-serif;
+        }
+
         /* Smooth transitions for modals */
-        .modal-bg { transition: opacity 0.3s ease-out; }
+        .modal-bg {
+            transition: opacity 0.3s ease-out;
+        }
     </style>
 </head>
 
-<body class="bg-[#F8FAFC] text-slate-900" x-data="{ profileOpen: false, notifyOpen: false, searchModal: false, createModal: false }">
+<body class="bg-[#F8FAFC] text-slate-900"
+    x-data="{ profileOpen: false, notifyOpen: false, searchModal: false, createModal: false }">
 
-    <header class="h-16 bg-white border-b border-slate-200 sticky top-0 z-50 px-4 md:px-8 flex items-center justify-between">
-        
+    <header
+        class="h-16 bg-white border-b border-slate-200 sticky top-0 z-50 px-4 md:px-8 flex items-center justify-between">
+
         <div class="flex items-center gap-4 min-w-[120px]">
             <span class="brand-font text-xl font-black text-[#198754] tracking-tighter uppercase">KSHARER</span>
         </div>
@@ -31,58 +47,76 @@
         <div class="flex-1 max-w-xl mx-6">
             <div class="hidden md:block relative">
                 <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
-                <input type="text" placeholder="Search the island for knowledge..." 
-                       class="w-full bg-slate-100 border-2 border-transparent rounded-xl py-2 pl-11 pr-4 text-sm focus:bg-white focus:border-[#198754]/20 focus:ring-0 transition-all">
+                <input type="text" placeholder="Search the island for knowledge..."
+                    class="w-full bg-slate-100 border-2 border-transparent rounded-xl py-2 pl-11 pr-4 text-sm focus:bg-white focus:border-[#198754]/20 focus:ring-0 transition-all">
             </div>
-            <button @click="searchModal = true" class="md:hidden flex items-center justify-center p-2 text-slate-500 ml-auto">
+            <button @click="searchModal = true"
+                class="md:hidden flex items-center justify-center p-2 text-slate-500 ml-auto">
                 <i data-lucide="search" class="w-6 h-6"></i>
             </button>
         </div>
 
         <div class="flex items-center gap-2 md:gap-4">
             <div class="relative">
-                <button @click="notifyOpen = !notifyOpen; profileOpen = false" class="p-2 text-slate-500 hover:bg-slate-50 rounded-xl transition-all relative">
+                <button @click="notifyOpen = !notifyOpen; profileOpen = false"
+                    class="p-2 text-slate-500 hover:bg-slate-50 rounded-xl transition-all relative">
                     <i data-lucide="bell" class="w-5 h-5"></i>
                     <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
                 </button>
-                
-                <div x-show="notifyOpen" x-cloak @click.away="notifyOpen = false" 
-                     class="absolute right-0 mt-3 w-80 bg-white border border-slate-100 shadow-2xl rounded-2xl overflow-hidden z-50">
+
+                <div x-show="notifyOpen" x-cloak @click.away="notifyOpen = false"
+                    class="absolute right-0 mt-3 w-80 bg-white border border-slate-100 shadow-2xl rounded-2xl overflow-hidden z-50">
                     <div class="p-4 border-b border-slate-50 font-bold text-sm">Notifications</div>
                     <div class="p-8 text-center text-slate-400 text-sm">No new signals.</div>
                 </div>
             </div>
 
             <div class="relative">
-                <button @click="profileOpen = !profileOpen; notifyOpen = false" class="flex items-center gap-2 p-1 border border-slate-100 rounded-xl hover:bg-slate-50 transition-all">
-                    <div class="w-8 h-8 bg-[#198754] rounded-lg flex items-center justify-center text-white font-bold text-xs shadow-sm">JD</div>
+                <button @click="profileOpen = !profileOpen; notifyOpen = false"
+                    class="flex items-center gap-2 p-1 border border-slate-100 rounded-xl hover:bg-slate-50 transition-all">
+                    <div
+                        class="w-8 h-8 bg-[#198754] rounded-lg flex items-center justify-center text-white font-bold text-xs shadow-sm">
+                        JD</div>
                     <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 hidden md:block"></i>
                 </button>
 
-                <div x-show="profileOpen" x-cloak @click.away="profileOpen = false" 
-                     class="absolute right-0 mt-3 w-56 bg-white border border-slate-100 shadow-2xl rounded-2xl py-2 z-50">
+                <div x-show="profileOpen" x-cloak @click.away="profileOpen = false"
+                    class="absolute right-0 mt-3 w-56 bg-white border border-slate-100 shadow-2xl rounded-2xl py-2 z-50">
                     <div class="px-4 py-3 border-b border-slate-50">
                         <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Member</p>
                         <p class="text-sm font-bold text-slate-900">John Doe</p>
                     </div>
-                    <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 transition-colors"><i data-lucide="user" class="w-4 h-4"></i> Edit Profile</a>
-                    <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 transition-colors"><i data-lucide="settings" class="w-4 h-4"></i> Settings</a>
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 transition-colors"><i
+                            data-lucide="user" class="w-4 h-4"></i> Edit Profile</a>
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 transition-colors"><i
+                            data-lucide="settings" class="w-4 h-4"></i> Settings</a>
                     <div class="h-px bg-slate-50 my-1"></div>
-                    <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"><i data-lucide="log-out" class="w-4 h-4"></i> Sign Out</a>
+                    <a href="#"
+                        class="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"><i
+                            data-lucide="log-out" class="w-4 h-4"></i> Sign Out</a>
                 </div>
             </div>
         </div>
     </header>
 
     <div class="flex flex-1 max-w-[1600px] mx-auto w-full relative">
-        
+
         <aside class="hidden lg:flex w-[22%] flex-col border-r border-slate-200 h-[calc(100vh-64px)] sticky top-16 p-6">
             <nav class="flex-1 space-y-1">
-                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-[#198754]/10 text-[#198754] rounded-xl font-bold text-sm"><i data-lucide="home" class="w-5 h-5"></i> Home</a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl font-semibold text-sm transition-all"><i data-lucide="compass" class="w-5 h-5"></i> Explore</a>
-                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl font-semibold text-sm transition-all"><i data-lucide="layers" class="w-5 h-5"></i> My Niches</a>
-                
-                <button @click="createModal = true" class="w-full flex items-center justify-center gap-3 px-4 py-4 mt-6 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#198754] shadow-lg shadow-slate-200 transition-all">
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 bg-[#198754]/10 text-[#198754] rounded-xl font-bold text-sm"><i
+                        data-lucide="home" class="w-5 h-5"></i> Home</a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl font-semibold text-sm transition-all"><i
+                        data-lucide="compass" class="w-5 h-5"></i> Explore</a>
+                <a href="#"
+                    class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl font-semibold text-sm transition-all"><i
+                        data-lucide="layers" class="w-5 h-5"></i> My Niches</a>
+
+                <button @click="createModal = true"
+                    class="w-full flex items-center justify-center gap-3 px-4 py-4 mt-6 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#198754] shadow-lg shadow-slate-200 transition-all">
                     <i data-lucide="plus-circle" class="w-5 h-5"></i> Create Thought
                 </button>
             </nav>
@@ -90,20 +124,140 @@
             <div class="mt-auto bg-slate-900 rounded-[2.5rem] p-6 text-white relative overflow-hidden shadow-2xl">
                 <div class="relative z-10">
                     <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Vault Balance</p>
-                    <p class="text-3xl font-black brand-font mb-4 italic">1,420 <span class="text-xs text-[#198754] not-italic">Zini</span></p>
-                    <button class="w-full py-3 bg-[#198754] text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-[1.02] transition-transform">Top Up</button>
+                    <p class="text-3xl font-black brand-font mb-4 italic">1,420 <span
+                            class="text-xs text-[#198754] not-italic">Zini</span></p>
+                    <button
+                        class="w-full py-3 bg-[#198754] text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-[1.02] transition-transform">Top
+                        Up</button>
                 </div>
                 <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-[#198754]/20 rounded-full blur-3xl"></div>
             </div>
         </aside>
 
         <main class="w-full lg:w-[56%] min-h-screen p-4 md:p-8">
-            <div class="max-w-2xl mx-auto text-center py-20">
-                <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="loader-2" class="w-6 h-6 text-slate-300 animate-spin"></i>
+            <div class="max-w-2xl mx-auto space-y-6 pb-20">
+            
+                <div class="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100 group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 border-2 border-white shadow-sm overflow-hidden">
+                                <img src="https://i.pravatar.cc/100?u=1" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-black text-slate-900">Adebayo Chen</h4>
+                                <div class="flex items-center gap-2">
+                                    <span
+                                        class="text-[10px] font-bold text-[#198754] uppercase bg-green-50 px-2 py-0.5 rounded-md">Agriculture</span>
+                                    <span class="text-[10px] text-slate-400 font-medium">2h ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="text-slate-300 hover:text-slate-600"><i data-lucide="more-horizontal"
+                                class="w-5 h-5"></i></button>
+                    </div>
+            
+                    <p class="text-slate-700 leading-relaxed mb-4">
+                        Just finished testing the new vertical hydroponic setup. We managed to reduce water usage by <strong
+                            class="text-slate-900">40%</strong> compared to traditional soil rows. The future of housing-integrated
+                        farming is looking bright! 🌿
+                    </p>
+            
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-50">
+                        <div class="flex gap-4">
+                            <button class="flex items-center gap-1.5 text-slate-400 hover:text-red-500 transition-colors">
+                                <i data-lucide="heart" class="w-4 h-4"></i> <span class="text-xs font-bold">24</span>
+                            </button>
+                            <button class="flex items-center gap-1.5 text-slate-400 hover:text-[#198754] transition-colors">
+                                <i data-lucide="message-circle" class="w-4 h-4"></i> <span class="text-xs font-bold">8</span>
+                            </button>
+                        </div>
+                        <button class="flex items-center gap-1.5 text-slate-400 hover:text-blue-500 transition-colors">
+                            <i data-lucide="bookmark" class="w-4 h-4"></i>
+                        </button>
+                    </div>
                 </div>
-                <p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Streaming Knowledge...</p>
+            
+                <div
+                    class="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-md transition-all group">
+                    <div class="relative aspect-video bg-slate-200">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80"
+                            class="w-full h-full object-cover">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full flex items-center gap-1.5">
+                            <i data-lucide="play-circle" class="w-3 h-3 text-[#198754]"></i>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-slate-900">Video</span>
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-[#198754] shadow-xl">
+                                <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="brand-font text-lg font-black text-slate-900 mb-2 group-hover:text-[#198754] transition-colors line-clamp-1">
+                            Home Solar Battery Maintenance 101
+                        </h3>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-slate-100"></div>
+                                <span class="text-xs font-bold text-slate-500">LightMann Energy</span>
+                            </div>
+                            <div class="flex items-center gap-1 bg-green-50 px-3 py-1.5 rounded-xl">
+                                <span class="text-xs font-black text-[#198754]">45 Zini</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div
+                    class="bg-gradient-to-br from-[#198754] to-emerald-700 rounded-[2rem] p-6 text-white flex flex-col md:flex-row items-center gap-6 relative overflow-hidden">
+                    <div
+                        class="relative z-10 w-24 h-24 shrink-0 rounded-[1.5rem] bg-white/20 border-2 border-white/30 overflow-hidden shadow-xl">
+                        <img src="https://i.pravatar.cc/100?u=4" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative z-10 text-center md:text-left flex-1">
+                        <div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+                            <h4 class="font-black text-xl">Dr. Sarah Jenkins</h4>
+                            <div class="flex items-center gap-0.5 text-yellow-300">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <span class="text-xs font-bold">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-green-50 text-sm font-medium mb-4">Specialist in Rural Energy Systems & Grid Security</p>
+                        <div class="flex flex-wrap gap-2 justify-center md:justify-start">
+                            <button
+                                class="px-6 py-2.5 bg-white text-[#198754] rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-green-50 transition-colors">
+                                Book Session • 120 Zini
+                            </button>
+                            <button
+                                class="px-4 py-2.5 bg-black/10 text-white rounded-xl font-black text-[10px] uppercase tracking-widest border border-white/20 hover:bg-black/20 transition-all">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                    <i data-lucide="zap" class="absolute -right-8 -bottom-8 w-40 h-40 text-white/5 rotate-12"></i>
+                </div>
+            
+                <div
+                    class="bg-white border-2 border-dashed border-slate-200 rounded-[2rem] p-8 text-center group hover:border-[#198754]/30 transition-all">
+                    <div
+                        class="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="home" class="w-8 h-8 text-[#198754]"></i>
+                    </div>
+                    <h3 class="brand-font text-xl font-black text-slate-900 mb-2">Sustainable Housing</h3>
+                    <p class="text-slate-500 text-sm max-w-sm mx-auto mb-6">
+                        Join 840 members solving the housing crisis through low-cost, smart building techniques.
+                    </p>
+                    <button
+                        class="px-8 py-3 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#198754] transition-all">
+                        Join Niche
+                    </button>
+                </div>
+            
             </div>
+
         </main>
 
         <aside class="hidden xl:flex w-[22%] flex-col h-[calc(100vh-64px)] sticky top-16 p-6 gap-6">
@@ -111,7 +265,9 @@
                 <h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Trending Niches</h4>
                 <div class="space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#198754] flex items-center justify-center text-xs font-bold">AG</div>
+                        <div
+                            class="w-8 h-8 rounded-lg bg-emerald-50 text-[#198754] flex items-center justify-center text-xs font-bold">
+                            AG</div>
                         <span class="text-sm font-bold">Agriculture</span>
                     </div>
                 </div>
@@ -121,8 +277,10 @@
 
     <div x-show="searchModal" x-cloak class="fixed inset-0 bg-white z-[100] p-4">
         <div class="flex items-center gap-4 mb-8">
-            <button @click="searchModal = false" class="p-3 bg-slate-50 rounded-2xl text-slate-600"><i data-lucide="arrow-left" class="w-6 h-6"></i></button>
-            <input type="text" placeholder="Search the island..." autofocus class="flex-1 bg-transparent border-none text-xl font-bold focus:ring-0">
+            <button @click="searchModal = false" class="p-3 bg-slate-50 rounded-2xl text-slate-600"><i
+                    data-lucide="arrow-left" class="w-6 h-6"></i></button>
+            <input type="text" placeholder="Search the island..." autofocus
+                class="flex-1 bg-transparent border-none text-xl font-bold focus:ring-0">
         </div>
     </div>
 
@@ -130,32 +288,43 @@
         <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" @click="createModal = false"></div>
         <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-8 shadow-2xl relative z-10">
             <h3 class="brand-font text-2xl font-black text-slate-900 mb-6">What's the thought?</h3>
-            <textarea class="w-full h-40 bg-slate-50 rounded-2xl p-5 border-none focus:ring-2 focus:ring-[#198754]/20 resize-none text-slate-700 placeholder:text-slate-400 mb-6" 
-                      placeholder="Share a piece of knowledge..."></textarea>
+            <textarea
+                class="w-full h-40 bg-slate-50 rounded-2xl p-5 border-none focus:ring-2 focus:ring-[#198754]/20 resize-none text-slate-700 placeholder:text-slate-400 mb-6"
+                placeholder="Share a piece of knowledge..."></textarea>
             <div class="flex justify-between items-center">
                 <div class="flex gap-2">
-                    <button class="p-3 bg-slate-50 text-slate-400 rounded-xl hover:text-[#198754] transition-colors"><i data-lucide="image" class="w-5 h-5"></i></button>
-                    <button class="p-3 bg-slate-50 text-slate-400 rounded-xl hover:text-[#198754] transition-colors"><i data-lucide="link" class="w-5 h-5"></i></button>
+                    <button class="p-3 bg-slate-50 text-slate-400 rounded-xl hover:text-[#198754] transition-colors"><i
+                            data-lucide="image" class="w-5 h-5"></i></button>
+                    <button class="p-3 bg-slate-50 text-slate-400 rounded-xl hover:text-[#198754] transition-colors"><i
+                            data-lucide="link" class="w-5 h-5"></i></button>
                 </div>
-                <button class="px-8 py-3 bg-[#198754] text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-green-100">Post to Feed</button>
+                <button
+                    class="px-8 py-3 bg-[#198754] text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-green-100">Post
+                    to Feed</button>
             </div>
         </div>
     </div>
 
-    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-6 py-3 flex justify-between items-center z-[90]">
+    <nav
+        class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-6 py-3 flex justify-between items-center z-[90]">
         <button class="text-[#198754] p-2"><i data-lucide="home" class="w-6 h-6"></i></button>
         <button class="text-slate-400 p-2"><i data-lucide="compass" class="w-6 h-6"></i></button>
-        <button @click="createModal = true" class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white -mt-10 border-4 border-[#F8FAFC] shadow-xl active:scale-95 transition-all">
+        <button @click="createModal = true"
+            class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white -mt-10 border-4 border-[#F8FAFC] shadow-xl active:scale-95 transition-all">
             <i data-lucide="plus" class="w-7 h-7"></i>
         </button>
         <button class="text-slate-400 p-2"><i data-lucide="mail" class="w-6 h-6"></i></button>
-        <button @click="profileOpen = true" class="text-slate-400 p-2"><i data-lucide="user" class="w-6 h-6"></i></button>
+        <button @click="profileOpen = true" class="text-slate-400 p-2"><i data-lucide="user"
+                class="w-6 h-6"></i></button>
     </nav>
+
+    <!-- main content -->
+    
 
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
-        
+
         // Ensure icons re-render when Alpine toggles elements
         document.addEventListener('alpine:init', () => {
             Alpine.effect(() => {
@@ -164,4 +333,5 @@
         });
     </script>
 </body>
+
 </html>
