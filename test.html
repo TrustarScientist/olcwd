@@ -1,207 +1,167 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KSHARER | Knowledge Sharing</title>
+    <title>KSHARER | Knowledge Stream</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.min.js"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap"
-        rel="stylesheet">
-
-
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        .brand-font {
-            font-family: 'Manrope', sans-serif;
-        }
-
-        [x-cloak] {
-            display: none !important;
-        }
-
-        .content-area {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        /* For modern browsers (Chrome, Safari, Edge, modern Firefox) */
-        ::selection {
-            background-color: #2ecc71;
-            /* A nice green color */
-            color: #ffffff;
-            /* Text color when highlighted */
-        }
-
-        /* For older Firefox versions */
-        ::-moz-selection {
-            background-color: #2ecc71;
-            color: #ffffff;
-        }
-
-        /* Hide Scrollbar but allow scrolling */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        [x-cloak] { display: none !important; }
+        body { font-family: 'Inter', sans-serif; }
+        .brand-font { font-family: 'Manrope', sans-serif; }
+        /* Smooth transitions for modals */
+        .modal-bg { transition: opacity 0.3s ease-out; }
     </style>
-
 </head>
 
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-    <!-- nav -->
-    <div class="min-h-screen bg-[#F8FAFC] font-[Inter] flex flex-col">
-    
-        <header
-            class="h-16 bg-white border-b border-slate-200 sticky top-0 z-50 px-4 md:px-8 flex items-center justify-between">
-            <div class="flex-1 max-w-2xl relative">
-                <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
-                <input type="text" placeholder="Search the island for knowledge..."
-                    class="w-full bg-slate-100 border-none rounded-xl py-2.5 pl-11 pr-4 text-sm focus:ring-2 focus:ring-[#198754]/20 transition-all">
-            </div>
-    
-            <div class="flex items-center gap-4 ml-6">
-                <button class="relative p-2 text-slate-500 hover:bg-slate-50 rounded-lg transition-colors">
-                    <i data-lucide="bell" class="w-5 h-5"></i>
-                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-                </button>
-                <div
-                    class="w-9 h-9 bg-[#198754] rounded-xl flex items-center justify-center text-white font-bold text-xs shadow-lg shadow-green-100 cursor-pointer">
-                    JD
-                </div>
-            </div>
-        </header>
-    
-        <div class="flex flex-1 max-w-[1600px] mx-auto w-full">
-    
-            <aside class="hidden lg:flex w-[22%] flex-col border-r border-slate-200 h-[calc(100vh-64px)] sticky top-16 p-6">
-    
-                <nav class="flex-1 space-y-1">
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 bg-[#198754]/10 text-[#198754] rounded-xl font-bold text-sm transition-all">
-                        <i data-lucide="home" class="w-5 h-5"></i> Home
-                    </a>
-    
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl font-semibold text-sm transition-all">
-                        <i data-lucide="compass" class="w-5 h-5"></i> Explore
-                    </a>
-    
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl font-semibold text-sm transition-all">
-                        <i data-lucide="layers" class="w-5 h-5"></i> My Niches
-                    </a>
-    
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl font-semibold text-sm transition-all">
-                        <i data-lucide="book-open" class="w-5 h-5"></i> Resources
-                    </a>
-    
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl font-semibold text-sm transition-all">
-                        <i data-lucide="user-check" class="w-5 h-5"></i> Mentors
-                    </a>
-    
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl font-semibold text-sm transition-all">
-                        <i data-lucide="mail" class="w-5 h-5"></i> Messages
-                    </a>
-    
-                    <div class="py-4">
-                        <div class="h-px bg-slate-100"></div>
-                    </div>
-    
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-50 rounded-xl font-semibold text-sm transition-all">
-                        <i data-lucide="layout" class="w-5 h-5"></i> My Space
-                    </a>
-                </nav>
-    
-                <div class="mt-auto bg-slate-900 rounded-[2rem] p-5 text-white relative overflow-hidden group">
-                    <div class="relative z-10">
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="text-[10px] font-black uppercase tracking-widest text-slate-400">Zini
-                                Balance</span>
-                            <i data-lucide="wallet" class="w-4 h-4 text-[#198754]"></i>
-                        </div>
-                        <div class="flex items-baseline gap-1 mb-4">
-                            <span class="text-2xl font-black font-[Manrope]">1,420</span>
-                            <span class="text-xs font-bold text-[#198754]">Zini</span>
-                        </div>
-                        <button
-                            class="w-full py-2.5 bg-[#198754] text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-[#157347] transition-all">
-                            Top Up
-                        </button>
-                    </div>
-                    <div
-                        class="absolute -right-4 -bottom-4 w-20 h-20 bg-[#198754]/20 rounded-full blur-2xl group-hover:bg-[#198754]/30 transition-all">
-                    </div>
-                </div>
-            </aside>
-    
-            <main class="w-full lg:w-[56%] min-h-screen p-4 md:p-8">
-                <div class="max-w-xl mx-auto space-y-6">
-                    <p class="text-slate-400 text-center py-20 text-sm font-medium">Knowledge stream loading...</p>
-                </div>
-            </main>
-    
-            <aside class="hidden xl:flex w-[22%] flex-col h-[calc(100vh-64px)] sticky top-16 p-6">
-            </aside>
-    
+<body class="bg-[#F8FAFC] text-slate-900" x-data="{ profileOpen: false, notifyOpen: false, searchModal: false, createModal: false }">
+
+    <header class="h-16 bg-white border-b border-slate-200 sticky top-0 z-50 px-4 md:px-8 flex items-center justify-between">
+        
+        <div class="flex items-center gap-4 min-w-[120px]">
+            <span class="brand-font text-xl font-black text-[#198754] tracking-tighter uppercase">KSHARER</span>
         </div>
-    
-        <nav
-            class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-6 py-3 flex justify-between items-center z-50">
-            <button class="text-[#198754]"><i data-lucide="home" class="w-6 h-6"></i></button>
-            <button class="text-slate-400"><i data-lucide="compass" class="w-6 h-6"></i></button>
-            <button
-                class="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-white -mt-8 border-4 border-[#F8FAFC] shadow-lg">
-                <i data-lucide="plus" class="w-6 h-6"></i>
+
+        <div class="flex-1 max-w-xl mx-6">
+            <div class="hidden md:block relative">
+                <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+                <input type="text" placeholder="Search the island for knowledge..." 
+                       class="w-full bg-slate-100 border-2 border-transparent rounded-xl py-2 pl-11 pr-4 text-sm focus:bg-white focus:border-[#198754]/20 focus:ring-0 transition-all">
+            </div>
+            <button @click="searchModal = true" class="md:hidden flex items-center justify-center p-2 text-slate-500 ml-auto">
+                <i data-lucide="search" class="w-6 h-6"></i>
             </button>
-            <button class="text-slate-400"><i data-lucide="mail" class="w-6 h-6"></i></button>
-            <button class="text-slate-400"><i data-lucide="user" class="w-6 h-6"></i></button>
-        </nav>
-    
+        </div>
+
+        <div class="flex items-center gap-2 md:gap-4">
+            <div class="relative">
+                <button @click="notifyOpen = !notifyOpen; profileOpen = false" class="p-2 text-slate-500 hover:bg-slate-50 rounded-xl transition-all relative">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+                </button>
+                
+                <div x-show="notifyOpen" x-cloak @click.away="notifyOpen = false" 
+                     class="absolute right-0 mt-3 w-80 bg-white border border-slate-100 shadow-2xl rounded-2xl overflow-hidden z-50">
+                    <div class="p-4 border-b border-slate-50 font-bold text-sm">Notifications</div>
+                    <div class="p-8 text-center text-slate-400 text-sm">No new signals.</div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <button @click="profileOpen = !profileOpen; notifyOpen = false" class="flex items-center gap-2 p-1 border border-slate-100 rounded-xl hover:bg-slate-50 transition-all">
+                    <div class="w-8 h-8 bg-[#198754] rounded-lg flex items-center justify-center text-white font-bold text-xs shadow-sm">JD</div>
+                    <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 hidden md:block"></i>
+                </button>
+
+                <div x-show="profileOpen" x-cloak @click.away="profileOpen = false" 
+                     class="absolute right-0 mt-3 w-56 bg-white border border-slate-100 shadow-2xl rounded-2xl py-2 z-50">
+                    <div class="px-4 py-3 border-b border-slate-50">
+                        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Member</p>
+                        <p class="text-sm font-bold text-slate-900">John Doe</p>
+                    </div>
+                    <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 transition-colors"><i data-lucide="user" class="w-4 h-4"></i> Edit Profile</a>
+                    <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 hover:bg-slate-50 transition-colors"><i data-lucide="settings" class="w-4 h-4"></i> Settings</a>
+                    <div class="h-px bg-slate-50 my-1"></div>
+                    <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"><i data-lucide="log-out" class="w-4 h-4"></i> Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 max-w-[1600px] mx-auto w-full relative">
+        
+        <aside class="hidden lg:flex w-[22%] flex-col border-r border-slate-200 h-[calc(100vh-64px)] sticky top-16 p-6">
+            <nav class="flex-1 space-y-1">
+                <a href="#" class="flex items-center gap-3 px-4 py-3 bg-[#198754]/10 text-[#198754] rounded-xl font-bold text-sm"><i data-lucide="home" class="w-5 h-5"></i> Home</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl font-semibold text-sm transition-all"><i data-lucide="compass" class="w-5 h-5"></i> Explore</a>
+                <a href="#" class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl font-semibold text-sm transition-all"><i data-lucide="layers" class="w-5 h-5"></i> My Niches</a>
+                
+                <button @click="createModal = true" class="w-full flex items-center justify-center gap-3 px-4 py-4 mt-6 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-[#198754] shadow-lg shadow-slate-200 transition-all">
+                    <i data-lucide="plus-circle" class="w-5 h-5"></i> Create Thought
+                </button>
+            </nav>
+
+            <div class="mt-auto bg-slate-900 rounded-[2.5rem] p-6 text-white relative overflow-hidden shadow-2xl">
+                <div class="relative z-10">
+                    <p class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-1">Vault Balance</p>
+                    <p class="text-3xl font-black brand-font mb-4 italic">1,420 <span class="text-xs text-[#198754] not-italic">Zini</span></p>
+                    <button class="w-full py-3 bg-[#198754] text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-[1.02] transition-transform">Top Up</button>
+                </div>
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-[#198754]/20 rounded-full blur-3xl"></div>
+            </div>
+        </aside>
+
+        <main class="w-full lg:w-[56%] min-h-screen p-4 md:p-8">
+            <div class="max-w-2xl mx-auto text-center py-20">
+                <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="loader-2" class="w-6 h-6 text-slate-300 animate-spin"></i>
+                </div>
+                <p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Streaming Knowledge...</p>
+            </div>
+        </main>
+
+        <aside class="hidden xl:flex w-[22%] flex-col h-[calc(100vh-64px)] sticky top-16 p-6 gap-6">
+            <div class="p-6 bg-white border border-slate-100 rounded-[2rem] shadow-sm">
+                <h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">Trending Niches</h4>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-[#198754] flex items-center justify-center text-xs font-bold">AG</div>
+                        <span class="text-sm font-bold">Agriculture</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
     </div>
-    
-    <script>lucide.createIcons();</script>
 
+    <div x-show="searchModal" x-cloak class="fixed inset-0 bg-white z-[100] p-4">
+        <div class="flex items-center gap-4 mb-8">
+            <button @click="searchModal = false" class="p-3 bg-slate-50 rounded-2xl text-slate-600"><i data-lucide="arrow-left" class="w-6 h-6"></i></button>
+            <input type="text" placeholder="Search the island..." autofocus class="flex-1 bg-transparent border-none text-xl font-bold focus:ring-0">
+        </div>
+    </div>
 
+    <div x-show="createModal" x-cloak class="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" @click="createModal = false"></div>
+        <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-8 shadow-2xl relative z-10">
+            <h3 class="brand-font text-2xl font-black text-slate-900 mb-6">What's the thought?</h3>
+            <textarea class="w-full h-40 bg-slate-50 rounded-2xl p-5 border-none focus:ring-2 focus:ring-[#198754]/20 resize-none text-slate-700 placeholder:text-slate-400 mb-6" 
+                      placeholder="Share a piece of knowledge..."></textarea>
+            <div class="flex justify-between items-center">
+                <div class="flex gap-2">
+                    <button class="p-3 bg-slate-50 text-slate-400 rounded-xl hover:text-[#198754] transition-colors"><i data-lucide="image" class="w-5 h-5"></i></button>
+                    <button class="p-3 bg-slate-50 text-slate-400 rounded-xl hover:text-[#198754] transition-colors"><i data-lucide="link" class="w-5 h-5"></i></button>
+                </div>
+                <button class="px-8 py-3 bg-[#198754] text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-green-100">Post to Feed</button>
+            </div>
+        </div>
+    </div>
 
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-6 py-3 flex justify-between items-center z-[90]">
+        <button class="text-[#198754] p-2"><i data-lucide="home" class="w-6 h-6"></i></button>
+        <button class="text-slate-400 p-2"><i data-lucide="compass" class="w-6 h-6"></i></button>
+        <button @click="createModal = true" class="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white -mt-10 border-4 border-[#F8FAFC] shadow-xl active:scale-95 transition-all">
+            <i data-lucide="plus" class="w-7 h-7"></i>
+        </button>
+        <button class="text-slate-400 p-2"><i data-lucide="mail" class="w-6 h-6"></i></button>
+        <button @click="profileOpen = true" class="text-slate-400 p-2"><i data-lucide="user" class="w-6 h-6"></i></button>
+    </nav>
 
-
-    <!-- scripts -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
+        // Initialize Lucide Icons
         lucide.createIcons();
+        
+        // Ensure icons re-render when Alpine toggles elements
         document.addEventListener('alpine:init', () => {
             Alpine.effect(() => {
-                // Slight delay to allow DOM update before icon rendering
-                setTimeout(() => lucide.createIcons(), 50);
+                setTimeout(() => lucide.createIcons(), 10);
             });
         });
     </script>
 </body>
-
 </html>
